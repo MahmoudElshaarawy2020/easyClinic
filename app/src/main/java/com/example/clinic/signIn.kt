@@ -4,6 +4,9 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+
+
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -31,6 +34,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -52,6 +56,7 @@ fun LoginScreenTextFields() {
         modifier = Modifier
             .fillMaxSize()
             .padding(10.dp)
+            .padding(top = 20.dp)
             .background(color = Color.White),
         horizontalAlignment = Alignment.CenterHorizontally
 
@@ -60,7 +65,7 @@ fun LoginScreenTextFields() {
         LocalImage(
             painter = painterResource(id = R.drawable.bluelogo1),
             imageSize = 150.dp,
-            padding = 15.dp
+            padding = 15.dp,
         )
 
         Text(
@@ -153,12 +158,51 @@ fun LoginScreenTextFields() {
 
         Button(
             onClick = {}, modifier = Modifier
-                .padding(start = 30.dp, end = 30.dp,top = 40.dp)
-                .size(height = 40.dp ,width = 400.dp),
+                .padding(start = 30.dp, end = 30.dp, top = 40.dp)
+                .size(height = 40.dp, width = 400.dp),
             colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue)),
 
         ) {
+            Text(text = "Sign in",
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+        }
+        Button(
+            onClick = {}, modifier = Modifier
+                .padding(start = 30.dp, end = 30.dp, top = 18.dp)
+                .size(height = 40.dp, width = 400.dp),
+            colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue)),
 
+            ) {
+            Text(text = "Sign in with Google",
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+        }
+        Row(
+            modifier=Modifier
+                .padding(top = 90.dp)
+        ) {
+            Text(text ="Dont have an account?",
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier .padding(top=6 .dp, end = 3.dp)
+            )
+            Button(onClick = {}, modifier = Modifier
+                .size(width = 100.dp, height = 37.dp),
+                colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue))
+
+            ) {
+                Text(text = "Sign Up",
+                    fontSize = 13.sp,
+                    fontWeight = FontWeight.Bold,
+                color = Color.White
+                )
+
+            }
         }
 
     }
