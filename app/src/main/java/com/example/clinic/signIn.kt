@@ -54,10 +54,9 @@ fun LoginScreenTextFields() {
 
     Column(
         modifier = Modifier
+            .background(color = Color.White)
             .fillMaxSize()
-            .padding(10.dp)
-            .padding(top = 20.dp)
-            .background(color = Color.White),
+            .padding(10.dp , top = 20.dp),
         horizontalAlignment = Alignment.CenterHorizontally
 
 
@@ -186,7 +185,7 @@ fun LoginScreenTextFields() {
             modifier=Modifier
                 .padding(top = 90.dp)
         ) {
-            Text(text ="Dont have an account?",
+            Text(text ="Don't have an account?",
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier .padding(top=6 .dp, end = 3.dp)
@@ -212,6 +211,6 @@ fun LoginScreenTextFields() {
 
 @Preview(showBackground = true)
 @Composable
-fun myPreview() {
+fun signinPreview() {
     LoginScreenTextFields()
 }
