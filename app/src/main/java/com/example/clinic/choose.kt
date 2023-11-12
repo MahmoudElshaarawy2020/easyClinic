@@ -63,7 +63,7 @@ fun LinearBackground() {
             .background(color = Color(0xFF0480C4)
             , shape = RoundedCornerShape(topEnd = 25.dp)
             )){
-            Text(text = "LET'S START...  ", fontSize = 40.sp, fontWeight = FontWeight.Bold, color = Color.White)
+            Text(text = " LET'S START...  ", fontSize = 40.sp, fontWeight = FontWeight.Bold, color = Color.White)
         }
 
         Row(
