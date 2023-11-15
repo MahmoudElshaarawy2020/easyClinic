@@ -49,8 +49,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val navController = rememberNavController()
-            SetUpNavGraph(navController = navController)
+
+                val navController = rememberNavController()
+                SetUpNavGraph(navController = navController)
+
             ClinicTheme {
                 // A surface container using the 'background' color from the theme
 
