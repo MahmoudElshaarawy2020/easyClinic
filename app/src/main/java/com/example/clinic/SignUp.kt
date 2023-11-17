@@ -39,10 +39,12 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RegisterScreenTextFields(){
+fun RegisterScreenTextFields(navController: NavController){
     Column(
         modifier = Modifier
             .background(color = Color.White)
@@ -155,5 +157,5 @@ fun RegisterScreenTextFields(){
     @Preview(showBackground = true)
     @Composable
     fun signupPreview() {
-        RegisterScreenTextFields()
+        RegisterScreenTextFields(navController = rememberNavController())
     }

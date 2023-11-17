@@ -1,8 +1,10 @@
 package com.example.clinic
 
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 
 
@@ -46,18 +48,21 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.example.clinic.navigation.Screens
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreenTextFields() {
+fun LoginScreenTextFields(navController: NavController) {
 
 
     Column(
         modifier = Modifier
             .background(color = Color.White)
-            .fillMaxSize()
-            .padding(10.dp , top = 20.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
 
 
     ) {
@@ -190,7 +195,11 @@ fun LoginScreenTextFields() {
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier .padding(top=6 .dp, end = 3.dp)
             )
-            Button(onClick = {}, modifier = Modifier
+            Button(onClick = {
+                             navController.navigate(route = Screens.signUpScreen.route)
+
+            },
+                modifier = Modifier
                 .size(width = 100.dp, height = 37.dp),
                 colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue))
 
@@ -212,5 +221,5 @@ fun LoginScreenTextFields() {
 @Preview(showBackground = true)
 @Composable
 fun signinPreview() {
-    LoginScreenTextFields()
+    LoginScreenTextFields(navController = rememberNavController())
 }
