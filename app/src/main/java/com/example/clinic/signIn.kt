@@ -196,7 +196,7 @@ fun LoginScreenTextFields(navController: NavController) {
                 modifier = Modifier .padding(top=6 .dp, end = 3.dp)
             )
             Button(onClick = {
-                             navController.navigate(route = Screens.signUpScreen.route)
+                             navController.navigate(route = "signUp_screen")
 
             },
                 modifier = Modifier

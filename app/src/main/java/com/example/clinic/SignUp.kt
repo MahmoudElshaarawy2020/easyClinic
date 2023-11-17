@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
@@ -44,14 +46,13 @@ import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RegisterScreenTextFields(navController: NavController){
-    Column(
+fun RegisterScreenTextFields(){
+   Column(
         modifier = Modifier
             .background(color = Color.White)
-            .fillMaxSize()
-            .padding(10.dp)
-            .padding(top = 20.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+
 
     ) {
         LocalImage(
@@ -61,7 +62,7 @@ fun RegisterScreenTextFields(navController: NavController){
         )
 
         Text(
-            text = "SIGN UP",
+            text = "Sign Up",
             fontSize = 30.sp,
             color = colorResource(R.color.lightblue)
 
@@ -78,7 +79,8 @@ fun RegisterScreenTextFields(navController: NavController){
                     text = "User Name",
                     color = Color.LightGray
                 )
-            }, leadingIcon = {
+            },
+            leadingIcon = {
                 Icon(
                     imageVector = Icons.Filled.Person, contentDescription = "Email icon"
                 )
@@ -87,6 +89,58 @@ fun RegisterScreenTextFields(navController: NavController){
             singleLine = true,
             textStyle = TextStyle(
                 color = Color.Blue,
+                fontWeight = FontWeight.Bold
+            ),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                unfocusedBorderColor = colorResource(id = com.example.clinic.R.color.lightblue),
+                focusedBorderColor = colorResource(id = R.color.lightblue)
+            )
+        )
+        OutlinedTextField(modifier = Modifier
+            .padding(start = 13.dp, end = 13.dp, top = 25.dp)
+            .fillMaxWidth(),
+            value = text, onValueChange = { text = it },
+            shape = RoundedCornerShape(15.dp),
+            label = {
+                Text(
+                    text = "Phone Number",
+                    color = Color.LightGray
+                )
+            }, leadingIcon = {
+                Icon(
+                    imageVector = Icons.Filled.Call, contentDescription = "Email icon"
+                )
+
+            },
+            singleLine = true,
+            textStyle = TextStyle(
+                color = Color.Black,
+                fontWeight = FontWeight.Bold
+            ),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                unfocusedBorderColor = colorResource(id = R.color.lightblue),
+                focusedBorderColor = colorResource(id = R.color.lightblue)
+            )
+        )
+        OutlinedTextField(modifier = Modifier
+            .padding(start = 13.dp, end = 13.dp, top = 25.dp)
+            .fillMaxWidth(),
+            value = text, onValueChange = { text = it },
+            shape = RoundedCornerShape(15.dp),
+            label = {
+                Text(
+                    text = "Email",
+                    color = Color.LightGray
+                )
+            }, leadingIcon = {
+                Icon(
+                    imageVector = Icons.Filled.Email, contentDescription = "Email icon"
+                )
+
+            },
+            singleLine = true,
+            textStyle = TextStyle(
+                color = Color.Black,
                 fontWeight = FontWeight.Bold
             ),
             colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -138,8 +192,48 @@ fun RegisterScreenTextFields(navController: NavController){
                 focusedBorderColor = colorResource(id = R.color.lightblue)
             )
         )
+        OutlinedTextField(
+            modifier = Modifier
+                .padding(start = 13.dp, end = 13.dp, top = 15.dp)
+                .fillMaxWidth(),
+            value = password,
+            onValueChange = { password = it },
+            visualTransformation = if (passwordVisability) VisualTransformation.None
+            else PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            shape = RoundedCornerShape(15.dp),
+
+            label = { Text(text = "Confirm password", color = Color.LightGray) },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Filled.Lock, contentDescription = "Email icon"
+                )
+            },
+            trailingIcon = {
+                IconButton(onClick = { passwordVisability = !passwordVisability }) {
+                    Icon(
+                        modifier = Modifier
+                            .padding(end = 10.dp)
+                            .size(20.dp), painter = icon, contentDescription = null
+                    )
+
+
+                }
+            },
+            singleLine = true,
+            textStyle = TextStyle(
+                color = Color.Blue,
+                fontWeight = FontWeight.Bold
+            ),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                unfocusedBorderColor = colorResource(id = R.color.lightblue),
+                focusedBorderColor = colorResource(id = R.color.lightblue)
+            )
+        )
+
         Button(
-            onClick = {}, modifier = Modifier
+            onClick = {},
+            modifier = Modifier
                 .padding(start = 30.dp, end = 30.dp, top = 40.dp)
                 .size(height = 40.dp, width = 400.dp),
             colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue)),
@@ -154,8 +248,4 @@ fun RegisterScreenTextFields(navController: NavController){
         }
     }
 }
-    @Preview(showBackground = true)
-    @Composable
-    fun signupPreview() {
-        RegisterScreenTextFields(navController = rememberNavController())
-    }
+

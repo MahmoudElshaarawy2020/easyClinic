@@ -15,12 +15,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ClinicTheme {
-               navController = rememberNavController()
+                navController = rememberNavController()
                 Navigation(navController = navController)
-                LoginScreenTextFields(navController)
-                RegisterScreenTextFields(navController)
-            }
+
+
         }
     }
 }

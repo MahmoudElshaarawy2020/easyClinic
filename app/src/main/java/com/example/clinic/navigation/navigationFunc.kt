@@ -14,14 +14,14 @@ import com.example.clinic.RegisterScreenTextFields
 fun Navigation(navController: NavHostController){
 
     NavHost(navController = navController,
-        startDestination = Screens.signInScreen.route ){
+        startDestination ="signIn_screen" ){
 
-        composable(route = Screens.signInScreen.route){
+        composable(route = "signIn_screen"){
             LoginScreenTextFields(navController = navController)
         }
 
-        composable(route = Screens.signUpScreen.route){
-            RegisterScreenTextFields(navController = navController)
+        composable(route = "signUp_screen"){
+            RegisterScreenTextFields()
 
         }
     }
