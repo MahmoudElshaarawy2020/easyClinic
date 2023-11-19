@@ -85,9 +85,10 @@ dependencies {
     androidTestImplementation("androidx.navigation:navigation-testing:$navVersion")
 
     // Jetpack Compose Integration
-    implementation("androidx.navigation:navigation-compose:2.5.1")
+    implementation("androidx.navigation:navigation-compose:2.7.5")
+    implementation("androidx.core:core-splashscreen:1.0.0-alpha02")
 
-    //
+
 
 
 }
