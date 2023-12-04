@@ -1,10 +1,12 @@
 package com.example.clinic
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -49,7 +51,7 @@ import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RegisterScreenTextFields() {
+fun RegisterScreenTextFields(navController: NavController) {
         Column(
             modifier = Modifier
                 .background(color = Color.White)
@@ -57,6 +59,20 @@ fun RegisterScreenTextFields() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
             ) {
+
+
+            Box(modifier = Modifier
+                .align(Alignment.Start)
+                .clickable {
+                    navController.navigate(route = "signIn_screen")
+                }){
+                LocalImage(painter = painterResource(id = R.drawable.backarrow)
+                    , imageSize = 60.dp ,
+                    padding = 10.dp )
+            }
+            Spacer(modifier = Modifier
+                .fillMaxWidth()
+                .size(20.dp))
 
             LocalImage(
                 painter = painterResource(id = R.drawable.finalbluelogo),
@@ -252,4 +268,9 @@ fun RegisterScreenTextFields() {
             }
         }
     }
+@Preview(showBackground = true)
+@Composable
+fun SignUpPreview() {
+    RegisterScreenTextFields(navController = rememberNavController())
+}
 

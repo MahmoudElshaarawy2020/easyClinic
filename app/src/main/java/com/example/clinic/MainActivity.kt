@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
             }
         }
         setContent {
-                val windowInfo = rememberWindowInfo()
+
                 navController = rememberNavController()
                 Navigation(navController = navController)
 

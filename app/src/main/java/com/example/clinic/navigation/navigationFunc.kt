@@ -21,7 +21,7 @@ fun Navigation(navController: NavHostController){
         }
 
         composable(route = "signUp_screen"){
-            RegisterScreenTextFields()
+            RegisterScreenTextFields(navController = navController)
 
         }
     }
