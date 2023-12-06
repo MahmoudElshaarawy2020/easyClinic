@@ -69,9 +69,6 @@ fun RegisterScreenTextFields(navController: NavController) {
         verticalArrangement = Arrangement.Center
     ) {
 
-
-
-
         LocalImage(
             painter = painterResource(id = R.drawable.finalbluelogo),
             imageSize = 200.dp,
