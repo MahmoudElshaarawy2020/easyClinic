@@ -1,4 +1,4 @@
-package com.example.clinic
+package views
 
 import android.view.Window
 import android.widget.VideoView
