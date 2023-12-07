@@ -70,7 +70,7 @@ fun patientProfile() {
             .fillMaxWidth(0.8f)
             .weight(2f)
             .padding(vertical = 50.dp)
-            .background(color = Color.Black)
+            .background(color = Color.White)
         )
 
     }
