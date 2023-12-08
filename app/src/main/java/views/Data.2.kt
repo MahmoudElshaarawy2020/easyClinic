@@ -37,7 +37,7 @@ import androidx.compose.material3.Text as Text
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DataScreenTextField(navController: NavController){
+fun Data2ScreenTextField(navController: NavController){
     Column(
         modifier = Modifier
             .background(color = Color.White)
@@ -195,7 +195,7 @@ fun DataScreenTextField(navController: NavController){
         Button(
             onClick = {},
             modifier = Modifier
-                .padding(start = 250.dp, end = 5.dp, top = 35.dp)
+                .padding(start = 250.dp, end = 5.dp, top = 20.dp)
                 .size(height = 40.dp, width = 100.dp),
             colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue)),
 
@@ -212,5 +212,5 @@ fun DataScreenTextField(navController: NavController){
 @Preview(showBackground = true)
 @Composable
 fun Data() {
-    DataScreenTextField(navController = rememberNavController())
+    Data2ScreenTextField(navController = rememberNavController())
 }
