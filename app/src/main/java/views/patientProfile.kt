@@ -5,14 +5,17 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.Divider
@@ -59,27 +62,23 @@ fun patientProfile() {
         Box(
             modifier = Modifier
                 .background(
-                    color = Color(0xFFFFFFFF), shape = RoundedCornerShape(25.dp)
+                    color = Color(0xFF39A0FF), shape = RoundedCornerShape(25.dp)
                 )
+                .size(height = 50.dp, width = 260.dp),
+            contentAlignment = Alignment.Center
         ) {
-            OutlinedTextField(
-                value = name,
-                shape = RoundedCornerShape(25.dp),
-                onValueChange = { name = it },
-                singleLine = true,
-                textStyle = TextStyle(
-                    color = Color.Black,
-                    fontWeight = FontWeight.Bold
+            Text(text = "Name",
+                color = Color.White,
+                fontSize = 25.sp,
+                fontWeight = FontWeight.Bold )
 
-                )
-            )
         }
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(2f)
                 .padding(vertical = 50.dp)
-                .background(color = Color.White)
+
         ) {
             Column {
 
@@ -105,9 +104,9 @@ fun patientProfile() {
                 )
                 Text(
                     text = "My profile",
-                    fontSize = 30.sp,
+                    fontSize = 25.sp,
                     color = Color(0xFF1683E7),
-                    modifier = Modifier .padding(start = 20.dp)
+                    modifier = Modifier .padding(start = 18.dp)
 
 
                 )
@@ -137,16 +136,22 @@ fun patientProfile() {
                 verticalAlignment = Alignment.CenterVertically
 
             ) {
-                LocalImage(
-                    painter = painterResource(id = R.drawable.img_3),
-                    imageSize = 70.dp, padding =0.dp
+                Box(contentAlignment = Alignment.Center) {
 
-                )
+                    LocalImage(
+                        painter = painterResource(id = R.drawable.dricon1),
+                        imageSize = 70.dp, padding = 0.dp
+
+                    )
+                    LocalImage(
+                        painter = painterResource(id = R.drawable.dricon11),
+                        imageSize = 45.dp, padding =0.dp)
+                }
                 Text(
-                    text = "My profile",
-                    fontSize = 30.sp,
+                    text = "My doctors",
+                    fontSize = 25.sp,
                     color = Color(0xFF1683E7),
-                    modifier = Modifier .padding(start = 20.dp)
+                    modifier = Modifier .padding(start = 18.dp)
 
 
                 )
@@ -176,16 +181,17 @@ fun patientProfile() {
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
-                    LocalImage(
-                        painter = painterResource(id = R.drawable.img_3),
-                        imageSize = 70.dp, padding =0.dp
 
+                    LocalImage(
+                        painter = painterResource(id = R.drawable.mhicon1),
+                        imageSize = 70.dp, padding =0.dp
                     )
+
                     Text(
-                        text = "My profile",
-                        fontSize = 30.sp,
+                        text = "Medical history",
+                        fontSize = 25.sp,
                         color = Color(0xFF1683E7),
-                        modifier = Modifier .padding(start = 20.dp)
+                        modifier = Modifier .padding(start = 18.dp)
 
 
                     )
@@ -216,15 +222,15 @@ fun patientProfile() {
 
                 ) {
                     LocalImage(
-                        painter = painterResource(id = R.drawable.img_3),
+                        painter = painterResource(id = R.drawable.maicon1),
                         imageSize = 70.dp, padding =0.dp
 
                     )
                     Text(
-                        text = "My profile",
-                        fontSize = 30.sp,
+                        text = "Medical appointments",
+                        fontSize = 25.sp,
                         color = Color(0xFF1683E7),
-                        modifier = Modifier .padding(start = 20.dp)
+                        modifier = Modifier .padding(start = 18.dp)
 
 
                     )
@@ -254,16 +260,22 @@ fun patientProfile() {
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
-                    LocalImage(
-                        painter = painterResource(id = R.drawable.img_3),
-                        imageSize = 70.dp, padding =0.dp
+                    Box(contentAlignment = Alignment.Center) {
 
-                    )
+                        LocalImage(
+                            painter = painterResource(id = R.drawable.malicon1),
+                            imageSize = 70.dp, padding = 0.dp
+
+                        )
+                        LocalImage(
+                            painter = painterResource(id = R.drawable.alarmicon),
+                            imageSize = 45.dp, padding =0.dp)
+                    }
                     Text(
-                        text = "My profile",
-                        fontSize = 30.sp,
+                        text = "Medication alarm",
+                        fontSize = 25.sp,
                         color = Color(0xFF1683E7),
-                        modifier = Modifier .padding(start = 20.dp)
+                        modifier = Modifier .padding(start = 18.dp)
 
 
                     )
@@ -288,6 +300,40 @@ fun patientProfile() {
                 )
 
         }
+        }
+        Row (verticalAlignment = Alignment.CenterVertically
+            ,modifier = Modifier
+            .fillMaxWidth()
+            .height(80.dp)
+            .padding(5.dp)
+            .background(
+                color = Color(0xFF39A0FF),
+                shape = RoundedCornerShape(25.dp),
+
+            )
+        ){
+            Box(modifier=Modifier
+                .weight(1f),
+                contentAlignment = Alignment.Center) {
+                LocalImage(painter = painterResource(id = R.drawable.callicon),
+                    imageSize = 55.dp,
+                    padding = 0.dp)
+            }
+            Box(modifier=Modifier
+                .weight(1f),
+                contentAlignment = Alignment.Center) {
+                LocalImage(painter = painterResource(id = R.drawable.homeicon),
+                    imageSize = 90.dp,
+                    padding = 0.dp)
+            }
+            Box(modifier=Modifier
+                .weight(1f),
+                contentAlignment = Alignment.Center) {
+                LocalImage(painter = painterResource(id = R.drawable.proficon),
+                    imageSize = 55.dp,
+                    padding = 0.dp)
+            }
+
         }
     }
     }
