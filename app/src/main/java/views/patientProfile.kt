@@ -3,6 +3,7 @@ package views
 import android.icu.lang.UCharacter.LineBreak
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 
@@ -93,33 +94,38 @@ fun patientProfile() {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(10.dp),
+                    .padding(10.dp)
+                    .clickable {  },
                 verticalAlignment = Alignment.CenterVertically
 
             ) {
-                LocalImage(
-                    painter = painterResource(id = R.drawable.img_3),
-                    imageSize = 70.dp, padding =0.dp
-
-                )
-                Text(
-                    text = "My profile",
-                    fontSize = 25.sp,
-                    color = Color(0xFF1683E7),
-                    modifier = Modifier .padding(start = 18.dp)
-
-
-                )
-                Box(modifier = Modifier
-                    .fillMaxWidth(),
-                    contentAlignment = Alignment.CenterEnd) {
 
                     LocalImage(
-                        painter = painterResource(id = R.drawable.img_4),
-                        imageSize = 40.dp, padding = 0.dp
+                        painter = painterResource(id = R.drawable.img_3),
+                        imageSize = 70.dp, padding = 0.dp
 
                     )
-                }
+                    Text(
+                        text = "My profile",
+                        fontSize = 25.sp,
+                        color = Color(0xFF1683E7),
+                        modifier = Modifier.padding(start = 18.dp)
+
+
+                    )
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        contentAlignment = Alignment.CenterEnd
+                    ) {
+
+                        LocalImage(
+                            painter = painterResource(id = R.drawable.img_4),
+                            imageSize = 40.dp, padding = 0.dp
+
+                        )
+                    }
+
 
             }
             Divider(
@@ -132,7 +138,8 @@ fun patientProfile() {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(10.dp),
+                    .padding(10.dp)
+                    .clickable {  },
                 verticalAlignment = Alignment.CenterVertically
 
             ) {
@@ -177,7 +184,8 @@ fun patientProfile() {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(10.dp),
+                        .padding(10.dp)
+                        .clickable {  },
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
@@ -217,7 +225,8 @@ fun patientProfile() {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(10.dp),
+                        .padding(10.dp)
+                        .clickable {  },
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
@@ -256,7 +265,8 @@ fun patientProfile() {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(10.dp),
+                        .padding(10.dp)
+                        .clickable {  },
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
@@ -303,14 +313,14 @@ fun patientProfile() {
         }
         Row (verticalAlignment = Alignment.CenterVertically
             ,modifier = Modifier
-            .fillMaxWidth()
-            .height(80.dp)
-            .padding(5.dp)
-            .background(
-                color = Color(0xFF39A0FF),
-                shape = RoundedCornerShape(25.dp),
+                .fillMaxWidth()
+                .height(80.dp)
+                .padding(5.dp)
+                .background(
+                    color = Color(0xFF39A0FF),
+                    shape = RoundedCornerShape(25.dp),
 
-            )
+                    )
         ){
             Box(modifier=Modifier
                 .weight(1f),
