@@ -25,10 +25,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
 
 @Composable
-fun LinearBackground() {
+fun ChooseRole(navController: NavController) {
     val colors = listOf(Color(0xFF1FA1F7), Color(0xFFA4CDE8), Color(0xFFECEBF0))
 
     Box(
@@ -70,7 +72,10 @@ fun LinearBackground() {
                     padding = 0.dp
                 )
                 Button(
-                    onClick = { }, modifier = Modifier
+                    onClick = {
+                        navController.navigate(route = "doctor_data")
+                    },
+                    modifier = Modifier
                         .padding(top = 280.dp)
                         .size(height = 45.dp, width = 124.dp),
                     colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue))
@@ -90,7 +95,10 @@ fun LinearBackground() {
                     padding = 0.dp
                 )
                 Button(
-                    onClick = { }, modifier = Modifier
+                    onClick = {
+                        navController.navigate(route = "patient_data")
+                    },
+                    modifier = Modifier
                         .padding(top = 280.dp, end = 30.dp)
                         .size(height = 45.dp, width = 124.dp),
                     colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue))
@@ -106,7 +114,7 @@ fun LinearBackground() {
 @Preview(showBackground = true)
 @Composable
 fun LinearBackgroundPreview() {
-    LinearBackground()
+    ChooseRole(navController = rememberNavController())
 }
 
 

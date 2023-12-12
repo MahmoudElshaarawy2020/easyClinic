@@ -1,5 +1,3 @@
-package views
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -8,13 +6,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -36,11 +32,12 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
-import java.nio.file.WatchEvent
+import views.LocalImage
+import androidx.compose.material3.Text as Text
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DataScreenTextField(navController: NavController){
+fun DoctorData(navController: NavController){
     Column(
         modifier = Modifier
             .background(color = Color.White)
@@ -52,30 +49,29 @@ fun DataScreenTextField(navController: NavController){
     ) {
         LocalImage(
             painter = painterResource(id = R.drawable.finalbluelogo),
-            imageSize = 200.dp,
+            imageSize = 150.dp,
             padding = 15.dp,
         )
 
 
         Text(
             text = "Enter your data",
-            fontSize = 30.sp,
+            fontSize = 20.sp,
             color = colorResource(R.color.lightblue)
 
 
         )
         var text by remember { mutableStateOf(TextFieldValue("")) }
         OutlinedTextField(modifier = Modifier
-            .padding(start = 13.dp, end = 13.dp, top = 25.dp)
+            .padding(start = 13.dp, end = 13.dp, top = 15.dp)
             .fillMaxWidth(),
             value = text, onValueChange = { text = it },
             shape = RoundedCornerShape(15.dp),
             label = {
                 Text(
                     text = "name",
-                    color = Color.LightGray,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.width(300.dp)
+                    style = TextStyle(
+                        color = Color.LightGray,textAlign=TextAlign.Center)
                 )
             },
 
@@ -84,18 +80,17 @@ fun DataScreenTextField(navController: NavController){
                 focusedBorderColor = colorResource(id = R.color.lightblue)
             )
         )
-        var age by remember { mutableStateOf(TextFieldValue("")) }
+        var specialization by remember { mutableStateOf(TextFieldValue("")) }
         OutlinedTextField(modifier = Modifier
-            .padding(start = 13.dp, end = 13.dp, top = 25.dp)
+            .padding(start = 13.dp, end = 13.dp, top = 15.dp)
             .fillMaxWidth(),
-            value = age, onValueChange = { age = it },
+            value =  specialization, onValueChange = {  specialization = it },
             shape = RoundedCornerShape(15.dp),
             label = {
                 Text(
-                    text = "age",
+                    text = " specialization",
                     style = TextStyle(
-                        color = Color.LightGray,textAlign=TextAlign.Center),
-                    modifier = Modifier.width(300.dp)
+                        color = Color.LightGray,textAlign=TextAlign.Center)
                 )
             },
 
@@ -106,7 +101,7 @@ fun DataScreenTextField(navController: NavController){
         )
         var num by remember { mutableStateOf(TextFieldValue("")) }
         OutlinedTextField(modifier = Modifier
-            .padding(start = 13.dp, end = 13.dp, top = 25.dp)
+            .padding(start = 13.dp, end = 13.dp, top = 15.dp)
             .fillMaxWidth(),
             value = num, onValueChange = { num = it },
             shape = RoundedCornerShape(15.dp),
@@ -114,8 +109,7 @@ fun DataScreenTextField(navController: NavController){
                 Text(
                     text = "phone number",
                     style = TextStyle(
-                        color = Color.LightGray,textAlign=TextAlign.Center),
-                    modifier = Modifier.width(300.dp)
+                        color = Color.LightGray,textAlign=TextAlign.Center)
                 )
             },
 
@@ -124,18 +118,17 @@ fun DataScreenTextField(navController: NavController){
                 focusedBorderColor = colorResource(id = R.color.lightblue)
             )
         )
-        var address by remember { mutableStateOf(TextFieldValue("")) }
+        var clincaddress by remember { mutableStateOf(TextFieldValue("")) }
         OutlinedTextField(modifier = Modifier
-            .padding(start = 13.dp, end = 13.dp, top = 25.dp)
+            .padding(start = 13.dp, end = 13.dp, top = 15.dp)
             .fillMaxWidth(),
-            value = address, onValueChange = { address = it },
+            value = clincaddress, onValueChange = { clincaddress = it },
             shape = RoundedCornerShape(15.dp),
             label = {
                 Text(
-                    text = "address",
+                    text = " clincaddress",
                     style = TextStyle(
-                        color = Color.LightGray,textAlign=TextAlign.Center),
-                    modifier = Modifier.width(300.dp)
+                        color = Color.LightGray,textAlign=TextAlign.Center)
                 )
             },
 
@@ -144,21 +137,56 @@ fun DataScreenTextField(navController: NavController){
                 focusedBorderColor = colorResource(id = R.color.lightblue)
             )
         )
-        var gender by remember { mutableStateOf(TextFieldValue("")) }
+        var medicalfees by remember { mutableStateOf(TextFieldValue("")) }
         OutlinedTextField(modifier = Modifier
-            .padding(start = 13.dp, end = 13.dp, top = 25.dp)
+            .padding(start = 13.dp, end = 13.dp, top = 15.dp)
             .fillMaxWidth(),
-            value = gender, onValueChange = { gender = it },
+            value =medicalfees , onValueChange = {medicalfees = it },
             shape = RoundedCornerShape(15.dp),
             label = {
                 Text(
-                    text = "gender",
+                    text = "medical fees",
                     style = TextStyle(
-                        color = Color.LightGray,textAlign=TextAlign.Center),
-                    modifier = Modifier.width(300.dp)
+                        color = Color.LightGray,textAlign=TextAlign.Center)
                 )
             },
 
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                unfocusedBorderColor = colorResource(id = R.color.lightblue),
+                focusedBorderColor = colorResource(id = R.color.lightblue)
+            )
+        )
+        var appoinments by remember { mutableStateOf(TextFieldValue("")) }
+        OutlinedTextField(modifier = Modifier
+            .padding(start = 13.dp, end = 13.dp, top = 15.dp)
+            .fillMaxWidth(),
+            value =appoinments , onValueChange = {appoinments= it },
+            shape = RoundedCornerShape(15.dp),
+            label = {
+                Text(
+                    text = "appoinments",
+                    style = TextStyle(
+                        color = Color.LightGray,textAlign=TextAlign.Center)
+                )
+            },
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                unfocusedBorderColor = colorResource(id = R.color.lightblue),
+                focusedBorderColor = colorResource(id = R.color.lightblue)
+            )
+        )
+            var Description by remember { mutableStateOf(TextFieldValue("")) }
+        OutlinedTextField(modifier = Modifier.height(120.dp)
+            .padding(start = 13.dp, end = 13.dp, top = 15.dp)
+            .fillMaxWidth(),
+            value =Description , onValueChange = {Description= it },
+            shape = RoundedCornerShape(topStart = 13.dp, bottomEnd = 13.dp),
+            label = {
+                Text(
+                    text = "Description",
+                    style = TextStyle(
+                        color = Color.LightGray,textAlign=TextAlign.Center)
+                )
+            },
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 unfocusedBorderColor = colorResource(id = R.color.lightblue),
                 focusedBorderColor = colorResource(id = R.color.lightblue)
@@ -167,7 +195,7 @@ fun DataScreenTextField(navController: NavController){
         Button(
             onClick = {},
             modifier = Modifier
-                .padding(start = 250.dp, end = 5.dp, top = 40.dp)
+                .padding(start = 250.dp, end = 5.dp, top = 20.dp)
                 .size(height = 40.dp, width = 100.dp),
             colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue)),
 
@@ -184,5 +212,5 @@ fun DataScreenTextField(navController: NavController){
 @Preview(showBackground = true)
 @Composable
 fun Data() {
-    DataScreenTextField(navController = rememberNavController())
+    DoctorData(navController = rememberNavController())
 }

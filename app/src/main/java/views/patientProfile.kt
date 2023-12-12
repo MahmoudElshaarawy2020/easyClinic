@@ -42,11 +42,13 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
-fun patientProfile() {
+fun patientProfile(navController : NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -349,8 +351,10 @@ fun patientProfile() {
     }
     Box(modifier = Modifier
         .fillMaxWidth()
-        .clickable {  }
-        .padding(10.dp),
+        .clickable {
+            navController.navigate(route = "signIn_screen")
+        }
+        .padding(start = 330.dp, end =10.dp, top = 15.dp),
         contentAlignment = Alignment.TopEnd
         ) {
         LocalImage(painter = painterResource(id = R.drawable.img_10),
@@ -364,5 +368,5 @@ fun patientProfile() {
 @Preview (showBackground = true)
 @Composable
 fun ShowPreview(){
-    patientProfile()
+    patientProfile(navController = rememberNavController())
 }

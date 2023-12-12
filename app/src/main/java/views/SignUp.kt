@@ -250,7 +250,9 @@ fun RegisterScreenTextFields(navController: NavController) {
         )
 
         Button(
-            onClick = {},
+            onClick = {
+                navController.navigate(route = "choose_screen")
+            },
             modifier = Modifier
                 .padding(start = 30.dp, end = 30.dp, top = 40.dp)
                 .size(height = 40.dp, width = 400.dp),
