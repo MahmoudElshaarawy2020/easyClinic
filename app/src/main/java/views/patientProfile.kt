@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.consumedWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -95,7 +96,7 @@ fun patientProfile() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(10.dp)
-                    .clickable {  },
+                    .clickable { },
                 verticalAlignment = Alignment.CenterVertically
 
             ) {
@@ -139,7 +140,7 @@ fun patientProfile() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(10.dp)
-                    .clickable {  },
+                    .clickable { },
                 verticalAlignment = Alignment.CenterVertically
 
             ) {
@@ -185,7 +186,7 @@ fun patientProfile() {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp)
-                        .clickable {  },
+                        .clickable { },
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
@@ -226,7 +227,7 @@ fun patientProfile() {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp)
-                        .clickable {  },
+                        .clickable { },
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
@@ -266,7 +267,7 @@ fun patientProfile() {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp)
-                        .clickable {  },
+                        .clickable { },
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
@@ -345,6 +346,17 @@ fun patientProfile() {
             }
 
         }
+    }
+    Box(modifier = Modifier
+        .fillMaxWidth()
+        .clickable {  }
+        .padding(10.dp),
+        contentAlignment = Alignment.TopEnd
+        ) {
+        LocalImage(painter = painterResource(id = R.drawable.img_10),
+            imageSize =45.dp,
+            padding =0.dp )
+
     }
     }
 
