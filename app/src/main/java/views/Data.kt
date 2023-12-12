@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -35,6 +36,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
+import java.nio.file.WatchEvent
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -71,8 +73,9 @@ fun DataScreenTextField(navController: NavController){
             label = {
                 Text(
                     text = "name",
-                    style = TextStyle(
-                    color = Color.LightGray,textAlign=TextAlign.Center)
+                    color = Color.LightGray,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.width(300.dp)
                 )
             },
 
@@ -91,7 +94,8 @@ fun DataScreenTextField(navController: NavController){
                 Text(
                     text = "age",
                     style = TextStyle(
-                        color = Color.LightGray,textAlign=TextAlign.Center)
+                        color = Color.LightGray,textAlign=TextAlign.Center),
+                    modifier = Modifier.width(300.dp)
                 )
             },
 
@@ -110,7 +114,8 @@ fun DataScreenTextField(navController: NavController){
                 Text(
                     text = "phone number",
                     style = TextStyle(
-                        color = Color.LightGray,textAlign=TextAlign.Center)
+                        color = Color.LightGray,textAlign=TextAlign.Center),
+                    modifier = Modifier.width(300.dp)
                 )
             },
 
@@ -129,7 +134,8 @@ fun DataScreenTextField(navController: NavController){
                 Text(
                     text = "address",
                     style = TextStyle(
-                        color = Color.LightGray,textAlign=TextAlign.Center)
+                        color = Color.LightGray,textAlign=TextAlign.Center),
+                    modifier = Modifier.width(300.dp)
                 )
             },
 
@@ -148,7 +154,8 @@ fun DataScreenTextField(navController: NavController){
                 Text(
                     text = "gender",
                     style = TextStyle(
-                        color = Color.LightGray,textAlign=TextAlign.Center)
+                        color = Color.LightGray,textAlign=TextAlign.Center),
+                    modifier = Modifier.width(300.dp)
                 )
             },
 

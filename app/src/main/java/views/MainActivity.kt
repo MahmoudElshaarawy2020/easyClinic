@@ -21,16 +21,12 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        val fontFamily = FontFamily(
-            Font(R.font.audiowideregular, FontWeight.Thin)
-        )
         installSplashScreen().apply {
             setKeepVisibleCondition{
                 viewModel.isLoading.value
             }
         }
         setContent {
-
                 navController = rememberNavController()
                 Navigation(navController = navController)
 
