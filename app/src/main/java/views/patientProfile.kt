@@ -341,6 +341,6 @@ fun patientProfile() {
 
 @Preview (showBackground = true)
 @Composable
-fun showPreview(){
+fun ShowPreview(){
     patientProfile()
 }

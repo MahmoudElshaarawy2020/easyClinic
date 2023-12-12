@@ -8,8 +8,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -107,6 +109,39 @@ fun PatientHome (){
                     textAlign = TextAlign.Center
                 )
             }
+        }
+        Row (verticalAlignment = Alignment.CenterVertically
+            ,modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 5.dp, end = 5.dp, bottom = 10.dp, top = 50.dp)
+                .background(
+                    color = Color(0xFF39A0FF),
+                    shape = RoundedCornerShape(25.dp),
+
+                    )
+        ){
+            Box(modifier=Modifier
+                .weight(1f),
+                contentAlignment = Alignment.Center) {
+                LocalImage(painter = painterResource(id = R.drawable.callicon),
+                    imageSize = 55.dp,
+                    padding = 0.dp)
+            }
+            Box(modifier=Modifier
+                .weight(1f),
+                contentAlignment = Alignment.Center) {
+                LocalImage(painter = painterResource(id = R.drawable.homeicon),
+                    imageSize = 90.dp,
+                    padding = 0.dp)
+            }
+            Box(modifier=Modifier
+                .weight(1f),
+                contentAlignment = Alignment.Center) {
+                LocalImage(painter = painterResource(id = R.drawable.proficon),
+                    imageSize = 55.dp,
+                    padding = 0.dp)
+            }
+
         }
     }
 
