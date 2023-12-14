@@ -61,12 +61,13 @@ fun DoctorData(navController: NavController){
 
 
         )
-        var text by remember { mutableStateOf(TextFieldValue("")) }
+        var text by remember { mutableStateOf("") }
         OutlinedTextField(modifier = Modifier
             .padding(start = 13.dp, end = 13.dp, top = 15.dp)
             .fillMaxWidth(),
             value = text, onValueChange = { text = it },
             shape = RoundedCornerShape(15.dp),
+            singleLine = true,
             label = {
                 Text(
                     text = "name",
@@ -86,6 +87,7 @@ fun DoctorData(navController: NavController){
             .fillMaxWidth(),
             value =  specialization, onValueChange = {  specialization = it },
             shape = RoundedCornerShape(15.dp),
+            singleLine = true,
             label = {
                 Text(
                     text = " specialization",
@@ -105,6 +107,7 @@ fun DoctorData(navController: NavController){
             .fillMaxWidth(),
             value = num, onValueChange = { num = it },
             shape = RoundedCornerShape(15.dp),
+            singleLine = true,
             label = {
                 Text(
                     text = "phone number",
@@ -124,6 +127,7 @@ fun DoctorData(navController: NavController){
             .fillMaxWidth(),
             value = clincaddress, onValueChange = { clincaddress = it },
             shape = RoundedCornerShape(15.dp),
+            singleLine = true,
             label = {
                 Text(
                     text = " clincaddress",
@@ -143,6 +147,7 @@ fun DoctorData(navController: NavController){
             .fillMaxWidth(),
             value =medicalfees , onValueChange = {medicalfees = it },
             shape = RoundedCornerShape(15.dp),
+            singleLine = true,
             label = {
                 Text(
                     text = "medical fees",
@@ -162,6 +167,7 @@ fun DoctorData(navController: NavController){
             .fillMaxWidth(),
             value =appoinments , onValueChange = {appoinments= it },
             shape = RoundedCornerShape(15.dp),
+            singleLine = true,
             label = {
                 Text(
                     text = "appoinments",
@@ -193,7 +199,9 @@ fun DoctorData(navController: NavController){
             )
         )
         Button(
-            onClick = {},
+            onClick = {
+                navController.navigate(route = "splash_doctor/$text")
+            },
             modifier = Modifier
                 .padding(start = 250.dp, end = 5.dp, top = 20.dp)
                 .size(height = 40.dp, width = 100.dp),
