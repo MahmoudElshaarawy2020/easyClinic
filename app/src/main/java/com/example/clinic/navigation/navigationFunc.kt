@@ -60,7 +60,7 @@ fun Navigation(navController: NavHostController){
                 nullable = true
             })
         ){
-            SplashForDoctor(name = it.arguments?.getString("name"))
+            SplashForDoctor(name = it.arguments?.getString("name"),navController)
         }
     }
 
