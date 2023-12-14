@@ -13,6 +13,7 @@ import views.LoginScreenTextFields
 import views.PatientData
 import views.PatientHome
 import views.RegisterScreenTextFields
+import views.SplashForDoctor
 import views.SplashForPatient
 import views.patientProfile
 
@@ -51,7 +52,7 @@ fun Navigation(navController: NavHostController){
                 nullable = true
             })
         ){
-            SplashForPatient(name = it.arguments?.getString("name"))
+            SplashForPatient(name = it.arguments?.getString("name"), navController)
         }
         composable(route = "splash_doctor/{name}",
             arguments = listOf(navArgument(name = "name"){
@@ -59,7 +60,7 @@ fun Navigation(navController: NavHostController){
                 nullable = true
             })
         ){
-            SplashForPatient(name = it.arguments?.getString("name"))
+            SplashForDoctor(name = it.arguments?.getString("name"))
         }
     }
 

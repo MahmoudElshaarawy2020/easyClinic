@@ -3,14 +3,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -18,12 +17,20 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
+import kotlinx.coroutines.delay
+
 @Composable
-fun SplashForDoctor(name : String?){
+fun SplashForDoctor(name : String?,navController: NavController){
     val fontFamily = FontFamily(
         Font(R.font.merienda_one, FontWeight.Thin)
     )
+    LaunchedEffect(key1 = true){
+        delay(2000L)
+        navController.navigate(route = "patient_home")
+    }
     Column(modifier = Modifier
         .fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -53,5 +60,5 @@ fun SplashForDoctor(name : String?){
 @Preview(showBackground =  true)
 @Composable
 fun preview(){
-    SplashForDoctor(name = "")
+    SplashForDoctor(name = "",navController = rememberNavController())
 }
