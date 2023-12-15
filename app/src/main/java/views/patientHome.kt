@@ -39,7 +39,8 @@ fun PatientHome (navController: NavController){
         .fillMaxSize()
         .background(color = Color(0xFFE9FAFF)),
         horizontalAlignment = Alignment.CenterHorizontally
-    ){
+    )
+    {
         Box (contentAlignment = Alignment.Center,
             modifier = Modifier.fillMaxWidth()
             ){
@@ -57,7 +58,8 @@ fun PatientHome (navController: NavController){
         }
         Row (modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
-            ){
+            )
+        {
             Box(contentAlignment = Alignment.BottomCenter,
                 modifier = Modifier.padding( 6.dp)
                 .clickable {  }) {
