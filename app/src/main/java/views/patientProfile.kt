@@ -46,9 +46,9 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
 
-
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun patientProfile(navController : NavController) {
+fun patientProfile(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -351,10 +351,8 @@ fun patientProfile(navController : NavController) {
     }
     Box(modifier = Modifier
         .fillMaxWidth()
-        .clickable {
-            navController.navigate(route = "signIn_screen")
-        }
-        .padding(start = 330.dp, end =10.dp, top = 15.dp),
+        .clickable {  }
+        .padding(10.dp),
         contentAlignment = Alignment.TopEnd
         ) {
         LocalImage(painter = painterResource(id = R.drawable.img_10),

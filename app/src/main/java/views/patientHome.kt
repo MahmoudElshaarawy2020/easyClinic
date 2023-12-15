@@ -44,7 +44,9 @@ fun PatientHome (navController: NavController){
         Box (contentAlignment = Alignment.Center,
             modifier = Modifier.fillMaxWidth()
             ){
-            LocalImage(painter = painterResource(id = R.drawable.img_5), imageSize =310.dp, padding = 0.dp)
+            LocalImage(painter = painterResource(id = R.drawable.aidrpic),
+                imageSize =310.dp,
+                padding = 0.dp)
             Text(
                 "Doctor\n" +
                         "suggestion",
