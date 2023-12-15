@@ -38,7 +38,7 @@ import com.example.clinic.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PatientData(navController: NavController){
+fun PatientData(navController : NavController){
     Column(
         modifier = Modifier
             .background(color = Color.White)
@@ -62,12 +62,13 @@ fun PatientData(navController: NavController){
 
 
         )
-        var text by remember { mutableStateOf(TextFieldValue("")) }
+        var text by remember { mutableStateOf("") }
         OutlinedTextField(modifier = Modifier
             .padding(start = 13.dp, end = 13.dp, top = 25.dp)
             .fillMaxWidth(),
             value = text, onValueChange = { text = it },
             shape = RoundedCornerShape(15.dp),
+            singleLine = true,
             label = {
                 Text(
                     text = "name",
@@ -88,6 +89,7 @@ fun PatientData(navController: NavController){
             .fillMaxWidth(),
             value = age, onValueChange = { age = it },
             shape = RoundedCornerShape(15.dp),
+            singleLine = true,
             label = {
                 Text(
                     text = "age",
@@ -107,6 +109,7 @@ fun PatientData(navController: NavController){
             .padding(start = 13.dp, end = 13.dp, top = 25.dp)
             .fillMaxWidth(),
             value = num, onValueChange = { num = it },
+            singleLine = true,
             shape = RoundedCornerShape(15.dp),
             label = {
                 Text(
@@ -128,6 +131,7 @@ fun PatientData(navController: NavController){
             .fillMaxWidth(),
             value = address, onValueChange = { address = it },
             shape = RoundedCornerShape(15.dp),
+            singleLine = true,
             label = {
                 Text(
                     text = "address",
@@ -148,6 +152,7 @@ fun PatientData(navController: NavController){
             .fillMaxWidth(),
             value = gender, onValueChange = { gender = it },
             shape = RoundedCornerShape(15.dp),
+            singleLine = true,
             label = {
                 Text(
                     text = "gender",
@@ -164,7 +169,7 @@ fun PatientData(navController: NavController){
         )
         Button(
             onClick = {
-                navController.navigate(route = "patient_home")
+                navController.navigate(route = "splash_patient/$text")
             },
             modifier = Modifier
                 .padding(start = 250.dp, end = 5.dp, top = 40.dp)
