@@ -8,6 +8,9 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.clinic.navigationBar.navBarViewsPatient.HomeScreen
+import com.example.clinic.navigationBar.navBarViewsPatient.MyProfileScreen
+import com.example.clinic.navigationBar.navBarViewsPatient.MyUnKnown
 import views.ChooseRole
 import views.LoginScreenTextFields
 import views.PatientData
@@ -52,7 +55,7 @@ fun Navigation(navController: NavHostController){
                 nullable = true
             })
         ){
-            SplashForPatient(name = it.arguments?.getString("name"), navController)
+            SplashForPatient(name = it.arguments?.getString("name"), navController = navController)
         }
         composable(route = "splash_doctor/{name}",
             arguments = listOf(navArgument(name = "name"){
@@ -60,9 +63,20 @@ fun Navigation(navController: NavHostController){
                 nullable = true
             })
         ){
-            SplashForDoctor(name = it.arguments?.getString("name"),navController)
+            SplashForDoctor(name = it.arguments?.getString("name"),navController = navController)
+        }
+
+        composable(route = "Home") {
+            HomeScreen(navController = navController)
+        }
+        composable("MyProfile") {
+            MyProfileScreen(navController)
+        }
+        composable("Unknown") {
+            MyUnKnown()
         }
     }
+
 
 }
 

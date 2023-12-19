@@ -112,42 +112,12 @@ fun PatientHome (navController: NavController){
                 )
             }
         }
-        Row (verticalAlignment = Alignment.CenterVertically
-            ,modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 5.dp, end = 5.dp, bottom = 10.dp, top = 50.dp)
-                .background(
-                    color = Color(0xFF39A0FF),
-                    shape = RoundedCornerShape(25.dp),
 
-                    )
-        ){
-            Box(modifier=Modifier
-                .weight(1f),
-                contentAlignment = Alignment.Center) {
-                LocalImage(painter = painterResource(id = R.drawable.callicon),
-                    imageSize = 55.dp,
-                    padding = 0.dp)
-            }
-            Box(modifier=Modifier
-                .weight(1f),
-                contentAlignment = Alignment.Center) {
-                LocalImage(painter = painterResource(id = R.drawable.homeicon),
-                    imageSize = 90.dp,
-                    padding = 0.dp)
-            }
-            Box(modifier=Modifier
-                .weight(1f),
-                contentAlignment = Alignment.Center) {
-                LocalImage(painter = painterResource(id = R.drawable.proficon),
-                    imageSize = 55.dp,
-                    padding = 0.dp)
-            }
 
         }
     }
 
-}
+
 
 @Preview(showBackground = true)
 @Composable

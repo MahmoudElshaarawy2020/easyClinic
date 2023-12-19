@@ -71,10 +71,12 @@ fun patientProfile(navController : NavController) {
                 .size(height = 50.dp, width = 260.dp),
             contentAlignment = Alignment.Center
         ) {
-            Text(text = "Name",
+            Text(
+                text = "Name",
                 color = Color.White,
                 fontSize = 25.sp,
-                fontWeight = FontWeight.Bold )
+                fontWeight = FontWeight.Bold
+            )
 
         }
         Box(
@@ -87,21 +89,21 @@ fun patientProfile(navController : NavController) {
             Column {
 
 
-            Divider(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 20.dp, end = 20.dp),
-                thickness = 0.8.dp,
-                color = Color(0xFF486A89)
-            )
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(10.dp)
-                    .clickable { },
-                verticalAlignment = Alignment.CenterVertically
+                Divider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 20.dp, end = 20.dp),
+                    thickness = 0.8.dp,
+                    color = Color(0xFF486A89)
+                )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(10.dp)
+                        .clickable { },
+                    verticalAlignment = Alignment.CenterVertically
 
-            ) {
+                ) {
 
                     LocalImage(
                         painter = painterResource(id = R.drawable.img_3),
@@ -130,53 +132,56 @@ fun patientProfile(navController : NavController) {
                     }
 
 
-            }
-            Divider(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 20.dp, end = 20.dp),
-                thickness = 0.8.dp,
-                color = Color(0xFF486A89)
-            )
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(10.dp)
-                    .clickable { },
-                verticalAlignment = Alignment.CenterVertically
-
-            ) {
-                Box(contentAlignment = Alignment.Center) {
-
-                    LocalImage(
-                        painter = painterResource(id = R.drawable.dricon1),
-                        imageSize = 70.dp, padding = 0.dp
-
-                    )
-                    LocalImage(
-                        painter = painterResource(id = R.drawable.dricon11),
-                        imageSize = 45.dp, padding =0.dp)
                 }
-                Text(
-                    text = "My doctors",
-                    fontSize = 25.sp,
-                    color = Color(0xFF1683E7),
-                    modifier = Modifier .padding(start = 18.dp)
-
-
+                Divider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 20.dp, end = 20.dp),
+                    thickness = 0.8.dp,
+                    color = Color(0xFF486A89)
                 )
-                Box(modifier = Modifier
-                    .fillMaxWidth(),
-                    contentAlignment = Alignment.CenterEnd) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(10.dp)
+                        .clickable { },
+                    verticalAlignment = Alignment.CenterVertically
 
-                    LocalImage(
-                        painter = painterResource(id = R.drawable.img_4),
-                        imageSize = 40.dp, padding = 0.dp
+                ) {
+                    Box(contentAlignment = Alignment.Center) {
+
+                        LocalImage(
+                            painter = painterResource(id = R.drawable.dricon1),
+                            imageSize = 70.dp, padding = 0.dp
+
+                        )
+                        LocalImage(
+                            painter = painterResource(id = R.drawable.dricon11),
+                            imageSize = 45.dp, padding = 0.dp
+                        )
+                    }
+                    Text(
+                        text = "My doctors",
+                        fontSize = 25.sp,
+                        color = Color(0xFF1683E7),
+                        modifier = Modifier.padding(start = 18.dp)
+
 
                     )
-                }
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        contentAlignment = Alignment.CenterEnd
+                    ) {
 
-            }
+                        LocalImage(
+                            painter = painterResource(id = R.drawable.img_4),
+                            imageSize = 40.dp, padding = 0.dp
+
+                        )
+                    }
+
+                }
                 Divider(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -195,20 +200,22 @@ fun patientProfile(navController : NavController) {
 
                     LocalImage(
                         painter = painterResource(id = R.drawable.mhicon1),
-                        imageSize = 70.dp, padding =0.dp
+                        imageSize = 70.dp, padding = 0.dp
                     )
 
                     Text(
                         text = "Medical history",
                         fontSize = 25.sp,
                         color = Color(0xFF1683E7),
-                        modifier = Modifier .padding(start = 18.dp)
+                        modifier = Modifier.padding(start = 18.dp)
 
 
                     )
-                    Box(modifier = Modifier
-                        .fillMaxWidth(),
-                        contentAlignment = Alignment.CenterEnd) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        contentAlignment = Alignment.CenterEnd
+                    ) {
 
                         LocalImage(
                             painter = painterResource(id = R.drawable.img_4),
@@ -235,20 +242,22 @@ fun patientProfile(navController : NavController) {
                 ) {
                     LocalImage(
                         painter = painterResource(id = R.drawable.maicon1),
-                        imageSize = 70.dp, padding =0.dp
+                        imageSize = 70.dp, padding = 0.dp
 
                     )
                     Text(
                         text = "Medical appointments",
                         fontSize = 25.sp,
                         color = Color(0xFF1683E7),
-                        modifier = Modifier .padding(start = 18.dp)
+                        modifier = Modifier.padding(start = 18.dp)
 
 
                     )
-                    Box(modifier = Modifier
-                        .fillMaxWidth(),
-                        contentAlignment = Alignment.CenterEnd) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        contentAlignment = Alignment.CenterEnd
+                    ) {
 
                         LocalImage(
                             painter = painterResource(id = R.drawable.img_4),
@@ -282,19 +291,22 @@ fun patientProfile(navController : NavController) {
                         )
                         LocalImage(
                             painter = painterResource(id = R.drawable.alarmicon),
-                            imageSize = 45.dp, padding =0.dp)
+                            imageSize = 45.dp, padding = 0.dp
+                        )
                     }
                     Text(
                         text = "Medication alarm",
                         fontSize = 25.sp,
                         color = Color(0xFF1683E7),
-                        modifier = Modifier .padding(start = 18.dp)
+                        modifier = Modifier.padding(start = 18.dp)
 
 
                     )
-                    Box(modifier = Modifier
-                        .fillMaxWidth(),
-                        contentAlignment = Alignment.CenterEnd) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        contentAlignment = Alignment.CenterEnd
+                    ) {
 
                         LocalImage(
                             painter = painterResource(id = R.drawable.img_4),
@@ -312,58 +324,26 @@ fun patientProfile(navController : NavController) {
                     color = Color(0xFF486A89)
                 )
 
+            }
         }
-        }
-        Row (verticalAlignment = Alignment.CenterVertically
-            ,modifier = Modifier
-                .fillMaxWidth()
-                .height(80.dp)
-                .padding(5.dp)
-                .background(
-                    color = Color(0xFF39A0FF),
-                    shape = RoundedCornerShape(25.dp),
 
-                    )
-        ){
-            Box(modifier=Modifier
-                .weight(1f),
-                contentAlignment = Alignment.Center) {
-                LocalImage(painter = painterResource(id = R.drawable.callicon),
-                    imageSize = 55.dp,
-                    padding = 0.dp)
+        Box(modifier = Modifier
+            .fillMaxWidth()
+            .clickable {
+                navController.navigate(route = "signIn_screen")
             }
-            Box(modifier=Modifier
-                .weight(1f),
-                contentAlignment = Alignment.Center) {
-                LocalImage(painter = painterResource(id = R.drawable.homeicon),
-                    imageSize = 90.dp,
-                    padding = 0.dp)
-            }
-            Box(modifier=Modifier
-                .weight(1f),
-                contentAlignment = Alignment.Center) {
-                LocalImage(painter = painterResource(id = R.drawable.proficon),
-                    imageSize = 55.dp,
-                    padding = 0.dp)
-            }
-
-        }
-    }
-    Box(modifier = Modifier
-        .fillMaxWidth()
-        .clickable {
-            navController.navigate(route = "signIn_screen")
-        }
-        .padding(start = 330.dp, end =10.dp, top = 15.dp),
-        contentAlignment = Alignment.TopEnd
+            .padding(start = 330.dp, end = 10.dp, top = 15.dp),
+            contentAlignment = Alignment.TopEnd
         ) {
-        LocalImage(painter = painterResource(id = R.drawable.img_10),
-            imageSize =45.dp,
-            padding =0.dp )
+            LocalImage(
+                painter = painterResource(id = R.drawable.img_10),
+                imageSize = 45.dp,
+                padding = 0.dp
+            )
 
+        }
     }
-    }
-
+}
 
 @Preview (showBackground = true)
 @Composable

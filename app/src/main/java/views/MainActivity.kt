@@ -1,17 +1,14 @@
 package views
-
+import androidx.compose.material.BottomNavigation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.clinic.R
 import com.example.clinic.navigation.Navigation
+import com.example.clinic.navigationBar.Functions.NavBar
 import com.example.clinic.splashScreenStuff.MainViewModel
 
 
@@ -22,13 +19,15 @@ class MainActivity : ComponentActivity() {
 
         super.onCreate(savedInstanceState)
         installSplashScreen().apply {
-            setKeepVisibleCondition{
                 viewModel.isLoading.value
-            }
+
         }
         setContent {
-                navController = rememberNavController()
-                Navigation(navController = navController)
+
+            navController = rememberNavController()
+            Navigation(navController = navController)
+            NavBar()
+
 
 
         }
