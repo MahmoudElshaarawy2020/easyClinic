@@ -8,6 +8,10 @@ sealed class Screens(val route : String){
     object patientData  : Screens("patient_data")
     object doctorData  : Screens("doctor_data")
     object patientHome  : Screens("patient_home")
+    object AuthRoute  : Screens("Auth")
+    object AppPatientRoute  : Screens("AppPatient")
+    object AppDrRoute  : Screens("AppDr")
+
 
     fun withArgs(vararg args : String?): String{
         return buildString {

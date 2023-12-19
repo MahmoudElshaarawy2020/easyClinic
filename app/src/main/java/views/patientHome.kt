@@ -39,11 +39,14 @@ fun PatientHome (navController: NavController){
         .fillMaxSize()
         .background(color = Color(0xFFE9FAFF)),
         horizontalAlignment = Alignment.CenterHorizontally
-    ){
+    )
+    {
         Box (contentAlignment = Alignment.Center,
             modifier = Modifier.fillMaxWidth()
             ){
-            LocalImage(painter = painterResource(id = R.drawable.img_5), imageSize =310.dp, padding = 0.dp)
+            LocalImage(painter = painterResource(id = R.drawable.aidrpic),
+                imageSize =310.dp,
+                padding = 0.dp)
             Text(
                 "Doctor\n" +
                         "suggestion",
@@ -57,7 +60,8 @@ fun PatientHome (navController: NavController){
         }
         Row (modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
-            ){
+            )
+        {
             Box(contentAlignment = Alignment.BottomCenter,
                 modifier = Modifier.padding( 6.dp)
                 .clickable {  }) {

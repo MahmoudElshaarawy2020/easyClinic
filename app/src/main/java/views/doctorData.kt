@@ -1,6 +1,8 @@
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -63,7 +65,7 @@ fun DoctorData(navController: NavController){
         )
         var text by remember { mutableStateOf("") }
         OutlinedTextField(modifier = Modifier
-            .padding(start = 13.dp, end = 13.dp, top = 15.dp)
+            .padding(start = 13.dp, end = 13.dp, top = 10.dp)
             .fillMaxWidth(),
             value = text, onValueChange = { text = it },
             shape = RoundedCornerShape(15.dp),
@@ -83,7 +85,7 @@ fun DoctorData(navController: NavController){
         )
         var specialization by remember { mutableStateOf(TextFieldValue("")) }
         OutlinedTextField(modifier = Modifier
-            .padding(start = 13.dp, end = 13.dp, top = 15.dp)
+            .padding(start = 13.dp, end = 13.dp, top = 10.dp)
             .fillMaxWidth(),
             value =  specialization, onValueChange = {  specialization = it },
             shape = RoundedCornerShape(15.dp),
@@ -103,7 +105,7 @@ fun DoctorData(navController: NavController){
         )
         var num by remember { mutableStateOf(TextFieldValue("")) }
         OutlinedTextField(modifier = Modifier
-            .padding(start = 13.dp, end = 13.dp, top = 15.dp)
+            .padding(start = 13.dp, end = 13.dp, top = 10.dp)
             .fillMaxWidth(),
             value = num, onValueChange = { num = it },
             shape = RoundedCornerShape(15.dp),
@@ -123,7 +125,7 @@ fun DoctorData(navController: NavController){
         )
         var clincaddress by remember { mutableStateOf(TextFieldValue("")) }
         OutlinedTextField(modifier = Modifier
-            .padding(start = 13.dp, end = 13.dp, top = 15.dp)
+            .padding(start = 13.dp, end = 13.dp, top = 10.dp)
             .fillMaxWidth(),
             value = clincaddress, onValueChange = { clincaddress = it },
             shape = RoundedCornerShape(15.dp),
@@ -143,7 +145,7 @@ fun DoctorData(navController: NavController){
         )
         var medicalfees by remember { mutableStateOf(TextFieldValue("")) }
         OutlinedTextField(modifier = Modifier
-            .padding(start = 13.dp, end = 13.dp, top = 15.dp)
+            .padding(start = 13.dp, end = 13.dp, top = 10.dp)
             .fillMaxWidth(),
             value =medicalfees , onValueChange = {medicalfees = it },
             shape = RoundedCornerShape(15.dp),
@@ -163,7 +165,7 @@ fun DoctorData(navController: NavController){
         )
         var appoinments by remember { mutableStateOf(TextFieldValue("")) }
         OutlinedTextField(modifier = Modifier
-            .padding(start = 13.dp, end = 13.dp, top = 15.dp)
+            .padding(start = 13.dp, end = 13.dp, top = 10.dp)
             .fillMaxWidth(),
             value =appoinments , onValueChange = {appoinments= it },
             shape = RoundedCornerShape(15.dp),
@@ -181,8 +183,9 @@ fun DoctorData(navController: NavController){
             )
         )
             var Description by remember { mutableStateOf(TextFieldValue("")) }
-        OutlinedTextField(modifier = Modifier.height(120.dp)
-            .padding(start = 13.dp, end = 13.dp, top = 15.dp)
+        OutlinedTextField(modifier = Modifier
+            .height(120.dp)
+            .padding(start = 13.dp, end = 13.dp, top = 10.dp)
             .fillMaxWidth(),
             value =Description , onValueChange = {Description= it },
             shape = RoundedCornerShape(topStart = 13.dp, bottomEnd = 13.dp),
@@ -203,7 +206,7 @@ fun DoctorData(navController: NavController){
                 navController.navigate(route = "splash_doctor/$text")
             },
             modifier = Modifier
-                .padding(start = 250.dp, end = 5.dp, top = 20.dp)
+                .padding(start = 250.dp, end = 5.dp, top = 8.dp)
                 .size(height = 40.dp, width = 100.dp),
             colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue)),
 
@@ -215,7 +218,12 @@ fun DoctorData(navController: NavController){
                 color = Color.White
             )
         }
+        Spacer(modifier = Modifier
+            .fillMaxWidth()
+            .height(30.dp)
+        )
     }
+
 }
 @Preview(showBackground = true)
 @Composable

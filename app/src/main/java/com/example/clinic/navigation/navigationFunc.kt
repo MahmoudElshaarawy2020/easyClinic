@@ -8,9 +8,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.clinic.navigationBar.navBarViewsPatient.HomeScreen
-import com.example.clinic.navigationBar.navBarViewsPatient.MyProfileScreen
-import com.example.clinic.navigationBar.navBarViewsPatient.MyUnKnown
+import androidx.navigation.navigation
 import views.ChooseRole
 import views.LoginScreenTextFields
 import views.PatientData
@@ -22,61 +20,20 @@ import views.patientProfile
 
 
 @Composable
-fun Navigation(navController: NavHostController){
+fun Navigation(navController: NavHostController) {
 
-    NavHost(navController = navController,
-        startDestination ="signIn_screen" ){
+    NavHost(
+        navController = navController,
 
-        composable(route = "signIn_screen"){
-            LoginScreenTextFields(navController = navController)
-        }
-        composable(route = "signUp_screen"){
-            RegisterScreenTextFields(navController = navController)
-        }
-        composable(route = "patient_profile"){
-            patientProfile(navController = navController)
-        }
-        composable(route = "choose_screen"){
-            ChooseRole(navController = navController)
-        }
-        composable(route = "patient_data")
-        {
-            PatientData(navController = navController)
-        }
-        composable(route = "doctor_data"){
-            DoctorData(navController = navController)
-        }
-        composable(route = "patient_home"){
-            PatientHome(navController = navController)
-        }
-        composable(route = "splash_patient/{name}",
-            arguments = listOf(navArgument(name = "name"){
-                type = NavType.StringType
-                nullable = true
-            })
-        ){
-            SplashForPatient(name = it.arguments?.getString("name"), navController = navController)
-        }
-        composable(route = "splash_doctor/{name}",
-            arguments = listOf(navArgument(name = "name"){
-                type = NavType.StringType
-                nullable = true
-            })
-        ){
-            SplashForDoctor(name = it.arguments?.getString("name"),navController = navController)
-        }
+        startDestination = Screens.AuthRoute.route
+    ) {
 
-        composable(route = "Home") {
-            HomeScreen(navController = navController)
-        }
-        composable("MyProfile") {
-            MyProfileScreen(navController)
-        }
-        composable("Unknown") {
-            MyUnKnown()
-        }
+        authGraph(navController)
+        appDrGraph(navController)
+        appPatientGraph(navController)
+
+
+
     }
-
-
 }
 
