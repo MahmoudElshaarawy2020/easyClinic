@@ -8,7 +8,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.navigation.Navigation
-import com.example.clinic.navigationBar.Functions.NavBar
+import com.example.clinic.navigationBar.Functions.MyApp
 import com.example.clinic.splashScreenStuff.MainViewModel
 
 
@@ -23,10 +23,12 @@ class MainActivity : ComponentActivity() {
 
         }
         setContent {
-
             navController = rememberNavController()
             Navigation(navController = navController)
-            NavBar()
+
+
+
+
 
 
 

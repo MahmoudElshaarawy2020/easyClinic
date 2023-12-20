@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
+import com.example.clinic.navigationBar.Functions.MyApp
 import views.ChooseRole
 import views.LoginScreenTextFields
 import views.PatientData

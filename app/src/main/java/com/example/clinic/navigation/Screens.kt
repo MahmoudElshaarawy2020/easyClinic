@@ -13,6 +13,7 @@ sealed class Screens(val route : String){
     object AppDrRoute  : Screens("AppDr")
 
 
+
     fun withArgs(vararg args : String?): String{
         return buildString {
             append(route)

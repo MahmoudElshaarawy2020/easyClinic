@@ -6,6 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
+import com.example.clinic.navigationBar.Functions.MyApp
 import views.ChooseRole
 import views.LoginScreenTextFields
 import views.PatientData
@@ -36,7 +37,7 @@ fun NavGraphBuilder.appPatientGraph(navController: NavController){
         }
 
         composable(route = Screens.patientHome.route) {
-            PatientHome(navController = navController)
+           PatientHome(navController = navController)
         }
 
         composable(route = Screens.patientProfile.route) {
