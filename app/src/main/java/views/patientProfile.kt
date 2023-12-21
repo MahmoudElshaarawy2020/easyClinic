@@ -45,6 +45,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
+import com.example.clinic.navigationBar.Functions.MyApp
 
 
 @Composable
@@ -343,6 +344,7 @@ fun patientProfile(navController : NavController) {
 
         }
     }
+
 }
 
 @Preview (showBackground = true)

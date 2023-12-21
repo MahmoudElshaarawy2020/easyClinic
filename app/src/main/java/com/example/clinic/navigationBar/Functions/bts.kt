@@ -3,10 +3,14 @@ package com.example.clinic.navigationBar.Functions
 import android.annotation.SuppressLint
 import android.graphics.drawable.Icon
 import android.text.style.BackgroundColorSpan
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
@@ -19,78 +23,88 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.Navigation
+import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.clinic.R
 import com.example.clinic.navigation.Navigation
+import com.example.clinic.navigation.Screens
+import com.example.clinic.navigation.appPatientGraph
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
+import views.PatientHome
+import views.patientProfile
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NavBar() {
+
+fun MyApp(navController: NavController) {
+
     val navController = rememberNavController()
-Scaffold(
-    bottomBar = { BottomBar(navController = navController)}
-) {
-    Navigation(navController = navController)
-}
-}
+    val items = listOf(
+        BottomNavigationItem.Appointment,
+        BottomNavigationItem.Home,
+        BottomNavigationItem.MyProfile
+    )
+    Scaffold(
 
-@Composable
-fun BottomBar(navController: NavHostController) {
-    val screens =
-        listOf(
-            BottomNavigationItem.Appointment,
-            BottomNavigationItem.Home,
-            BottomNavigationItem.MyProfile
-        )
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentDestination = navBackStackEntry?.destination
-    BottomNavigation(Modifier.background(color = Color.Red).height(90.dp)) {
-        screens.forEach { screen ->
-            AddItem(
-                screen = screen,
-                currentDestination = currentDestination,
-                navController = navController
-            )
+        bottomBar = {
+            BottomNavigation(modifier = Modifier
+                .fillMaxWidth()
+                .height(88.dp)
+                .padding(vertical = 10.dp, horizontal = 5.dp)
+                .clip(RoundedCornerShape(30.dp)),
+                backgroundColor = colorResource(id = R.color.lightblue)) {
+                val navBackStackEntry by navController.currentBackStackEntryAsState()
+                val currentRoute = navBackStackEntry?.destination?.route
 
+                items.forEach { screen ->
+                    BottomNavigationItem(
+                        icon = { Image(painter = painterResource(id = screen.icon), contentDescription =null )
+                        },
+                        label = { Text(text = screen.title , color = Color.White)},
+                        selected = currentRoute == screen.route,
+                        onClick = {
+                            navController.navigate(screen.route){
+                                popUpTo(navController.graph.findStartDestination().id){
+                                    saveState = true
+                                }
+                                launchSingleTop = true
+                                restoreState = true
+                            }
+                        })
+
+                }
+            }
         }
-    }
-    }
 
-@Composable
-fun RowScope.AddItem(
-    screen: BottomNavigationItem,
-    currentDestination: NavDestination?,
-    navController: NavHostController
-) {
-    BottomNavigationItem(label = {Text(text = screen.title)},
-        icon = { androidx.compose.material.Icon(painter =  painterResource(id = screen.icon), contentDescription =null )},
-        selected = currentDestination?.hierarchy?.any { it.route==screen.route }==true,
-        onClick = {navController.navigate(screen.route)})
+    ) {
+          PatientHome(navController)
+    }
 }
-
-@Composable
 @Preview(showBackground = true)
-fun viewew(){
-    NavBar()
+@Composable
+fun Previewbts(){
+    MyApp(navController = rememberNavController())
 }
-
-
-
