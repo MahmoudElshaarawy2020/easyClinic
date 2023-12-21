@@ -44,7 +44,7 @@ fun PatientHome (navController: NavController){
         Box (contentAlignment = Alignment.Center,
             modifier = Modifier.fillMaxWidth()
             ){
-            LocalImage(painter = painterResource(id = R.drawable.aidrpic),
+            LocalImage(painter = painterResource(id = R.drawable.robot),
                 imageSize =310.dp,
                 padding = 0.dp)
             Text(
@@ -94,7 +94,7 @@ fun PatientHome (navController: NavController){
             Box(contentAlignment = Alignment.BottomCenter,
                 modifier = Modifier.padding( 6.dp)
                 .clickable {  }) {
-                LocalImage(painter = painterResource(id = R.drawable.img_8), imageSize =190.dp , padding = 0.dp )
+                LocalImage(painter = painterResource(id = R.drawable.drugs), imageSize =190.dp , padding = 0.dp )
                 Text(
                     "Medicines",
                     fontSize = 20.sp,
