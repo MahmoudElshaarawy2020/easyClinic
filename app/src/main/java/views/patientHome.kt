@@ -44,17 +44,17 @@ fun PatientHome (navController: NavController){
         Box (contentAlignment = Alignment.Center,
             modifier = Modifier.fillMaxWidth()
             ){
-            LocalImage(painter = painterResource(id = R.drawable.aidrpic),
+            LocalImage(painter = painterResource(id = R.drawable.robot),
                 imageSize =310.dp,
                 padding = 0.dp)
             Text(
                 "Doctor\n" +
                         "suggestion",
-                fontSize = 20.sp,
+                fontSize = 18.sp,
                 color = Color(0xFF2697FF),
                 fontFamily = fontFamily,
                 modifier = Modifier.width(270.dp)
-                    .padding(start = 140.dp, bottom = 30.dp),
+                    .padding(start = 140.dp, bottom = 50.dp),
                 textAlign = TextAlign.Center
             )
         }
@@ -94,9 +94,9 @@ fun PatientHome (navController: NavController){
             Box(contentAlignment = Alignment.BottomCenter,
                 modifier = Modifier.padding( 6.dp)
                 .clickable {  }) {
-                LocalImage(painter = painterResource(id = R.drawable.img_8), imageSize =190.dp , padding = 0.dp )
+                LocalImage(painter = painterResource(id = R.drawable.drugs), imageSize =190.dp , padding = 0.dp )
                 Text(
-                    "Medicines",
+                    "drugs",
                     fontSize = 20.sp,
                     color = Color(0xFF2697FF),
                     fontFamily = fontFamily,
