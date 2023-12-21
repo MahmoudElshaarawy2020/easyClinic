@@ -92,6 +92,7 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.7.6")
     implementation("androidx.core:core-splashscreen:1.1.0-alpha02")
     implementation ("androidx.compose.material:material:1.4.2")
+    implementation("io.coil-kt:coil-compose:2.1.0")
 
 
 

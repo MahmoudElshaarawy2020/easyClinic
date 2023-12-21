@@ -103,7 +103,12 @@ fun ChooseRole(navController: NavController) {
                         .size(height = 45.dp, width = 124.dp),
                     colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue))
                 ) {
-                    Text(text = "Patient", fontWeight = FontWeight.Bold, fontStyle = FontStyle.Italic, fontSize = 20.sp)
+                    Text(
+                        text = "Patient",
+                        fontWeight = FontWeight.Bold,
+                        fontStyle = FontStyle.Italic,
+                        fontSize = 20.sp
+                    )
                 }
             }
         }

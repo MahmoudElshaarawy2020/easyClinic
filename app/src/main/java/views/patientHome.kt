@@ -96,7 +96,7 @@ fun PatientHome (navController: NavController){
                 .clickable {  }) {
                 LocalImage(painter = painterResource(id = R.drawable.drugs), imageSize =190.dp , padding = 0.dp )
                 Text(
-                    "Medicines",
+                    "Drugs",
                     fontSize = 20.sp,
                     color = Color(0xFF2697FF),
                     fontFamily = fontFamily,
