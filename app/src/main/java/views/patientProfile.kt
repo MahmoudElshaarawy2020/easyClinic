@@ -194,7 +194,7 @@ fun patientProfile(navController : NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp)
-                        .clickable { },
+                        .clickable {navController.navigate(route = "MedHis1") },
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
@@ -328,23 +328,24 @@ fun patientProfile(navController : NavController) {
             }
         }
 
-        Box(modifier = Modifier
-            .fillMaxWidth()
-            .clickable {
-                navController.navigate(route = "signIn_screen")
-            }
-            .padding(start = 330.dp, end = 10.dp, top = 15.dp),
-            contentAlignment = Alignment.TopEnd
-        ) {
-            LocalImage(
-                painter = painterResource(id = R.drawable.img_10),
-                imageSize = 45.dp,
-                padding = 0.dp
-            )
 
-        }
     }
 
+    Box(modifier = Modifier
+        .fillMaxWidth()
+        .clickable {
+            navController.navigate(route = "signIn_screen")
+        }
+        .padding(start = 330.dp, end = 10.dp, top = 15.dp),
+        contentAlignment = Alignment.TopEnd
+    ) {
+        LocalImage(
+            painter = painterResource(id = R.drawable.img_10),
+            imageSize = 45.dp,
+            padding = 0.dp
+        )
+
+    }
 }
 
 @Preview (showBackground = true)

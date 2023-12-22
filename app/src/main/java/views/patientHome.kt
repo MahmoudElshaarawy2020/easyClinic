@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
+import com.example.clinic.navigationBar.Functions.MyApp
 
 @Composable
 fun PatientHome (navController: NavController){
@@ -50,11 +51,12 @@ fun PatientHome (navController: NavController){
             Text(
                 "Doctor\n" +
                         "suggestion",
-                fontSize = 20.sp,
+                fontSize = 18.sp,
                 color = Color(0xFF2697FF),
                 fontFamily = fontFamily,
-                modifier = Modifier.width(270.dp)
-                    .padding(start = 140.dp, bottom = 30.dp),
+                modifier = Modifier
+                    .width(270.dp)
+                    .padding(start = 140.dp, bottom = 50.dp),
                 textAlign = TextAlign.Center
             )
         }
@@ -63,8 +65,10 @@ fun PatientHome (navController: NavController){
             )
         {
             Box(contentAlignment = Alignment.BottomCenter,
-                modifier = Modifier.padding( 6.dp)
-                .clickable {  }) {
+                modifier = Modifier
+                    .padding(6.dp)
+                    .clickable { navController.navigate(route = "hospitals") })
+            {
                 LocalImage(painter = painterResource(id = R.drawable.img_6), imageSize =190.dp , padding = 0.dp )
                 Text(
                     "Hospitals",
@@ -75,8 +79,10 @@ fun PatientHome (navController: NavController){
                 )
             }
             Box(contentAlignment = Alignment.BottomCenter,
-                modifier = Modifier.padding( 6.dp)
-                .clickable {  }) {
+                modifier = Modifier
+                    .padding(6.dp)
+                    .clickable { navController.navigate(route = "labs") })
+            {
                 LocalImage(painter = painterResource(id = R.drawable.img_7), imageSize =190.dp , padding = 0.dp )
                 Text(
                     "Labs",
@@ -92,8 +98,9 @@ fun PatientHome (navController: NavController){
             horizontalArrangement = Arrangement.Center
         ){
             Box(contentAlignment = Alignment.BottomCenter,
-                modifier = Modifier.padding( 6.dp)
-                .clickable {  }) {
+                modifier = Modifier
+                    .padding(6.dp)
+                    .clickable { }) {
                 LocalImage(painter = painterResource(id = R.drawable.drugs), imageSize =190.dp , padding = 0.dp )
                 Text(
                     "Drugs",
@@ -104,8 +111,9 @@ fun PatientHome (navController: NavController){
                 )
             }
             Box(contentAlignment = Alignment.BottomCenter,
-                modifier = Modifier.padding( 6.dp)
-                .clickable {  }) {
+                modifier = Modifier
+                    .padding(6.dp)
+                    .clickable { navController.navigate(route = "diet") }) {
                 LocalImage(painter = painterResource(id = R.drawable.img_9), imageSize =190.dp , padding = 0.dp )
                 Text(
                     "Diet",
@@ -118,8 +126,11 @@ fun PatientHome (navController: NavController){
         }
 
 
+
         }
+
     }
+
 
 
 

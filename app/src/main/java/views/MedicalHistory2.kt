@@ -30,6 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -41,13 +42,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.example.clinic.R
 
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-fun MedicalHistory2(){
+fun MedicalHistory2(navController: NavController){
     val fontFamily = FontFamily(
         Font(R.font.wendyoneregular, FontWeight.Thin))
 
@@ -78,7 +81,7 @@ fun MedicalHistory2(){
 
                 .padding(10.dp)
                 .clickable {
-
+                    navController.navigate(route = "MedHis1")
                 }) {
                 LocalImage(
                     painter = painterResource(id = R.drawable.whitearrow), imageSize = 60.dp,
@@ -195,6 +198,10 @@ fun MedicalHistory2(){
             contentDescription ="adding picture"
 
         )
+        AsyncImage(model = selectedImageUri,
+            contentDescription = null,
+            modifier = Modifier.fillMaxWidth(),
+            contentScale = ContentScale.Crop)
 
         Spacer(
             modifier = Modifier
@@ -230,7 +237,7 @@ fun MedicalHistory2(){
 @Composable
 @Preview(showBackground = true)
 fun MedicalHistory2Preview(){
-    MedicalHistory2()
+    MedicalHistory2(navController = rememberNavController())
 }
 
 

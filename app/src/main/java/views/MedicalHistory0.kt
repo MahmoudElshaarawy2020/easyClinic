@@ -38,11 +38,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MedicalHistory0() {
+fun MedicalHistory0(navController: NavController) {
     val fontFamily = FontFamily(
         Font(R.font.wendyoneregular, FontWeight.Thin)
     )
@@ -189,5 +191,5 @@ fun MedicalHistory0() {
 @Composable
 @Preview(showBackground = true)
 fun MedicalHistory0Prview(){
-    MedicalHistory0()
+    MedicalHistory0(navController = rememberNavController())
 }

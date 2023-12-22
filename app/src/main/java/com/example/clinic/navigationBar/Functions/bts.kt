@@ -39,11 +39,15 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.Navigation
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navigation
 import com.example.clinic.R
 import com.example.clinic.navigation.Navigation
 import com.example.clinic.navigation.Screens
@@ -59,7 +63,7 @@ import views.patientProfile
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 
-fun MyApp(navController: NavController) {
+fun MyApp() {
 
     val navController = rememberNavController()
     val items = listOf(
@@ -100,11 +104,12 @@ fun MyApp(navController: NavController) {
         }
 
     ) {
-          PatientHome(navController)
+        Navigation(navController = navController)
+
     }
 }
 @Preview(showBackground = true)
 @Composable
 fun Previewbts(){
-    MyApp(navController = rememberNavController())
+    MyApp()
 }

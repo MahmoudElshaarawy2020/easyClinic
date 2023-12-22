@@ -23,8 +23,10 @@ class MainActivity : ComponentActivity() {
 
         }
         setContent {
+
             navController = rememberNavController()
             Navigation(navController = navController)
+            MyApp()
 
 
 

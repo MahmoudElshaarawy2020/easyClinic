@@ -36,11 +36,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Hospitals(){
+fun Hospitals(navController: NavController){
     var isexpanded by remember {
         mutableStateOf(false)
     }
@@ -72,6 +74,7 @@ fun Hospitals(){
 
                 .padding(10.dp)
                 .clickable {
+                    navController.navigate(route = "patient_home")
 
                 }) {
                 LocalImage(
@@ -144,5 +147,5 @@ fun Hospitals(){
 @Composable
 @Preview(showBackground = true)
 fun HosPreview(){
-    Hospitals()
+    Hospitals(navController = rememberNavController())
 }

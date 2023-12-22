@@ -37,11 +37,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MedicalHistory1(){
+fun MedicalHistory1(navController: NavController){
     val fontFamily = FontFamily(
         Font(R.font.wendyoneregular, FontWeight.Thin))
 
@@ -70,6 +72,7 @@ fun MedicalHistory1(){
 
                 .padding(10.dp)
                 .clickable {
+                    navController.navigate(route = "patient_profile")
 
                 }) {
                 LocalImage(
@@ -95,7 +98,7 @@ fun MedicalHistory1(){
             Spacer(modifier = Modifier.fillMaxWidth()
                 .size(20.dp))
             Box(modifier = Modifier
-                .clickable {  }){
+                .clickable { navController.navigate(route = "MedHis2") }){
                 LocalImage(painter = painterResource(id = R.drawable.plus),
                     imageSize = 100.dp,
                     padding = 0.dp )
@@ -112,5 +115,5 @@ fun MedicalHistory1(){
 @Composable
 @Preview(showBackground = true)
 fun MedicalHistory1Prview(){
-    MedicalHistory1()
+    MedicalHistory1(navController = rememberNavController())
 }

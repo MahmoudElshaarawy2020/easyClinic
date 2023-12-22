@@ -11,6 +11,11 @@ sealed class Screens(val route : String){
     object AuthRoute  : Screens("Auth")
     object AppPatientRoute  : Screens("AppPatient")
     object AppDrRoute  : Screens("AppDr")
+    object HospitalsRoute : Screens("hospitals")
+    object MH1Route : Screens("MedHis1")
+    object MH2Route : Screens("MedHis2")
+    object LabsRoute : Screens("labs")
+    object DietRoute : Screens("diet")
 
 
 
