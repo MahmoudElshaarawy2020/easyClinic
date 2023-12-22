@@ -37,6 +37,8 @@ import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
@@ -50,6 +52,9 @@ import com.example.clinic.navigationBar.Functions.MyApp
 
 @Composable
 fun patientProfile(navController : NavController) {
+    val fontFamily = FontFamily(
+        Font(R.font.audiowideregular, FontWeight.Thin)
+    )
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -113,6 +118,7 @@ fun patientProfile(navController : NavController) {
                     )
                     Text(
                         text = "My profile",
+                        fontFamily = fontFamily,
                         fontSize = 25.sp,
                         color = Color(0xFF1683E7),
                         modifier = Modifier.padding(start = 18.dp)
@@ -132,55 +138,6 @@ fun patientProfile(navController : NavController) {
                         )
                     }
 
-
-                }
-                Divider(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 20.dp, end = 20.dp),
-                    thickness = 0.8.dp,
-                    color = Color(0xFF486A89)
-                )
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(10.dp)
-                        .clickable { },
-                    verticalAlignment = Alignment.CenterVertically
-
-                ) {
-                    Box(contentAlignment = Alignment.Center) {
-
-                        LocalImage(
-                            painter = painterResource(id = R.drawable.dricon1),
-                            imageSize = 70.dp, padding = 0.dp
-
-                        )
-                        LocalImage(
-                            painter = painterResource(id = R.drawable.dricon11),
-                            imageSize = 45.dp, padding = 0.dp
-                        )
-                    }
-                    Text(
-                        text = "My doctors",
-                        fontSize = 25.sp,
-                        color = Color(0xFF1683E7),
-                        modifier = Modifier.padding(start = 18.dp)
-
-
-                    )
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        contentAlignment = Alignment.CenterEnd
-                    ) {
-
-                        LocalImage(
-                            painter = painterResource(id = R.drawable.img_4),
-                            imageSize = 40.dp, padding = 0.dp
-
-                        )
-                    }
 
                 }
                 Divider(
@@ -206,6 +163,7 @@ fun patientProfile(navController : NavController) {
 
                     Text(
                         text = "Medical history",
+                        fontFamily = fontFamily,
                         fontSize = 25.sp,
                         color = Color(0xFF1683E7),
                         modifier = Modifier.padding(start = 18.dp)
@@ -248,6 +206,7 @@ fun patientProfile(navController : NavController) {
                     )
                     Text(
                         text = "Medical appointments",
+                        fontFamily = fontFamily,
                         fontSize = 25.sp,
                         color = Color(0xFF1683E7),
                         modifier = Modifier.padding(start = 18.dp)
@@ -296,7 +255,8 @@ fun patientProfile(navController : NavController) {
                         )
                     }
                     Text(
-                        text = "Medication alarm",
+                        text = "Drugs alarm",
+                        fontFamily = fontFamily,
                         fontSize = 25.sp,
                         color = Color(0xFF1683E7),
                         modifier = Modifier.padding(start = 18.dp)
