@@ -186,22 +186,24 @@ fun MedicalHistory2(navController: NavController){
             contract = ActivityResultContracts.PickVisualMedia(),
             onResult = {uri -> selectedImageUri = uri}
         )
-
-        Image(
-            modifier = Modifier
-                .clickable {singlePhotoPickerLauncher.launch(
+Box(modifier = Modifier.fillMaxWidth(),
+    contentAlignment = Alignment.TopStart) {
+    Image(
+        modifier = Modifier
+            .clickable {
+                singlePhotoPickerLauncher.launch(
                     PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
-                ) }
-                .fillMaxWidth()
-                .size(120.dp),
-            painter = painterResource(id = R.drawable.addpicture),
-            contentDescription ="adding picture"
+                )
+            }
+            .fillMaxWidth()
+            .size(120.dp),
+        painter = painterResource(id = R.drawable.addpicture),
+        contentDescription = "adding picture"
 
-        )
-        AsyncImage(model = selectedImageUri,
-            contentDescription = null,
-            modifier = Modifier.fillMaxWidth(),
-            contentScale = ContentScale.Crop)
+    )
+
+}
+
 
         Spacer(
             modifier = Modifier
@@ -210,7 +212,9 @@ fun MedicalHistory2(navController: NavController){
         )
 
         Button(
-            onClick = {},
+            onClick = {
+                      navController.navigate(route ="MH3Route/$checkName/$checkDate/$DoctorName")
+            },
             modifier = Modifier
                 .size(height = 60.dp, width = 280.dp),
             colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue)),
@@ -218,7 +222,7 @@ fun MedicalHistory2(navController: NavController){
 
             ) {
             Text(
-                text = "Save",
+                text = "Next",
                 fontSize = 35.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White

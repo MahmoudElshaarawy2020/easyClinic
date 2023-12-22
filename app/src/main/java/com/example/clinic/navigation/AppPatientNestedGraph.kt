@@ -16,6 +16,7 @@ import views.LoginScreenTextFields
 import views.MedicalHistory0
 import views.MedicalHistory1
 import views.MedicalHistory2
+import views.MedicalHistory3
 import views.PatientData
 import views.PatientHome
 import views.RegisterScreenTextFields
@@ -62,6 +63,36 @@ fun NavGraphBuilder.appPatientGraph(navController: NavHostController){
 
         composable(route = Screens.MH2Route.route) {
             MedicalHistory2(navController = navController)
+        }
+        composable(
+            route = "MedHis3/{name1}/{name2}/{name3}",
+            arguments = listOf(navArgument(name = "name1") {
+                defaultValue = -1
+                type = NavType.StringType
+
+
+        },
+                    navArgument(name = "name2") {
+                        defaultValue = -1
+                        type = NavType.StringType
+
+
+            },
+                    navArgument(name = "name3") {
+                        defaultValue = -1
+                        type = NavType.StringType
+
+
+            }
+            )
+        )
+        {
+            MedicalHistory3(
+                name1 = it.arguments?.getString("name1"),
+                name2 = it.arguments?.getString("name2"),
+                name3 = it.arguments?.getString("name3"),
+                navController = navController
+            )
         }
 
         composable(route = Screens.LabsRoute.route) {
