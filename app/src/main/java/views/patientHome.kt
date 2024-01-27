@@ -36,6 +36,7 @@ fun PatientHome (navController: NavController){
         Font(R.font.audiowideregular, FontWeight.Thin)
     )
 
+
     Column(modifier = Modifier
         .fillMaxSize()
         .background(color = Color(0xFFE9FAFF)),
@@ -128,6 +129,7 @@ fun PatientHome (navController: NavController){
 
 
         }
+
 
     }
 

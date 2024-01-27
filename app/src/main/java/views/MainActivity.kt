@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
 
             navController = rememberNavController()
             Navigation(navController = navController)
-            MyApp()
+
 
 
 

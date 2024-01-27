@@ -63,7 +63,7 @@ import views.patientProfile
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 
-fun MyApp() {
+fun MyApp(navController: NavController) {
 
     val navController = rememberNavController()
     val items = listOf(
@@ -74,24 +74,30 @@ fun MyApp() {
     Scaffold(
 
         bottomBar = {
-            BottomNavigation(modifier = Modifier
-                .fillMaxWidth()
-                .height(88.dp)
-                .padding(vertical = 10.dp, horizontal = 5.dp)
-                .clip(RoundedCornerShape(30.dp)),
-                backgroundColor = colorResource(id = R.color.lightblue)) {
+            BottomNavigation(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(88.dp)
+                    .padding(vertical = 10.dp, horizontal = 5.dp)
+                    .clip(RoundedCornerShape(30.dp)),
+                backgroundColor = colorResource(id = R.color.lightblue)
+            ) {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentRoute = navBackStackEntry?.destination?.route
 
                 items.forEach { screen ->
                     BottomNavigationItem(
-                        icon = { Image(painter = painterResource(id = screen.icon), contentDescription =null )
+                        icon = {
+                            Image(
+                                painter = painterResource(id = screen.icon),
+                                contentDescription = null
+                            )
                         },
-                        label = { Text(text = screen.title , color = Color.White)},
+                        label = { Text(text = screen.title, color = Color.White) },
                         selected = currentRoute == screen.route,
                         onClick = {
-                            navController.navigate(screen.route){
-                                popUpTo(navController.graph.findStartDestination().id){
+                            navController.navigate(screen.route) {
+                                popUpTo(navController.graph.findStartDestination().id) {
                                     saveState = true
                                 }
                                 launchSingleTop = true
@@ -104,12 +110,34 @@ fun MyApp() {
         }
 
     ) {
-        Navigation(navController = navController)
+
+            NavHost(navController = navController, startDestination = Screens.Nav.route) {
+                navigation(
+                    startDestination = Screens.patientHome.route,
+                    route = Screens.Nav.route
+                ) {
+
+                    composable(route = Screens.patientHome.route) {
+                        PatientHome(navController = navController)
+
+                    }
+
+                    composable(route = Screens.patientProfile.route) {
+                        patientProfile(navController = navController)
+                    }
+
+
+                }
+
+
+            }
+        }
 
     }
-}
+
+
 @Preview(showBackground = true)
 @Composable
 fun Previewbts(){
-    MyApp()
+    MyApp(navController = rememberNavController())
 }

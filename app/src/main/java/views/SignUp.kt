@@ -1,5 +1,6 @@
 package views
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -35,6 +36,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -248,15 +250,26 @@ fun RegisterScreenTextFields(navController: NavController) {
                 focusedBorderColor = colorResource(id = R.color.lightblue)
             )
         )
-
+val context= LocalContext.current
         Button(
             onClick = {
-                navController.navigate(route = "choose_screen")
+               if (text.text.isEmpty()) {
+               Toast.makeText(context,"Please Enter Username",Toast.LENGTH_SHORT).show()
+               }else if (num.text.isEmpty()){
+                   Toast.makeText(context,"Please Enter Phone Number",Toast.LENGTH_SHORT).show()
+               }else if (email.text.isEmpty()){
+                   Toast.makeText(context,"Please Enter Email",Toast.LENGTH_SHORT).show()
+               }else if (password1.text.isEmpty()){
+                   Toast.makeText(context,"Please Enter Password",Toast.LENGTH_SHORT).show()
+               }else if (password2.text.isEmpty()){
+                   Toast.makeText(context,"Please Enter Confirm password",Toast.LENGTH_SHORT).show()
+               }else { navController.navigate("choose_screen")}
             },
             modifier = Modifier
                 .padding(start = 30.dp, end = 30.dp, top = 40.dp)
                 .size(height = 40.dp, width = 400.dp),
             colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue)),
+
 
             ) {
             Text(

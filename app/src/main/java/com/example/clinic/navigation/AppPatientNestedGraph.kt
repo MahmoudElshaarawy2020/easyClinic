@@ -44,13 +44,11 @@ fun NavGraphBuilder.appPatientGraph(navController: NavHostController){
             SplashForPatient(name = it.arguments?.getString("name"), navController)
         }
 
-        composable(route = Screens.patientHome.route) {
-           PatientHome(navController = navController)
+        composable(route = Screens.Nav.route) {
+            MyApp(navController = navController)
         }
 
-        composable(route = Screens.patientProfile.route) {
-            patientProfile(navController = navController)
-        }
+
 
         composable(route = Screens.HospitalsRoute.route) {
             Hospitals(navController = navController)
