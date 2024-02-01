@@ -52,6 +52,7 @@ android {
 
 dependencies {
     val navVersion = "2.7.5"
+    implementation( "androidx.hilt:hilt-navigation-compose:1.1.0")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.activity:activity-compose:1.8.2")
@@ -71,9 +72,7 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
     implementation("androidx.navigation:navigation-compose:$navVersion")
     implementation ("androidx.compose.material:material:1.4.2")
-    implementation (platform("com.google.firebase:firebase-bom:32.7.1"))
-    implementation("com.google.firebase:firebase-auth-ktx:22.3.1")
-    implementation("com.google.firebase:firebase-analytics")
+
 
 
 

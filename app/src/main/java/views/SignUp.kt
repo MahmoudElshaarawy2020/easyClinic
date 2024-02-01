@@ -54,7 +54,9 @@ import com.example.clinic.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
 fun RegisterScreenTextFields(navController: NavController) {
+
 
     Column(
         modifier = Modifier
@@ -281,6 +283,8 @@ val context= LocalContext.current
         }
 
     }
+
+
     Box(modifier = Modifier
 
         .padding(10.dp)
@@ -292,6 +296,10 @@ val context= LocalContext.current
             padding = 10.dp
         )
     }
+
+
+    //Firebase calling
+
 }
 @Preview(showBackground = true)
 @Composable
