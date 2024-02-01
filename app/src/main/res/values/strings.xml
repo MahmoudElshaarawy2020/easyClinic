@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Clinic</string>
+    <string name="welcome">Welcome Back</string>
+    <string name="email_or_User_Name">Email or User Name</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="sign_in">Sign in</string>
+    <string name="forgot">Forgot password?</string>
+    <string name="sign_up">Sign up</string>
+    <string name="question">Don\'t have an account?</string>
+    <string name="user_name">User name</string>
+    <string name="email">Email</string>
+    <string name="phone_number">Phone number</string>
+
+
+
 </resources>

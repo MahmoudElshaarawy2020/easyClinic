@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">العيادة</string>
+    <string name="welcome">مرحبا</string>
+    <string name="email_or_User_Name">ايميل او اسم المستخدم</string>
+    <string name="password">كلمة المرور</string>
+    <string name="confirm_password">تأكيد كلمة المرور</string>
+    <string name="forgot">نسيت كلمة المرور؟</string>
+    <string name="sign_in">تسجيل الدخول</string>
+    <string name="sign_up">تسجيل حساب</string>
+    <string name="question">هل لا تملك حساب؟</string>
+    <string name="user_name">اسم المستخدم</string>
+    <string name="email">البريد الالكترونى</string>
+    <string name="phone_number">رقم الهاتف</string>
+
+</resources>

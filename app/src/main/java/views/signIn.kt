@@ -32,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -60,12 +61,12 @@ fun LoginScreenTextFields(navController: NavController) {
             LocalImage(
                 painter = painterResource(id = R.drawable.finalbluelogo),
                 imageSize = 200.dp,
-                padding = 15.dp,
+                padding = 5.dp,
             )
 
 
             Text(
-                text = "Welcome Back",
+                text = stringResource(R.string.welcome),
                 fontSize = 30.sp,
                 color = colorResource(R.color.lightblue)
 
@@ -116,7 +117,7 @@ fun LoginScreenTextFields(navController: NavController) {
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                 shape = RoundedCornerShape(15.dp),
 
-                label = { Text(text = "password", color = Color.LightGray) },
+                label = { Text(text = stringResource(R.string.password), color = Color.LightGray) },
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Filled.Lock, contentDescription = "Email icon"
@@ -144,7 +145,7 @@ fun LoginScreenTextFields(navController: NavController) {
                 )
             )
             Text(
-                text = "Forgot password?", modifier = Modifier
+                text = stringResource(id = R.string.forgot) , modifier = Modifier
                     .padding(top = 17.dp, start = 198.dp)
                     .clickable { },
                 color = colorResource(id = R.color.lightblue),
@@ -161,7 +162,7 @@ fun LoginScreenTextFields(navController: NavController) {
 
                 ) {
                 Text(
-                    text = "Sign in",
+                    text = stringResource(id = R.string.sign_in),
                     fontSize = 15.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.White
@@ -184,10 +185,10 @@ fun LoginScreenTextFields(navController: NavController) {
             }
             Row(
                 modifier = Modifier
-                    .padding(top = 90.dp)
+                    .padding(top = 50.dp)
             ) {
                 Text(
-                    text = "Don't have an account?",
+                    text = stringResource(id = R.string.question),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(top = 6.dp, end = 3.dp)
@@ -203,7 +204,7 @@ fun LoginScreenTextFields(navController: NavController) {
 
                 ) {
                     Text(
-                        text = "Sign Up",
+                        text = stringResource(id = R.string.sign_up),
                         fontSize = 13.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.White

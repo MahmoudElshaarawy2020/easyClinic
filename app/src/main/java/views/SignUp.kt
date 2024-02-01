@@ -33,12 +33,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.structuralEqualityPolicy
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -71,11 +73,11 @@ fun RegisterScreenTextFields(navController: NavController) {
         LocalImage(
             painter = painterResource(id = R.drawable.finalbluelogo),
             imageSize = 200.dp,
-            padding = 20.dp,
+            padding = 10.dp,
         )
 
         Text(
-            text = "Sign Up",
+            text = stringResource(id = R.string.sign_up),
             fontSize = 30.sp,
             color = colorResource(R.color.lightblue)
 
@@ -84,13 +86,13 @@ fun RegisterScreenTextFields(navController: NavController) {
 
         OutlinedTextField(
             modifier = Modifier
-                .padding(start = 13.dp, end = 13.dp, top = 25.dp)
+                .padding(start = 15.dp, end = 15.dp, top = 5.dp)
                 .fillMaxWidth(),
             value = text, onValueChange = { text = it },
             shape = RoundedCornerShape(15.dp),
             label = {
                 Text(
-                    text = "User Name",
+                    text = stringResource(id = R.string.user_name),
                     color = Color.LightGray
                 )
             },
@@ -112,13 +114,13 @@ fun RegisterScreenTextFields(navController: NavController) {
         )
         var num by remember { mutableStateOf(TextFieldValue("")) }
         OutlinedTextField(modifier = Modifier
-            .padding(start = 13.dp, end = 13.dp, top = 25.dp)
+            .padding(start = 15.dp, end = 15.dp, top = 15.dp)
             .fillMaxWidth(),
             value = num, onValueChange = { num = it },
             shape = RoundedCornerShape(15.dp),
             label = {
                 Text(
-                    text = "Phone Number",
+                    text = stringResource(id = R.string.phone_number),
                     color = Color.LightGray
                 )
             }, leadingIcon = {
@@ -139,13 +141,13 @@ fun RegisterScreenTextFields(navController: NavController) {
         )
         var email by remember { mutableStateOf(TextFieldValue("")) }
         OutlinedTextField(modifier = Modifier
-            .padding(start = 13.dp, end = 13.dp, top = 25.dp)
+            .padding(start = 15.dp, end = 15.dp, top = 15.dp)
             .fillMaxWidth(),
             value = email, onValueChange = { email = it },
             shape = RoundedCornerShape(15.dp),
             label = {
                 Text(
-                    text = "Email",
+                    text = stringResource(id = R.string.email),
                     color = Color.LightGray
                 )
             }, leadingIcon = {
@@ -181,7 +183,7 @@ fun RegisterScreenTextFields(navController: NavController) {
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             shape = RoundedCornerShape(15.dp),
 
-            label = { Text(text = "password", color = Color.LightGray) },
+            label = { Text(text = stringResource(id = R.string.password), color = Color.LightGray) },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Filled.Lock, contentDescription = "Email icon"
@@ -216,7 +218,7 @@ fun RegisterScreenTextFields(navController: NavController) {
             painterResource(id = R.drawable.visabilityoff)
         OutlinedTextField(
             modifier = Modifier
-                .padding(start = 13.dp, end = 13.dp, top = 15.dp)
+                .padding(start = 15.dp, end = 15.dp, top = 15.dp)
                 .fillMaxWidth(),
             value = password2,
             onValueChange = { password2 = it },
@@ -225,7 +227,7 @@ fun RegisterScreenTextFields(navController: NavController) {
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             shape = RoundedCornerShape(15.dp),
 
-            label = { Text(text = "Confirm password", color = Color.LightGray) },
+            label = { Text(text = stringResource(id = R.string.confirm_password), color = Color.LightGray) },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Filled.Lock, contentDescription = "Email icon"
@@ -268,15 +270,15 @@ val context= LocalContext.current
                }else { navController.navigate("choose_screen")}
             },
             modifier = Modifier
-                .padding(start = 30.dp, end = 30.dp, top = 40.dp)
-                .size(height = 40.dp, width = 400.dp),
+                .padding(start = 30.dp, end = 30.dp, top = 20.dp)
+                .size(height = 40.dp, width = 300.dp),
             colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue)),
 
 
             ) {
             Text(
-                text = "Sign up",
-                fontSize = 15.sp,
+                text = stringResource(id = R.string.sign_up),
+                fontSize = 17.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White
             )
@@ -298,7 +300,6 @@ val context= LocalContext.current
     }
 
 
-    //Firebase calling
 
 }
 @Preview(showBackground = true)
@@ -306,4 +307,3 @@ val context= LocalContext.current
 fun SignUpPreview() {
     RegisterScreenTextFields(navController = rememberNavController())
 }
-
