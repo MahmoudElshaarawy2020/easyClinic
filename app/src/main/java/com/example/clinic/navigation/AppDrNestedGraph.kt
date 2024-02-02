@@ -1,4 +1,4 @@
-//package com.example.clinic.navigation
+package com.example.clinic.navigation
 //
 //import DoctorData
 //import androidx.navigation.NavController

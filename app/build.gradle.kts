@@ -74,8 +74,10 @@ dependencies {
     implementation ("androidx.compose.material:material:1.4.2")
 
 
-
-
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.0.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.0.0")
+    implementation("com.squareup.retrofit2:converter-scalars:2.5.0")
 
 
     // Java language implementation

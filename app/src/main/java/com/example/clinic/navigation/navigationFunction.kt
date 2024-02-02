@@ -29,7 +29,7 @@ fun Navigation(navController: NavHostController) {
     NavHost(
         navController = navController,
 
-        startDestination = Screens.AuthRoute.route
+        startDestination = Screens.signInScreen.route
     ) {
 
         composable(route = Screens.doctorData.route) {
@@ -65,56 +65,10 @@ fun Navigation(navController: NavHostController) {
 
 
 
-        composable(route = Screens.HospitalsRoute.route) {
-            Hospitals(navController = navController)
-        }
 
 
-        composable(route = Screens.MH1Route.route) {
-            MedicalHistory1(navController = navController)
-        }
-
-        composable(route = Screens.MH2Route.route) {
-            MedicalHistory2(navController = navController)
-        }
-        composable(
-            route = "MedHis3/{name1}/{name2}/{name3}",
-            arguments = listOf(navArgument(name = "name1") {
-                defaultValue = -1
-                type = NavType.StringType
 
 
-            },
-                navArgument(name = "name2") {
-                    defaultValue = -1
-                    type = NavType.StringType
-
-
-                },
-                navArgument(name = "name3") {
-                    defaultValue = -1
-                    type = NavType.StringType
-
-
-                }
-            )
-        )
-        {
-            MedicalHistory3(
-                name1 = it.arguments?.getString("name1"),
-                name2 = it.arguments?.getString("name2"),
-                name3 = it.arguments?.getString("name3"),
-                navController = navController
-            )
-        }
-
-        composable(route = Screens.LabsRoute.route) {
-            Labs(navController = navController)
-        }
-
-        composable(route = Screens.DietRoute.route) {
-            Diet(navController = navController)
-        }
         composable(route = Screens.signInScreen.route) {
             LoginScreenTextFields(navController = navController)
         }

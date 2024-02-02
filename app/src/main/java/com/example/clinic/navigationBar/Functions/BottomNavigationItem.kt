@@ -25,7 +25,7 @@ sealed class BottomNavigationItem(
     )
     object Appointment : BottomNavigationItem(
         title = "Appointment",
-        route = "appointment",
+        route = "appoint",
         icon = R.drawable.appointment
     )
 }
