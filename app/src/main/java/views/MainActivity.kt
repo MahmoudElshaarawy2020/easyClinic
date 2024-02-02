@@ -1,5 +1,4 @@
 package views
-import androidx.compose.material.BottomNavigation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -8,8 +7,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.navigation.Navigation
-import com.example.clinic.navigationBar.Functions.MyApp
-import com.example.clinic.splashScreenStuff.MainViewModel
+import com.example.clinic.splashScreenModel.MainViewModel
 
 
 class MainActivity : ComponentActivity() {
