@@ -10,7 +10,7 @@ import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.clinic.navigation.Navigation
+import com.example.clinic.navigation.navigationModel.Navigation
 import com.example.clinic.network.ApisClient
 //import com.example.clinic.network.ApisClient
 //import com.example.clinic.network.QuranRequestBody

@@ -28,6 +28,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
+import views.FunctionsComposable.ImageBackground
+import views.FunctionsComposable.LocalImage
 
 @Composable
 fun ChooseRole(navController: NavController) {
