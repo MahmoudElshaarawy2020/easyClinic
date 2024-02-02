@@ -52,6 +52,7 @@ import com.example.clinic.R
 import com.example.clinic.navigation.Navigation
 import com.example.clinic.navigation.Screens
 import com.example.clinic.navigation.appPatientGraph
+import com.example.clinic.navigationBar.navBarViewsPatient.Appointment
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -124,6 +125,10 @@ fun MyApp(navController: NavController) {
 
                     composable(route = Screens.patientProfile.route) {
                         patientProfile(navController = navController)
+                    }
+
+                    composable(route = Screens.Appointment.route) {
+                        Appointment(navController = navController)
                     }
 
 

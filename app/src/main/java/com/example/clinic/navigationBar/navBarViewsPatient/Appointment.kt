@@ -10,18 +10,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun MyUnKnown() {
+fun Appointment(navController : NavController) {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = "MyUnKnown screen")
+        Text(text = "Appointments")
     }
 }
 @Composable
 @Preview(showBackground = true)
-fun MyUnknownPreview(){
-    MyUnKnown()
+fun AppointmentPreview(){
+    Appointment(navController = rememberNavController())
 }

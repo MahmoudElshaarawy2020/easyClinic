@@ -267,7 +267,11 @@ val context= LocalContext.current
                    Toast.makeText(context,"Please Enter Password",Toast.LENGTH_SHORT).show()
                }else if (password2.text.isEmpty()){
                    Toast.makeText(context,"Please Enter Confirm password",Toast.LENGTH_SHORT).show()
-               }else { navController.navigate("choose_screen")}
+               }
+               else if (password1.text != password2.text){
+                   Toast.makeText(context,"Please Enter a right confirmation password",Toast.LENGTH_SHORT).show()
+               }
+                   else { navController.navigate("choose_screen")}
             },
             modifier = Modifier
                 .padding(start = 30.dp, end = 30.dp, top = 20.dp)
