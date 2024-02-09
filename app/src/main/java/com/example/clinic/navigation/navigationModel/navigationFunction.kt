@@ -56,13 +56,6 @@ fun Navigation(navController: NavHostController) {
         composable(route = Screens.Nav.route) {
             MyApp(navController = navController)
         }
-
-
-
-
-
-
-
         composable(route = Screens.signInScreen.route) {
             LoginScreenTextFields(navController = navController)
         }

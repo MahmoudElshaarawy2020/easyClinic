@@ -60,10 +60,10 @@ fun MyProfile(navController: NavController) {
 
         .padding(10.dp)
         .clickable {
-            navController.navigate(route = "signIn_screen")
+            navController.navigate(route = "patient_profile")
         }) {
         LocalImage(
-            painter = painterResource(id = R.drawable.img_12), imageSize = 60.dp,
+            painter = painterResource(id = R.drawable.whitearrow), imageSize = 60.dp,
             padding = 10.dp
         )
     }

@@ -106,6 +106,7 @@ fun MyApp(navController: NavController) {
                     composable(route = Screens.patientHome.route) {
                         PatientHome(navController = navController)
 
+
                     }
 
                     composable(route = Screens.patientProfile.route) {

@@ -66,7 +66,11 @@ fun PatientHome (navController: NavController){
             Box(contentAlignment = Alignment.BottomCenter,
                 modifier = Modifier
                     .padding(6.dp)
-                    .clickable { navController.navigate(route = "hospitals") })
+                    .clickable { navController.navigate(route = "hospitals"){
+                        popUpTo("patient_home"){
+                            inclusive = true
+                        }
+                    } })
             {
                 LocalImage(painter = painterResource(id = R.drawable.img_6), imageSize =190.dp , padding = 0.dp )
                 Text(
@@ -80,7 +84,13 @@ fun PatientHome (navController: NavController){
             Box(contentAlignment = Alignment.BottomCenter,
                 modifier = Modifier
                     .padding(6.dp)
-                    .clickable { navController.navigate(route = "labs") })
+                    .clickable {
+                        navController.navigate(route = "labs"){
+                            popUpTo("patient_home"){
+                                inclusive = true
+                            }
+                        }
+                    })
             {
                 LocalImage(painter = painterResource(id = R.drawable.img_7), imageSize =190.dp , padding = 0.dp )
                 Text(
@@ -112,7 +122,13 @@ fun PatientHome (navController: NavController){
             Box(contentAlignment = Alignment.BottomCenter,
                 modifier = Modifier
                     .padding(6.dp)
-                    .clickable { navController.navigate(route = "diet") }) {
+                    .clickable { navController.navigate(route = "diet"){
+                        popUpTo("patient_home"){
+                            inclusive = true
+                        }
+                    }
+                    }
+            ) {
                 LocalImage(painter = painterResource(id = R.drawable.img_9), imageSize =190.dp , padding = 0.dp )
                 Text(
                     "Diet",

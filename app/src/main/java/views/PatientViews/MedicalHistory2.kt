@@ -166,7 +166,7 @@ fun MedicalHistory2(navController: NavController){
         Spacer(
             modifier = Modifier
                 .fillMaxWidth()
-                .size(30.dp)
+                .size(10.dp)
         )
 
         Image(
@@ -207,7 +207,7 @@ Box(modifier = Modifier.fillMaxWidth(),
         Spacer(
             modifier = Modifier
                 .fillMaxWidth()
-                .size(30.dp)
+                .size(10.dp)
         )
 
         Button(

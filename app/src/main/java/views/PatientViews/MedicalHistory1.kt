@@ -85,7 +85,11 @@ fun MedicalHistory1(navController: NavController){
             Spacer(modifier = Modifier.fillMaxWidth()
                 .size(20.dp))
             Box(modifier = Modifier
-                .clickable { navController.navigate(route = "MedHis2") }){
+                .clickable { navController.navigate(route = "MedHis2"){
+                    popUpTo("MedHis1"){
+                        inclusive = true
+                    }
+                } }){
                 LocalImage(painter = painterResource(id = R.drawable.plus),
                     imageSize = 100.dp,
                     padding = 0.dp )

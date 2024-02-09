@@ -136,7 +136,11 @@ fun patientProfile(navController : NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp)
-                        .clickable {navController.navigate(route = "MedHis1") },
+                        .clickable {navController.navigate(route = "MedHis1"){
+                            popUpTo("patient_profile"){
+                                inclusive = true
+                            }
+                        } },
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
