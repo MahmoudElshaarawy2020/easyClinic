@@ -47,6 +47,8 @@ import androidx.compose.ui.unit.sp
 import com.example.clinic.R
 import views.FunctionsComposable.LocalImage
 
+val doctorEmail = "hamza@gmail.com"
+val doctorPhone = "01018490780"
 val dName = "Dr.Hamza Tariq."
 val department = "Senior Surgeon"
 val timeFrom = "10:30"
