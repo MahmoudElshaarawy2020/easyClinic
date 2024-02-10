@@ -26,6 +26,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
@@ -40,6 +42,9 @@ import views.FunctionsComposable.LocalImage
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyProfile(navController: NavController) {
+    val fontFamily = FontFamily(
+        Font(R.font.wendyoneregular, FontWeight.Thin)
+    )
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -68,12 +73,13 @@ fun MyProfile(navController: NavController) {
         )
     }
     Text(
-            text = "My profile",
-    fontSize = 30.sp,
-    color = colorResource(R.color.white),
-    textAlign = TextAlign.Center,
-    modifier = Modifier
-        .padding(start = 90.dp, end = 13.dp, top = 17.dp)
+        text = "My profile",
+        fontSize = 26.sp,
+        color = colorResource(R.color.white),
+        textAlign = TextAlign.Center,
+        fontFamily = fontFamily,
+        modifier = Modifier
+            .padding(start = 70.dp, end = 13.dp, top = 25.dp)
     )
     Text(
         text = "Name",
@@ -81,7 +87,7 @@ fun MyProfile(navController: NavController) {
         color = colorResource(R.color.black),
         textAlign = TextAlign.Center,
         modifier = Modifier
-            .padding(start = 10.dp, end = 13.dp, top = 100.dp)
+            .padding(start = 14.dp, top = 100.dp, bottom = 5.dp)
     )
     var text by remember { mutableStateOf(TextFieldValue("")) }
     OutlinedTextField(modifier = Modifier
@@ -91,7 +97,8 @@ fun MyProfile(navController: NavController) {
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
             unfocusedBorderColor = colorResource(id = R.color.lightblue),
-            focusedBorderColor = colorResource(id = R.color.lightblue)
+            focusedBorderColor = colorResource(id = R.color.lightblue),
+            containerColor = Color.White,
         )
     )
     Text(
@@ -100,7 +107,7 @@ fun MyProfile(navController: NavController) {
         color = colorResource(R.color.black),
         textAlign = TextAlign.Center,
         modifier = Modifier
-            .padding(start = 10.dp, end = 13.dp, top = 178.dp)
+            .padding(start = 14.dp,bottom = 5.dp, top = 178.dp)
     )
     var age by remember { mutableStateOf(TextFieldValue("")) }
     OutlinedTextField(modifier = Modifier
@@ -110,7 +117,8 @@ fun MyProfile(navController: NavController) {
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
             unfocusedBorderColor = colorResource(id = R.color.lightblue),
-            focusedBorderColor = colorResource(id = R.color.lightblue)
+            focusedBorderColor = colorResource(id = R.color.lightblue),
+            containerColor = Color.White,
         )
     )
     Text(
@@ -119,7 +127,7 @@ fun MyProfile(navController: NavController) {
     color = colorResource(R.color.black),
     textAlign = TextAlign.Center,
     modifier = Modifier
-        .padding(start = 10.dp, end = 13.dp, top = 260.dp)
+        .padding(start = 14.dp, bottom = 5.dp, top = 260.dp)
     )
     var num by remember { mutableStateOf(TextFieldValue("")) }
     OutlinedTextField(modifier = Modifier
@@ -129,7 +137,8 @@ fun MyProfile(navController: NavController) {
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
             unfocusedBorderColor = colorResource(id = R.color.lightblue),
-            focusedBorderColor = colorResource(id = R.color.lightblue)
+            focusedBorderColor = colorResource(id = R.color.lightblue),
+            containerColor = Color.White,
         )
     )
     Text(
@@ -138,7 +147,7 @@ fun MyProfile(navController: NavController) {
     color = colorResource(R.color.black),
     textAlign = TextAlign.Center,
     modifier = Modifier
-        .padding(start = 10.dp, end = 13.dp, top = 340.dp)
+        .padding(start = 14.dp,bottom = 5.dp, top = 340.dp)
     )
     var address by remember { mutableStateOf(TextFieldValue("")) }
     OutlinedTextField(modifier = Modifier
@@ -148,7 +157,8 @@ fun MyProfile(navController: NavController) {
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
             unfocusedBorderColor = colorResource(id = R.color.lightblue),
-            focusedBorderColor = colorResource(id = R.color.lightblue)
+            focusedBorderColor = colorResource(id = R.color.lightblue),
+            containerColor = Color.White,
         )
     )
     Text(
@@ -157,7 +167,7 @@ fun MyProfile(navController: NavController) {
     color = colorResource(R.color.black),
     textAlign = TextAlign.Center,
     modifier = Modifier
-        .padding(start = 10.dp, end = 13.dp, top = 420.dp)
+        .padding(start = 14.dp, bottom = 5.dp, top = 420.dp)
     )
     var gender by remember { mutableStateOf(TextFieldValue("")) }
     OutlinedTextField(modifier = Modifier
@@ -167,7 +177,8 @@ fun MyProfile(navController: NavController) {
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
             unfocusedBorderColor = colorResource(id = R.color.lightblue),
-            focusedBorderColor = colorResource(id = R.color.lightblue)
+            focusedBorderColor = colorResource(id = R.color.lightblue),
+            containerColor = Color.White,
         )
     )
     Text(
@@ -176,7 +187,7 @@ fun MyProfile(navController: NavController) {
         color = colorResource(R.color.black),
         textAlign = TextAlign.Center,
         modifier = Modifier
-            .padding(start = 10.dp, end = 13.dp, top = 500.dp)
+            .padding(start = 14.dp, bottom = 5.dp, top = 500.dp)
     )
     var height by remember { mutableStateOf(TextFieldValue("")) }
     OutlinedTextField(modifier = Modifier
@@ -186,7 +197,8 @@ fun MyProfile(navController: NavController) {
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
             unfocusedBorderColor = colorResource(id = R.color.lightblue),
-            focusedBorderColor = colorResource(id = R.color.lightblue)
+            focusedBorderColor = colorResource(id = R.color.lightblue),
+            containerColor = Color.White,
         )
     )
     Text(
@@ -195,7 +207,7 @@ fun MyProfile(navController: NavController) {
         color = colorResource(R.color.black),
         textAlign = TextAlign.Center,
         modifier = Modifier
-            .padding(start = 10.dp, end = 13.dp, top = 580.dp)
+            .padding(start = 14.dp, bottom = 5.dp, top = 580.dp)
     )
     var weight by remember { mutableStateOf(TextFieldValue("")) }
     OutlinedTextField(modifier = Modifier
@@ -205,7 +217,8 @@ fun MyProfile(navController: NavController) {
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
             unfocusedBorderColor = colorResource(id = R.color.lightblue),
-            focusedBorderColor = colorResource(id = R.color.lightblue)
+            focusedBorderColor = colorResource(id = R.color.lightblue),
+            containerColor = Color.White,
         )
     )
     Text(
@@ -214,7 +227,7 @@ fun MyProfile(navController: NavController) {
         color = colorResource(R.color.black),
         textAlign = TextAlign.Center,
         modifier = Modifier
-            .padding(start = 10.dp, end = 13.dp, top = 660.dp)
+            .padding(start = 14.dp, bottom = 5.dp, top = 660.dp)
     )
     var blood by remember { mutableStateOf(TextFieldValue("")) }
     OutlinedTextField(modifier = Modifier
@@ -224,15 +237,16 @@ fun MyProfile(navController: NavController) {
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
             unfocusedBorderColor = colorResource(id = R.color.lightblue),
-            focusedBorderColor = colorResource(id = R.color.lightblue)
+            focusedBorderColor = colorResource(id = R.color.lightblue),
+            containerColor = Color.White,
         )
     )
     Button(
         onClick = {
-            navController.navigate(route = "choose_screen")
+            navController.navigate(route = "patient_profile")
         },
         modifier = Modifier
-            .padding(start = 80.dp, end = 30.dp, top = 780.dp)
+            .padding(start = 80.dp, end = 30.dp, top = 750.dp)
             .size(height = 60.dp, width = 250.dp),
         colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue)),
         shape = RoundedCornerShape(20.dp)
