@@ -47,15 +47,16 @@ import androidx.compose.ui.unit.sp
 import com.example.clinic.R
 import views.FunctionsComposable.LocalImage
 
+val dName = "Dr.Hamza Tariq."
+val department = "Senior Surgeon"
+val timeFrom = "10:30"
+val timeTo = "3:30"
+val fee = "300"
+val address = "Tanta,stad st."
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun reservation(){
-    val dName = "Dr.Hamza Tariq."
-    val department = "Senior Surgeon"
-    val timeFrom = "10:30"
-    val timeTo = "3:30"
-    val fee = "300"
-    val address = "Tanta,stad st."
+
     val fontFamily = FontFamily(
         Font(R.font.wendyoneregular, FontWeight.Thin))
 
