@@ -54,7 +54,9 @@ fun Booking(navController: NavController) {
     val fontFamily = FontFamily(
         Font(R.font.wendyoneregular, FontWeight.Thin)
 
+
     )
+    var date = "Friday - 23DEC"
 
     Column(modifier = Modifier.fillMaxSize()) {
 
