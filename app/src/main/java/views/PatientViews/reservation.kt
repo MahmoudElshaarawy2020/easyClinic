@@ -47,14 +47,15 @@ import androidx.compose.ui.unit.sp
 import com.example.clinic.R
 import views.FunctionsComposable.LocalImage
 
-val doctorEmail = "hamza@gmail.com"
-val doctorPhone = "01018490780"
-val dName = "Dr.Hamza Tariq."
-val department = "Senior Surgeon"
-val timeFrom = "10:30"
-val timeTo = "3:30"
-val fee = "300"
-val address = "Tanta,stad st."
+var doctorEmail = "hamza@gmail.com"
+var doctorPhone = "01018490780"
+var dName = "Dr.Hamza Tariq"
+var department = "Senior Surgeon"
+var timeFrom = "10:30"
+var timeTo = "3:30"
+var fee = "300"
+var address = "Tanta,stad st."
+var date = "Friday - 23DEC"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun reservation(){
