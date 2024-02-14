@@ -12,10 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.LocationOn
-import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.materialIcon
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -47,14 +44,14 @@ import androidx.compose.ui.unit.sp
 import com.example.clinic.R
 import views.FunctionsComposable.LocalImage
 
-val doctorEmail = "hamza@gmail.com"
-val doctorPhone = "01018490780"
-val dName = "Dr.Hamza Tariq."
-val department = "Senior Surgeon"
-val timeFrom = "10:30"
-val timeTo = "3:30"
-val fee = "300"
-val address = "Tanta,stad st."
+var doctorEmail = "hamza@gmail.com"
+var doctorPhone = "01018490780"
+var dName = "Dr.Hamza Tariq."
+var department = "Senior Surgeon"
+var timeFrom = "10:30"
+var timeTo = "3:30"
+var fee = "300"
+var address = "Tanta,stad st."
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun reservation(){
