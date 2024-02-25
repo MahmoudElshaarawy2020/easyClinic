@@ -1,21 +1,30 @@
-package views.PatientViews
-import androidx.compose.foundation.Image
+package views.patientViews
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -31,21 +40,24 @@ import views.FunctionsComposable.LocalImage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DrugsAlarm0(navController: NavController){
+fun Diet(navController: NavController){
+    var isexpanded by remember {
+        mutableStateOf(false)
+    }
+    var diet by remember {
+        mutableStateOf("")
+    }
+
     val fontFamily = FontFamily(
         Font(R.font.wendyoneregular, FontWeight.Thin))
 
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .background(color = Color(0xFFE9FAFF)),
-    ){
-
+    Column(modifier = Modifier.fillMaxSize()){
 
         Box(modifier = Modifier
             .fillMaxWidth()
             .size(100.dp)
             .background(color = Color(0xFF2697FF))){
-            Text(text = "Drugs alarm",
+            Text(text = "Diet",
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 70.dp, top = 25.dp),
@@ -59,58 +71,53 @@ fun DrugsAlarm0(navController: NavController){
             Box(modifier = Modifier
 
                 .padding(10.dp)
-                .clickable {}
-            ) {
+                .clickable {
+                    navController.navigate(route = "patient_home")
+                }) {
                 LocalImage(
                     painter = painterResource(id = R.drawable.whitearrow), imageSize = 60.dp,
                     padding = 10.dp
                 )
             }
         }
-        Column(modifier = Modifier
-            .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Top
-        ) {
-            Spacer(modifier = Modifier
-                .fillMaxWidth()
-                .size(50.dp))
-            LocalImage(painter = painterResource(id = R.drawable.drugscup),
-                imageSize = 150.dp,
-                padding =0.dp )
-            Text(modifier = Modifier.fillMaxWidth(),
-                text = "please add the drugs \n you are taking......\n " +
-                        "and we will remind you \n of their time ",
-                fontSize = 24.sp,
-                color = Color(0xFF646E82),
-                textAlign = TextAlign.Center
-            )
-            Spacer(modifier = Modifier
-                .fillMaxWidth()
-                .size(20.dp))
-            Box(modifier = Modifier
-                .clickable { navController.navigate(route = "MedHis2") }){
+        Box(
+            contentAlignment = Alignment.TopCenter,
+            modifier = Modifier
+                .fillMaxSize()
+        ){
 
-                Image(
+                OutlinedTextField(value = diet,
+                    onValueChange = {diet = it},
+                    label = {
+                        Text(
+                            text = "Search for diet",
+                            color = Color.LightGray
+                        )
+                    },
+                    singleLine = true,
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Filled.Search, contentDescription = "Search"
+                        )
+
+                    },
                     modifier = Modifier
-                        .clickable { }
-                        .fillMaxWidth()
-                        .size(120.dp),
-                    painter = painterResource(id = R.drawable.addalarm),
-                    contentDescription ="adding alarm"
+                        .background(color = Color(0xFFFFFFFF)),
+                    shape = RoundedCornerShape(15.dp),
+                    colors = TextFieldDefaults.outlinedTextFieldColors(
+                        unfocusedBorderColor = colorResource(id = R.color.lightblue),
+                        focusedBorderColor = colorResource(id = R.color.lightblue)
+                    )
                 )
-            }
+
         }
-
-
     }
-
 }
 
 
 
 @Composable
 @Preview(showBackground = true)
-fun DrugsAlarm0Prview(){
-    DrugsAlarm0(navController = rememberNavController())
+fun DietPreview(){
+    Diet(navController = rememberNavController())
 }

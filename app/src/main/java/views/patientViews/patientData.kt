@@ -1,4 +1,4 @@
-package views.PatientViews
+package views.patientViews
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

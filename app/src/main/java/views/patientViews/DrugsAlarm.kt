@@ -1,4 +1,5 @@
-package views.PatientViews
+package views.patientViews
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -30,21 +31,21 @@ import views.FunctionsComposable.LocalImage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MedicalHistory1(navController: NavController){
+fun DrugsAlarm0(navController: NavController){
     val fontFamily = FontFamily(
         Font(R.font.wendyoneregular, FontWeight.Thin))
 
     Column(modifier = Modifier
         .fillMaxSize()
         .background(color = Color(0xFFE9FAFF)),
-        ){
+    ){
 
 
         Box(modifier = Modifier
             .fillMaxWidth()
             .size(100.dp)
             .background(color = Color(0xFF2697FF))){
-            Text(text = "Medical history",
+            Text(text = "Drugs alarm",
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 70.dp, top = 25.dp),
@@ -58,10 +59,8 @@ fun MedicalHistory1(navController: NavController){
             Box(modifier = Modifier
 
                 .padding(10.dp)
-                .clickable {
-                    navController.navigate(route = "patient_profile")
-
-                }) {
+                .clickable {}
+            ) {
                 LocalImage(
                     painter = painterResource(id = R.drawable.whitearrow), imageSize = 60.dp,
                     padding = 10.dp
@@ -71,28 +70,35 @@ fun MedicalHistory1(navController: NavController){
         Column(modifier = Modifier
             .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Top
         ) {
-            LocalImage(painter = painterResource(id = R.drawable.microscoope),
+            Spacer(modifier = Modifier
+                .fillMaxWidth()
+                .size(50.dp))
+            LocalImage(painter = painterResource(id = R.drawable.drugscup),
                 imageSize = 150.dp,
                 padding =0.dp )
             Text(modifier = Modifier.fillMaxWidth(),
-                text = "Medical tests have not \n been added yet",
+                text = "please add the drugs \n you are taking......\n " +
+                        "and we will remind you \n of their time ",
                 fontSize = 24.sp,
                 color = Color(0xFF646E82),
                 textAlign = TextAlign.Center
             )
-            Spacer(modifier = Modifier.fillMaxWidth()
+            Spacer(modifier = Modifier
+                .fillMaxWidth()
                 .size(20.dp))
             Box(modifier = Modifier
-                .clickable { navController.navigate(route = "MedHis2"){
-                    popUpTo("MedHis1"){
-                        inclusive = true
-                    }
-                } }){
-                LocalImage(painter = painterResource(id = R.drawable.plus),
-                    imageSize = 100.dp,
-                    padding = 0.dp )
+                .clickable { navController.navigate(route = "MedHis2") }){
+
+                Image(
+                    modifier = Modifier
+                        .clickable { }
+                        .fillMaxWidth()
+                        .size(120.dp),
+                    painter = painterResource(id = R.drawable.addalarm),
+                    contentDescription ="adding alarm"
+                )
             }
         }
 
@@ -105,6 +111,6 @@ fun MedicalHistory1(navController: NavController){
 
 @Composable
 @Preview(showBackground = true)
-fun MedicalHistory1Prview(){
-    MedicalHistory1(navController = rememberNavController())
+fun DrugsAlarm0Prview(){
+    DrugsAlarm0(navController = rememberNavController())
 }

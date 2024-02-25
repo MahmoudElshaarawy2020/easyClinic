@@ -32,14 +32,14 @@ import androidx.navigation.navigation
 import com.example.clinic.R
 import com.example.clinic.navigation.navigationModel.Screens
 import com.example.clinic.navigation.navigationBar.navBarViewsPatient.navBarPatient.Appointment
-import views.PatientViews.Diet
-import views.PatientViews.Hospitals
-import views.PatientViews.Labs
-import views.PatientViews.MedicalHistory1
-import views.PatientViews.MedicalHistory2
-import views.PatientViews.MedicalHistory3
-import views.PatientViews.PatientHome
-import views.PatientViews.patientProfile
+import views.patientViews.Diet
+import views.patientViews.Hospitals
+import views.patientViews.Labs
+import views.patientViews.MedicalHistory1
+import views.patientViews.MedicalHistory2
+import views.patientViews.MedicalHistory3
+import views.patientViews.PatientHome
+import views.patientViews.patientProfile
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

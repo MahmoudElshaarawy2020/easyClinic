@@ -1,4 +1,6 @@
-package views.PatientViews
+package views.patientViews
+
+
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -40,7 +42,7 @@ import views.FunctionsComposable.LocalImage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Hospitals(navController: NavController){
+fun Labs(navController: NavController){
     var isexpanded by remember {
         mutableStateOf(false)
     }
@@ -57,22 +59,21 @@ fun Hospitals(navController: NavController){
             .fillMaxWidth()
             .size(100.dp)
             .background(color = Color(0xFF2697FF))){
-            Text(text = "Hospitals",
+            Text(text = "Labs",
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 70.dp, top = 25.dp),
 
-                    color = Color(0xFFFFFFFF),
-                    textAlign = TextAlign.Start,
-                    fontFamily = fontFamily,
+                color = Color(0xFFFFFFFF),
+                textAlign = TextAlign.Start,
+                fontFamily = fontFamily,
                 fontSize = 26.sp)
 
 
             Box(modifier = Modifier
 
                 .padding(10.dp)
-                .clickable {
-                    navController.navigate(route = "patient_home")
+                .clickable {navController.navigate(route = "patient_home")
 
                 }) {
                 LocalImage(
@@ -137,13 +138,13 @@ fun Hospitals(navController: NavController){
 
             }
         }
-        }
+    }
 }
 
 
 
 @Composable
 @Preview(showBackground = true)
-fun HosPreview(){
-    Hospitals(navController = rememberNavController())
+fun LabsPreview(){
+    Labs(navController = rememberNavController())
 }

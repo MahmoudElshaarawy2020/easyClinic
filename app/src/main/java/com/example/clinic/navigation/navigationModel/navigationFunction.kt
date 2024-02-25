@@ -11,10 +11,10 @@ import androidx.navigation.navArgument
 import com.example.clinic.navigation.navigationBar.BottomNavModel.MyApp
 import views.ChooseRole
 import views.Authentication.LoginScreenTextFields
-import views.PatientViews.PatientData
+import views.patientViews.PatientData
 import views.Authentication.RegisterScreenTextFields
 import views.DoctorViews.SplashForDoctor
-import views.PatientViews.SplashForPatient
+import views.patientViews.SplashForPatient
 
 
 @Composable

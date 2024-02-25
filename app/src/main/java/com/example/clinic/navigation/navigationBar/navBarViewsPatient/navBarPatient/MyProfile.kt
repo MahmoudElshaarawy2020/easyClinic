@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import views.PatientViews.patientProfile
+import views.patientViews.patientProfile
 
 @Composable
 fun MyProfileScreen(navController : NavController) {

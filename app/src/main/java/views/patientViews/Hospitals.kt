@@ -1,4 +1,4 @@
-package views.PatientViews
+package views.patientViews
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -9,10 +9,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
@@ -40,11 +40,11 @@ import views.FunctionsComposable.LocalImage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Diet(navController: NavController){
+fun Hospitals(navController: NavController){
     var isexpanded by remember {
         mutableStateOf(false)
     }
-    var diet by remember {
+    var city by remember {
         mutableStateOf("")
     }
 
@@ -57,14 +57,14 @@ fun Diet(navController: NavController){
             .fillMaxWidth()
             .size(100.dp)
             .background(color = Color(0xFF2697FF))){
-            Text(text = "Diet",
+            Text(text = "Hospitals",
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 70.dp, top = 25.dp),
 
-                color = Color(0xFFFFFFFF),
-                textAlign = TextAlign.Start,
-                fontFamily = fontFamily,
+                    color = Color(0xFFFFFFFF),
+                    textAlign = TextAlign.Start,
+                    fontFamily = fontFamily,
                 fontSize = 26.sp)
 
 
@@ -73,6 +73,7 @@ fun Diet(navController: NavController){
                 .padding(10.dp)
                 .clickable {
                     navController.navigate(route = "patient_home")
+
                 }) {
                 LocalImage(
                     painter = painterResource(id = R.drawable.whitearrow), imageSize = 60.dp,
@@ -85,23 +86,21 @@ fun Diet(navController: NavController){
             modifier = Modifier
                 .fillMaxSize()
         ){
-
-                OutlinedTextField(value = diet,
-                    onValueChange = {diet = it},
+            ExposedDropdownMenuBox(
+                expanded = isexpanded,
+                onExpandedChange = {isexpanded = it}) {
+                OutlinedTextField(value = city,
+                    onValueChange = {},
+                    readOnly = true,
                     label = {
                         Text(
-                            text = "Search for diet",
+                            text = "Select your city",
                             color = Color.LightGray
                         )
                     },
-                    singleLine = true,
-                    leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Filled.Search, contentDescription = "Search"
-                        )
-
-                    },
+                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = isexpanded)},
                     modifier = Modifier
+                        .menuAnchor()
                         .background(color = Color(0xFFFFFFFF)),
                     shape = RoundedCornerShape(15.dp),
                     colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -109,15 +108,42 @@ fun Diet(navController: NavController){
                         focusedBorderColor = colorResource(id = R.color.lightblue)
                     )
                 )
+                ExposedDropdownMenu(
+                    expanded = isexpanded,
+                    onDismissRequest = { isexpanded = false }) {
+                    DropdownMenuItem(
+                        text = {Text(text = "Tanta") },
+                        onClick = {
+                            city = "Tanta"
+                            isexpanded = false
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = {Text(text = "Mahala") },
+                        onClick = {
+                            city = "Mahala"
+                            isexpanded = false
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = {Text(text = "Kafr elziat") },
+                        onClick = {
+                            city = "Kafr elziat"
+                            isexpanded = false
+                        }
+                    )
 
+                }
+
+            }
         }
-    }
+        }
 }
 
 
 
 @Composable
 @Preview(showBackground = true)
-fun DietPreview(){
-    Diet(navController = rememberNavController())
+fun HosPreview(){
+    Hospitals(navController = rememberNavController())
 }
