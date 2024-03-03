@@ -1,5 +1,7 @@
 package views.patientViews
+import android.app.Dialog
 import android.os.Build
+import android.text.Selection
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
@@ -173,7 +175,7 @@ fun Booking(navController: NavController) {
             Row(modifier = Modifier .clickable { calendarState.show() }) {
                 Icon(imageVector = Icons.Filled.DateRange, contentDescription = "",
                     tint = colorResource(id = R.color.lightblue), modifier = Modifier.size(32.dp))
-                Text(text = "  $dateOfDay", fontSize = 20.sp, fontWeight = FontWeight.Bold
+                Text(text =" $dateOfDay", fontSize = 20.sp, fontWeight = FontWeight.Bold
                 , color = Color.Gray)
             }
 

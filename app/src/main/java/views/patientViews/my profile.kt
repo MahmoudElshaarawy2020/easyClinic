@@ -55,7 +55,7 @@ fun MyProfile(navController: NavController) {
         Box(
             modifier = Modifier
                 .background(
-                    color = Color(0xFF39A0FF), shape = RoundedCornerShape(0.dp)
+                    color = Color(0xFF39A0FF)
                 )
                 .size(height = 80.dp, width = 450.dp),
 
