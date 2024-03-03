@@ -35,29 +35,35 @@ import views.FunctionsComposable.LocalImage
 
 
 @Composable
-fun  MedicalAppointments(){
+fun  MedicalAppointments() {
 
     val fontFamily = FontFamily(
         Font(R.font.wendyoneregular, FontWeight.Thin)
     )
 
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .background(color = Color(0xFFE9FAFF))){
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color(0xFFE9FAFF))
+    ) {
 
-        Box(modifier = Modifier
-            .fillMaxWidth()
-            .size(80.dp)
-            .background(color = Color(0xFF2697FF))){
-            Text(text = " Medical appointments",
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .size(80.dp)
+                .background(color = Color(0xFF2697FF))
+        ) {
+            Text(
+                text = " Medical appointments",
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 70.dp, top = 25.dp),
-
+ 
                 color = Color(0xFFFFFFFF),
                 textAlign = TextAlign.Start,
                 fontFamily = fontFamily,
-                fontSize = 26.sp)
+                fontSize = 26.sp
+            )
 
 
             Box(modifier = Modifier
@@ -74,72 +80,74 @@ fun  MedicalAppointments(){
             }
         }
 
-    }
-    LazyColumn(modifier = Modifier.fillMaxSize()
-    ){
-items(5){
-    ElevatedCard(
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 20.dp
-        ),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 100.dp, start = 10.dp, end = 10.dp)
-            .size(100.dp)
+
+        LazyColumn() {
+            items(10) {
+                ElevatedCard(
+                    elevation = CardDefaults.cardElevation(
+                        defaultElevation = 20.dp
+                    ),
+                    colors = CardDefaults.cardColors(containerColor = Color.White),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 15.dp, start = 10.dp, end = 10.dp)
 
 
+                ) {
 
-    ) {
+                    Row {
+                        Image(
+                            painter = painterResource(id = R.drawable.doctorhamza),
+                            contentDescription = "doctor photo",
+                            modifier = Modifier
+                                .padding(start = 8.dp, top = 12.dp, bottom = 12.dp)
+                                .size(100.dp)
+                                .clip(RoundedCornerShape(10.dp)),
+                        )
+                        Column(
+                            modifier = Modifier
+                                .weight(2f)
+                        ) {
+                            Text(
+                                modifier = Modifier.padding(top = 7.dp, start = 10.dp),
+                                text = dName,
+                                fontSize = 17.sp,
+                                fontWeight = Bold,
+                                color = Color(0xFF2697FF)
+                            )
+                            Text(
+                                modifier = Modifier.padding(start = 10.dp),
+                                text = department,
+                                fontSize = 13.sp,
+                            )
+                            Text(
+                                modifier = Modifier.padding(start = 10.dp),
+                                text = "$timeFrom - $timeTo",
+                                fontSize = 10.sp,
+                                color = Color.Gray,
+                            )
+                            Text(
+                                modifier = Modifier.padding(start = 10.dp),
+                                text = "fee : $fee L.E",
+                                fontSize = 10.sp,
+                                color = Color.Gray
+                            )
+                            Text(
+                                modifier = Modifier.padding(start = 10.dp),
+                                text = "address : $address",
+                                fontSize = 10.sp,
+                                color = Color.Gray
+                            )
 
-        Row{
-            Image(painter = painterResource(id = R.drawable.doctorhamza),
-                contentDescription = "doctor photo",
-                modifier = Modifier
-                    .padding(start = 8.dp, top = 12.dp, bottom = 12.dp)
-                    .size(100.dp)
-                    .clip(RoundedCornerShape(10.dp)),
-            )
-            Column(modifier = Modifier
-                .weight(2f)) {
-                Text(
-                    modifier = Modifier .padding(top = 7.dp,start = 10.dp),
-                    text = dName,
-                    fontSize = 17.sp,
-                    fontWeight = Bold,
-                    color = Color(0xFF2697FF))
-                Text(
-                    modifier = Modifier .padding(start = 10.dp),
-                    text =  department,
-                    fontSize = 13.sp,
-                )
-                Text(
-                    modifier = Modifier .padding(start = 10.dp),
-                    text =  "$timeFrom - $timeTo",
-                    fontSize = 10.sp,
-                    color = Color.Gray,
-                )
-                Text(
-                    modifier = Modifier .padding(start = 10.dp),
-                    text =  "fee : $fee L.E",
-                    fontSize = 10.sp,
-                    color = Color.Gray
-                )
-                Text(
-                    modifier = Modifier .padding(start = 10.dp),
-                    text =  "address : $address",
-                    fontSize = 10.sp,
-                    color = Color.Gray
-                )
+                        }
+                    }
 
+
+                }
             }
         }
-
-
     }
 }
-        }
-  }
 
 
 
