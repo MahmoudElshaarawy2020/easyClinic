@@ -50,7 +50,7 @@ val dName = "Dr.Hamza Tariq"
 val department = "Senior Surgeon"
 val timeFrom = "10:30"
 val timeTo = "3:30"
-val fee = "300"
+val fee = "300 L.E"
 val address = "Tanta,stad st."
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

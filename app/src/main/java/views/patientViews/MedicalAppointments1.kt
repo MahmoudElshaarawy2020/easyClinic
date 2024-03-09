@@ -1,6 +1,5 @@
 package views.patientViews
 
-import android.content.ClipData.Item
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -90,7 +89,7 @@ fun  MedicalAppointments() {
                     colors = CardDefaults.cardColors(containerColor = Color.White),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 15.dp, start = 10.dp, end = 10.dp)
+                        .padding(top = 13.dp, start = 10.dp, end = 10.dp)
 
 
                 ) {

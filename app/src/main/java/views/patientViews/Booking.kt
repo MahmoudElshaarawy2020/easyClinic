@@ -52,7 +52,7 @@ import com.maxkeppeler.sheets.calendar.models.CalendarConfig
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import views.FunctionsComposable.LocalImage
 
-
+val dateOfDay = "Friday - 23DEC"
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -60,7 +60,7 @@ fun Booking(navController: NavController) {
     val fontFamily = FontFamily(
         Font(R.font.wendyoneregular, FontWeight.Thin)
     )
-    val dateOfDay = "Friday - 23DEC"
+
     val calendarState = rememberSheetState()
 
     CalendarDialog(
