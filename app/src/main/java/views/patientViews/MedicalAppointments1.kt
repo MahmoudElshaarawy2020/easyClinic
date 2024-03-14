@@ -34,7 +34,7 @@ import views.FunctionsComposable.LocalImage
 
 
 @Composable
-fun  MedicalAppointments() {
+fun MedicalAppointments() {
 
     val fontFamily = FontFamily(
         Font(R.font.wendyoneregular, FontWeight.Thin)
@@ -57,7 +57,7 @@ fun  MedicalAppointments() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 70.dp, top = 25.dp),
- 
+
                 color = Color(0xFFFFFFFF),
                 textAlign = TextAlign.Start,
                 fontFamily = fontFamily,
@@ -72,7 +72,8 @@ fun  MedicalAppointments() {
 
                 }) {
                 LocalImage(
-                    painter = painterResource(id = R.drawable.whitearrow), imageSize = 60.dp,
+                    painter = painterResource(id = R.drawable.whitearrow),
+                    imageSize = 60.dp,
                     padding = 10.dp
                 )
 
@@ -104,8 +105,7 @@ fun  MedicalAppointments() {
                                 .clip(RoundedCornerShape(10.dp)),
                         )
                         Column(
-                            modifier = Modifier
-                                .weight(2f)
+                            modifier = Modifier.weight(2f)
                         ) {
                             Text(
                                 modifier = Modifier.padding(top = 7.dp, start = 10.dp),
@@ -149,13 +149,8 @@ fun  MedicalAppointments() {
 }
 
 
-
-
-
-
-
 @Composable
 @Preview(showBackground = true)
-fun MedicalAppointmentsPreview(){
-   MedicalAppointments()
+fun MedicalAppointmentsPreview() {
+    MedicalAppointments()
 }

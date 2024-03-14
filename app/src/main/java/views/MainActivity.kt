@@ -1,5 +1,4 @@
 package views
-import androidx.compose.material.BottomNavigation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,7 +9,7 @@ import androidx.navigation.compose.rememberNavController
 
 import com.example.clinic.navigation.navigationModel.Navigation
 
-import com.example.clinic.splashScreenModel.MainViewModel
+import com.example.clinic.ViewModel.MainViewModel
 
 
 
@@ -28,13 +27,6 @@ class MainActivity : ComponentActivity() {
 
             navController = rememberNavController()
             Navigation(navController = navController)
-
-
-
-
-
-
-
 
         }
     }

@@ -1,4 +1,4 @@
-package com.example.clinic.splashScreenModel
+package com.example.clinic.ViewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
