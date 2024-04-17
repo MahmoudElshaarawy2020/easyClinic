@@ -46,6 +46,11 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
 import views.FunctionsComposable.LocalImage
+import java.io.BufferedReader
+import java.io.BufferedWriter
+import java.io.OutputStreamWriter
+import java.net.HttpURLConnection
+import java.net.URL
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -155,7 +160,9 @@ fun LoginScreenTextFields(navController: NavController) {
             )
 
             Button(
-                onClick = {},
+                onClick = {
+                    login()
+                },
                 modifier = Modifier
                     .padding(start = 30.dp, end = 30.dp, top = 40.dp)
                     .size(height = 40.dp, width = 400.dp),
@@ -226,3 +233,34 @@ fun LoginScreenTextFields(navController: NavController) {
 fun signinPreview() {
     LoginScreenTextFields(navController = rememberNavController())
 }
+fun login (){
+    val baseUrl  = URL("https://zezo-yousef-taha.onrender.com/")
+    val connection = baseUrl.openConnection() as HttpURLConnection
+
+    connection.requestMethod = "POST"
+    connection.doOutput = true
+
+
+    val requestBody = "email=zezoelmalky894@gmail.com&password=@d3@AaA13"
+
+    connection.outputStream.use { outputStream ->
+        val writer = BufferedWriter(OutputStreamWriter(outputStream,"UTF-8"))
+        writer.write(requestBody)
+        writer.flush()
+    }
+
+    val responseCode = connection.responseCode
+    val responseBody = if(responseCode == HttpURLConnection.HTTP_OK ){
+        val inputStream = connection.inputStream
+        inputStream. bufferedReader().use(BufferedReader::readText)
+
+    }else{
+        val errStream = connection.errorStream
+        errStream.bufferedReader().use(BufferedReader::readText)
+    }
+    connection.disconnect()
+    println("Response Code $responseCode")
+    println("Response Code $responseBody")
+
+}
+

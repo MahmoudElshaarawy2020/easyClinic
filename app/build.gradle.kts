@@ -79,6 +79,15 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.0.0")
     implementation("com.squareup.retrofit2:converter-scalars:2.5.0")
 
+    // Kotlinx Serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
+
+    //okhttp
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor")
+
 
     // Java language implementation
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")

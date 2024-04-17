@@ -34,6 +34,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
@@ -53,9 +55,15 @@ val patientName: String = "Patient name"
 val ID: String = "213406"
 val date: String = "friday - 23Dec"
 
+
+val fontFamily = FontFamily(
+    Font(R.font.merienda_one, FontWeight.Thin)
+)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Homedoctor() {
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -72,13 +80,14 @@ fun Homedoctor() {
         Box(
             modifier = Modifier
                 .background(
-                    color = Color(0xFF39A0FF), shape = RoundedCornerShape(30.dp)
+                    color = Color(0xFF486A89), shape = RoundedCornerShape(30.dp)
                 )
                 .size(height = 40.dp, width = 200.dp), contentAlignment = Alignment.Center
         ) {
             Text(
                 text = "My Patients",
                 color = Color.White,
+                fontFamily = fontFamily,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Normal
@@ -91,7 +100,8 @@ fun Homedoctor() {
         OutlinedTextField(
             modifier = Modifier
                 .padding(start = 50.dp, end = 50.dp, top = 0.dp)
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .background(color = Color.White),
             value = text,
             onValueChange = { text = it },
             shape = RoundedCornerShape(50.dp),
@@ -148,8 +158,9 @@ fun Homedoctor() {
                                 modifier = Modifier.padding(start = 30.dp, bottom = 15.dp),
                                 text = patientName,
                                 fontSize = 20.sp,
+                                fontFamily = fontFamily,
                                 fontWeight = FontWeight.Bold,
-                                color = Color(0xFF2697FF)
+                                color = Color(0xFF01BCE9)
                             )
                             Text(
                                 modifier = Modifier.padding(start = 30.dp, bottom = 5.dp),

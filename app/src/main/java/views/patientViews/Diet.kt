@@ -84,6 +84,7 @@ fun Diet(navController: NavController){
             contentAlignment = Alignment.TopCenter,
             modifier = Modifier
                 .fillMaxSize()
+                .background(color = Color.DarkGray)
         ){
 
                 OutlinedTextField(value = diet,
@@ -105,6 +106,7 @@ fun Diet(navController: NavController){
                         .background(color = Color(0xFFFFFFFF)),
                     shape = RoundedCornerShape(15.dp),
                     colors = TextFieldDefaults.outlinedTextFieldColors(
+                        containerColor = Color.White,
                         unfocusedBorderColor = colorResource(id = R.color.lightblue),
                         focusedBorderColor = colorResource(id = R.color.lightblue)
                     )
