@@ -106,19 +106,7 @@ fun PatientHome (navController: NavController){
         Row (modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
         ){
-            Box(contentAlignment = Alignment.BottomCenter,
-                modifier = Modifier
-                    .padding(6.dp)
-                    .clickable { }) {
-                LocalImage(painter = painterResource(id = R.drawable.drugs), imageSize =190.dp , padding = 0.dp )
-                Text(
-                    "Drugs",
-                    fontSize = 20.sp,
-                    color = Color(0xFF2697FF),
-                    fontFamily = fontFamily,
-                    textAlign = TextAlign.Center
-                )
-            }
+
             Box(contentAlignment = Alignment.BottomCenter,
                 modifier = Modifier
                     .padding(6.dp)

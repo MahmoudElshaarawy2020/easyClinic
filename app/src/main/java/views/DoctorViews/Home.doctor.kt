@@ -42,6 +42,8 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
 import views.FunctionsComposable.LocalImage
 import views.patientViews.address
@@ -62,7 +64,7 @@ val fontFamily = FontFamily(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Homedoctor() {
+fun Homedoctor(navController : NavController) {
 
     Column(
         modifier = Modifier
@@ -145,7 +147,7 @@ fun Homedoctor() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.img_2),
-                            contentDescription = "doctor photo",
+                            contentDescription = "pati photo",
                             modifier = Modifier
                                 .padding(start = 8.dp, top = 12.dp, bottom = 12.dp)
                                 .size(100.dp)
@@ -227,10 +229,8 @@ fun Homedoctor() {
     }
 
 }
-
-
-@Preview(showBackground = true)
 @Composable
-fun Doctor() {
-    Homedoctor()
+@Preview(showBackground = true)
+fun Doctor(){
+    Homedoctor(navController = rememberNavController())
 }

@@ -2,13 +2,10 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="BookingPreview">
+      <entry key="BottomBarDrPreview">
         <State />
       </entry>
       <entry key="Doctor">
-        <State />
-      </entry>
-      <entry key="MedicalAppointmentsPreview">
         <State />
       </entry>
       <entry key="MedicalAppointmentsPreview2">
@@ -18,6 +15,9 @@
         <State />
       </entry>
       <entry key="app">
+        <State />
+      </entry>
+      <entry key="drReequestsPrev">
         <State />
       </entry>
     </value>

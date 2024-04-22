@@ -29,7 +29,7 @@ fun SplashForDoctor(name : String?,navController: NavController){
     )
     LaunchedEffect(key1 = true){
         delay(2000L)
-        navController.navigate(route = "patient_home")
+        navController.navigate(route = "doctor_home")
     }
     Column(modifier = Modifier
         .fillMaxSize(),

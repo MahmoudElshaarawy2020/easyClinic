@@ -8,7 +8,9 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.clinic.navigation.navigationBar.BottomNavModel.MyApp
+import com.example.clinic.navigation.navigationBar.BottomNavModel.DrNav
+import com.example.clinic.navigation.navigationBar.BottomNavModel.NavbarPatient
+
 import views.ChooseRole
 import views.Authentication.LoginScreenTextFields
 import views.patientViews.PatientData
@@ -43,6 +45,11 @@ fun Navigation(navController: NavHostController) {
             PatientData(navController = navController)
         }
 
+        composable(route = Screens.NavDr.route)
+        {
+            DrNav(navController = navController)
+        }
+
         composable(
             route = "splash_patient/{name}",
             arguments = listOf(navArgument(name = "name") {
@@ -54,7 +61,7 @@ fun Navigation(navController: NavHostController) {
         }
 
         composable(route = Screens.Nav.route) {
-            MyApp(navController = navController)
+            NavbarPatient(navController = navController)
         }
         composable(route = Screens.signInScreen.route) {
             LoginScreenTextFields(navController = navController)

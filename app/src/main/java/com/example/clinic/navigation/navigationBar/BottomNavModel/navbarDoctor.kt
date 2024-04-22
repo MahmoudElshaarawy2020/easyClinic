@@ -32,6 +32,8 @@ import androidx.navigation.navigation
 import com.example.clinic.R
 import com.example.clinic.navigation.navigationModel.Screens
 import com.example.clinic.navigation.navigationBar.navBarViewsPatient.navBarPatient.Appointment
+import views.DoctorViews.Homedoctor
+import views.DoctorViews.Requests
 import views.patientViews.Diet
 import views.patientViews.Hospitals
 import views.patientViews.Labs
@@ -46,7 +48,7 @@ import views.patientViews.patientProfile
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 
-fun MyApp(navController: NavController) {
+fun DrNav(navController: NavController) {
 
     val navController = rememberNavController()
     val items = listOf(
@@ -94,87 +96,24 @@ fun MyApp(navController: NavController) {
 
     ) {
 
-            NavHost(navController = navController, startDestination = Screens.Nav.route) {
-                navigation(
-                    startDestination = Screens.patientHome.route,
-                    route = Screens.Nav.route
-                ) {
-                    composable(route = Screens.Appointment.route) {
-                        Appointment(navController = navController)
-                    }
-
-                    composable(route = Screens.patientHome.route) {
-                        PatientHome(navController = navController)
-
-
-                    }
-
-                    composable(route = Screens.patientProfile.route) {
-                        patientProfile(navController = navController)
-                    }
-                    composable(route = Screens.HospitalsRoute.route) {
-                        Hospitals(navController = navController)
-                    }
-                    composable(route = Screens.LabsRoute.route) {
-                        Labs(navController = navController)
-                    }
-
-                    composable(route = Screens.DietRoute.route) {
-                        Diet(navController = navController)
-                    }
-                    composable(route = Screens.MH1Route.route) {
-                        MedicalHistory1(navController = navController)
-                    }
-
-                    composable(route = Screens.MH2Route.route) {
-                        MedicalHistory2(navController = navController)
-                    }
-                    composable(
-                        route = "MedHis3/{name1}/{name2}/{name3}",
-                        arguments = listOf(
-                            navArgument(name = "name1") {
-                            defaultValue = -1
-                            type = NavType.StringType
-
-
-                        },
-                            navArgument(name = "name2") {
-                                defaultValue = -1
-                                type = NavType.StringType
-
-
-                            },
-                            navArgument(name = "name3") {
-                                defaultValue = -1
-                                type = NavType.StringType
-
-
-                            }
-                        )
-                    )
-                    {
-                        MedicalHistory3(
-                            name1 = it.arguments?.getString("name1"),
-                            name2 = it.arguments?.getString("name2"),
-                            name3 = it.arguments?.getString("name3"),
-                            navController = navController
-                        )
-                    }
-
-
-
+        NavHost(navController = navController, startDestination = Screens.NavDr.route) {
+            navigation(
+                startDestination = Screens.doctorHome.route,
+                route = Screens.NavDr.route
+            ) {
+                composable(route = Screens.doctorHome.route)
+                {
+                    Homedoctor(navController = navController)
+                }
+                composable(route = Screens.doctorRequests.route)
+                {
+                    Requests(navController = navController)
                 }
 
-
-            }
-        }
-
-    }
-
-
+            }}}}
 @Preview(showBackground = true)
 @Composable
-fun BottomBarPreview(){
+fun BottomBarDrPreview(){
 
-    MyApp(navController = rememberNavController())
+    DrNav(navController = rememberNavController())
 }

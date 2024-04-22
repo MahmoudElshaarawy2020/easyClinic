@@ -5,6 +5,8 @@ sealed class Screens(val route : String){
     object signUpScreen : Screens("signUp_screen")
     object choose : Screens("choose_screen")
     object patientData  : Screens("patient_data")
+    object doctorRequests  : Screens("doctor_requests")
+    object doctorHome  : Screens("doctor_home")
     object doctorData  : Screens("doctor_data")
     object HospitalsRoute : Screens("hospitals")
     object MH1Route : Screens("MedHis1")
@@ -12,6 +14,7 @@ sealed class Screens(val route : String){
     object LabsRoute : Screens("labs")
     object DietRoute : Screens("diet")
     object Nav : Screens("nav")
+    object NavDr : Screens("navDr")
 
 
     //bottom navigation views
