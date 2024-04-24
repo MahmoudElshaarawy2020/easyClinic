@@ -1,7 +1,5 @@
 package views.patientViews
-import android.app.Dialog
 import android.os.Build
-import android.text.Selection
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
@@ -136,45 +134,45 @@ fun Booking(navController: NavController) {
         Column (modifier = Modifier .padding(start = 50.dp, top = 80.dp, end = 50.dp)){
             Row{
                 Icon(imageVector = Icons.Filled.Notifications, contentDescription = "",
-                    tint = colorResource(id = R.color.lightblue))
+                    tint = colorResource(id = R.color.light_blue))
                 Text(text = "$timeFrom - $timeTo", fontSize = 17.sp,fontWeight = FontWeight.Bold)
             }
             Row(modifier = Modifier
                 .padding(top = 5.dp, bottom = 5.dp)){
                 Icon(imageVector = Icons.Filled.Edit, contentDescription = "",
-                    tint = colorResource(id = R.color.lightblue))
+                    tint = colorResource(id = R.color.light_blue))
                 Text(text = "Fee: $fee LE", fontSize = 17.sp,fontWeight = FontWeight.Bold)
             }
             Row{
                 Icon(imageVector = Icons.Filled.LocationOn, contentDescription = "",
-                    tint = colorResource(id = R.color.lightblue))
+                    tint = colorResource(id = R.color.light_blue))
                 Text(text = address, fontSize = 17.sp,fontWeight = FontWeight.Bold)
             }
 
             Divider(modifier = Modifier.padding(top = 17.dp, bottom = 10.dp),
-                color =colorResource(id = R.color.lightblue) )
+                color =colorResource(id = R.color.light_blue) )
 
             Row{
                 Icon(imageVector = Icons.Filled.Call, contentDescription = "",
-                    tint = colorResource(id = R.color.lightblue), modifier = Modifier.size(32.dp))
+                    tint = colorResource(id = R.color.light_blue), modifier = Modifier.size(32.dp))
                 Text(text = "  $doctorPhone", fontSize = 22.sp, fontWeight = FontWeight.Bold)
             }
 
             Divider(modifier = Modifier.padding(top = 10.dp, bottom = 10.dp),
-                color =colorResource(id = R.color.lightblue) )
+                color =colorResource(id = R.color.light_blue) )
 
             Row{
                 Icon(imageVector = Icons.Filled.Email, contentDescription = "",
-                    tint = colorResource(id = R.color.lightblue), modifier = Modifier.size(32.dp))
+                    tint = colorResource(id = R.color.light_blue), modifier = Modifier.size(32.dp))
                 Text(text = "  $doctorEmail", fontSize = 20.sp, fontWeight = FontWeight.Bold)
             }
 
             Divider(modifier = Modifier.padding(top = 10.dp, bottom = 10.dp),
-                color =colorResource(id = R.color.lightblue) )
+                color =colorResource(id = R.color.light_blue) )
 
             Row(modifier = Modifier .clickable { calendarState.show() }) {
                 Icon(imageVector = Icons.Filled.DateRange, contentDescription = "",
-                    tint = colorResource(id = R.color.lightblue), modifier = Modifier.size(32.dp))
+                    tint = colorResource(id = R.color.light_blue), modifier = Modifier.size(32.dp))
                 Text(text =" $dateOfDay", fontSize = 20.sp, fontWeight = FontWeight.Bold
                 , color = Color.Gray)
             }
@@ -183,7 +181,7 @@ fun Booking(navController: NavController) {
                 modifier = Modifier
                     .padding(start = 30.dp, end = 30.dp, top = 30.dp)
                     .size(height = 50.dp, width = 300.dp),
-                colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue))
+                colors = ButtonDefaults.buttonColors(colorResource(id = R.color.light_blue))
 
             ) {
                 Text(

@@ -96,8 +96,8 @@ fun MyProfile(navController: NavController) {
         value = text, onValueChange = { text = it },
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            unfocusedBorderColor = colorResource(id = R.color.lightblue),
-            focusedBorderColor = colorResource(id = R.color.lightblue),
+            unfocusedBorderColor = colorResource(id = R.color.light_blue),
+            focusedBorderColor = colorResource(id = R.color.light_blue),
             containerColor = Color.White,
         )
     )
@@ -116,8 +116,8 @@ fun MyProfile(navController: NavController) {
         value = age, onValueChange = { age = it },
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            unfocusedBorderColor = colorResource(id = R.color.lightblue),
-            focusedBorderColor = colorResource(id = R.color.lightblue),
+            unfocusedBorderColor = colorResource(id = R.color.light_blue),
+            focusedBorderColor = colorResource(id = R.color.light_blue),
             containerColor = Color.White,
         )
     )
@@ -136,8 +136,8 @@ fun MyProfile(navController: NavController) {
         value = num, onValueChange = { num = it },
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            unfocusedBorderColor = colorResource(id = R.color.lightblue),
-            focusedBorderColor = colorResource(id = R.color.lightblue),
+            unfocusedBorderColor = colorResource(id = R.color.light_blue),
+            focusedBorderColor = colorResource(id = R.color.light_blue),
             containerColor = Color.White,
         )
     )
@@ -156,8 +156,8 @@ fun MyProfile(navController: NavController) {
         value = address, onValueChange = { address = it },
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            unfocusedBorderColor = colorResource(id = R.color.lightblue),
-            focusedBorderColor = colorResource(id = R.color.lightblue),
+            unfocusedBorderColor = colorResource(id = R.color.light_blue),
+            focusedBorderColor = colorResource(id = R.color.light_blue),
             containerColor = Color.White,
         )
     )
@@ -176,8 +176,8 @@ fun MyProfile(navController: NavController) {
         value = gender, onValueChange = { gender = it },
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            unfocusedBorderColor = colorResource(id = R.color.lightblue),
-            focusedBorderColor = colorResource(id = R.color.lightblue),
+            unfocusedBorderColor = colorResource(id = R.color.light_blue),
+            focusedBorderColor = colorResource(id = R.color.light_blue),
             containerColor = Color.White,
         )
     )
@@ -196,8 +196,8 @@ fun MyProfile(navController: NavController) {
         value = height, onValueChange = { height = it },
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            unfocusedBorderColor = colorResource(id = R.color.lightblue),
-            focusedBorderColor = colorResource(id = R.color.lightblue),
+            unfocusedBorderColor = colorResource(id = R.color.light_blue),
+            focusedBorderColor = colorResource(id = R.color.light_blue),
             containerColor = Color.White,
         )
     )
@@ -216,8 +216,8 @@ fun MyProfile(navController: NavController) {
         value = weight, onValueChange = { weight = it },
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            unfocusedBorderColor = colorResource(id = R.color.lightblue),
-            focusedBorderColor = colorResource(id = R.color.lightblue),
+            unfocusedBorderColor = colorResource(id = R.color.light_blue),
+            focusedBorderColor = colorResource(id = R.color.light_blue),
             containerColor = Color.White,
         )
     )
@@ -236,8 +236,8 @@ fun MyProfile(navController: NavController) {
         value = blood, onValueChange = { blood = it },
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            unfocusedBorderColor = colorResource(id = R.color.lightblue),
-            focusedBorderColor = colorResource(id = R.color.lightblue),
+            unfocusedBorderColor = colorResource(id = R.color.light_blue),
+            focusedBorderColor = colorResource(id = R.color.light_blue),
             containerColor = Color.White,
         )
     )
@@ -248,7 +248,7 @@ fun MyProfile(navController: NavController) {
         modifier = Modifier
             .padding(start = 80.dp, end = 30.dp, top = 750.dp)
             .size(height = 60.dp, width = 250.dp),
-        colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue)),
+        colors = ButtonDefaults.buttonColors(colorResource(id = R.color.light_blue)),
         shape = RoundedCornerShape(20.dp)
         ) {
         Text(

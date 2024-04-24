@@ -105,8 +105,8 @@ fun Labs(navController: NavController){
                         .background(color = Color(0xFFFFFFFF)),
                     shape = RoundedCornerShape(15.dp),
                     colors = TextFieldDefaults.outlinedTextFieldColors(
-                        unfocusedBorderColor = colorResource(id = R.color.lightblue),
-                        focusedBorderColor = colorResource(id = R.color.lightblue)
+                        unfocusedBorderColor = colorResource(id = R.color.light_blue),
+                        focusedBorderColor = colorResource(id = R.color.light_blue)
                     )
                 )
                 ExposedDropdownMenu(

@@ -22,26 +22,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.example.clinic.R
 import com.example.clinic.navigation.navigationModel.Screens
-import com.example.clinic.navigation.navigationBar.navBarViewsPatient.navBarPatient.Appointment
 import views.DoctorViews.Homedoctor
 import views.DoctorViews.Requests
-import views.patientViews.Diet
-import views.patientViews.Hospitals
-import views.patientViews.Labs
-import views.patientViews.MedicalHistory1
-import views.patientViews.MedicalHistory2
-import views.patientViews.MedicalHistory3
-import views.patientViews.PatientHome
-import views.patientViews.patientProfile
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -65,7 +54,7 @@ fun DrNav(navController: NavController) {
                     .height(88.dp)
                     .padding(vertical = 10.dp, horizontal = 5.dp)
                     .clip(RoundedCornerShape(30.dp)),
-                backgroundColor = colorResource(id = R.color.lightblue)
+                backgroundColor = colorResource(id = R.color.light_blue)
             ) {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentRoute = navBackStackEntry?.destination?.route

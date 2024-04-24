@@ -74,7 +74,7 @@ fun LoginScreenTextFields(navController: NavController) {
             Text(
                 text = stringResource(R.string.welcome),
                 fontSize = 30.sp,
-                color = colorResource(R.color.lightblue)
+                color = colorResource(R.color.light_blue)
 
 
             )
@@ -102,8 +102,8 @@ fun LoginScreenTextFields(navController: NavController) {
                     fontWeight = FontWeight.Bold
                 ),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    unfocusedBorderColor = colorResource(id = R.color.lightblue),
-                    focusedBorderColor = colorResource(id = R.color.lightblue)
+                    unfocusedBorderColor = colorResource(id = R.color.light_blue),
+                    focusedBorderColor = colorResource(id = R.color.light_blue)
                 )
             )
             var passwordVisability by remember { mutableStateOf(false) }
@@ -146,15 +146,15 @@ fun LoginScreenTextFields(navController: NavController) {
                     fontWeight = FontWeight.Bold
                 ),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    unfocusedBorderColor = colorResource(id = R.color.lightblue),
-                    focusedBorderColor = colorResource(id = R.color.lightblue)
+                    unfocusedBorderColor = colorResource(id = R.color.light_blue),
+                    focusedBorderColor = colorResource(id = R.color.light_blue)
                 )
             )
             Text(
                 text = stringResource(id = R.string.forgot) , modifier = Modifier
                     .padding(top = 17.dp, start = 198.dp)
                     .clickable { },
-                color = colorResource(id = R.color.lightblue),
+                color = colorResource(id = R.color.light_blue),
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -166,7 +166,7 @@ fun LoginScreenTextFields(navController: NavController) {
                 modifier = Modifier
                     .padding(start = 30.dp, end = 30.dp, top = 40.dp)
                     .size(height = 40.dp, width = 400.dp),
-                colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue)),
+                colors = ButtonDefaults.buttonColors(colorResource(id = R.color.light_blue)),
 
                 ) {
                 Text(
@@ -181,7 +181,7 @@ fun LoginScreenTextFields(navController: NavController) {
                 modifier = Modifier
                     .padding(start = 30.dp, end = 30.dp, top = 18.dp)
                     .size(height = 40.dp, width = 400.dp),
-                colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue)),
+                colors = ButtonDefaults.buttonColors(colorResource(id = R.color.light_blue)),
 
                 ) {
                 Text(
@@ -208,7 +208,7 @@ fun LoginScreenTextFields(navController: NavController) {
                     },
                     modifier = Modifier
                         .size(width = 100.dp, height = 37.dp),
-                    colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue))
+                    colors = ButtonDefaults.buttonColors(colorResource(id = R.color.light_blue))
 
                 ) {
                     Text(

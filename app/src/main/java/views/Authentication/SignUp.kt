@@ -79,7 +79,7 @@ fun RegisterScreenTextFields(navController: NavController) {
         Text(
             text = stringResource(id = R.string.sign_up),
             fontSize = 30.sp,
-            color = colorResource(R.color.lightblue)
+            color = colorResource(R.color.light_blue)
 
         )
         var text by remember { mutableStateOf(TextFieldValue("")) }
@@ -108,8 +108,8 @@ fun RegisterScreenTextFields(navController: NavController) {
                 fontWeight = FontWeight.Bold
             ),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                unfocusedBorderColor = colorResource(id = R.color.lightblue),
-                focusedBorderColor = colorResource(id = R.color.lightblue)
+                unfocusedBorderColor = colorResource(id = R.color.light_blue),
+                focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
         var num by remember { mutableStateOf(TextFieldValue("")) }
@@ -135,8 +135,8 @@ fun RegisterScreenTextFields(navController: NavController) {
                 fontWeight = FontWeight.Bold
             ),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                unfocusedBorderColor = colorResource(id = R.color.lightblue),
-                focusedBorderColor = colorResource(id = R.color.lightblue)
+                unfocusedBorderColor = colorResource(id = R.color.light_blue),
+                focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
         var email by remember { mutableStateOf(TextFieldValue("")) }
@@ -162,8 +162,8 @@ fun RegisterScreenTextFields(navController: NavController) {
                 fontWeight = FontWeight.Bold
             ),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                unfocusedBorderColor = colorResource(id = R.color.lightblue),
-                focusedBorderColor = colorResource(id = R.color.lightblue)
+                unfocusedBorderColor = colorResource(id = R.color.light_blue),
+                focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
         var passwordVisability by remember { mutableStateOf(false) }
@@ -206,8 +206,8 @@ fun RegisterScreenTextFields(navController: NavController) {
                 fontWeight = FontWeight.Bold
             ),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                unfocusedBorderColor = colorResource(id = R.color.lightblue),
-                focusedBorderColor = colorResource(id = R.color.lightblue)
+                unfocusedBorderColor = colorResource(id = R.color.light_blue),
+                focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
         var password2 by remember { mutableStateOf(TextFieldValue("")) }
@@ -250,8 +250,8 @@ fun RegisterScreenTextFields(navController: NavController) {
                 fontWeight = FontWeight.Bold
             ),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                unfocusedBorderColor = colorResource(id = R.color.lightblue),
-                focusedBorderColor = colorResource(id = R.color.lightblue)
+                unfocusedBorderColor = colorResource(id = R.color.light_blue),
+                focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
 val context= LocalContext.current
@@ -276,7 +276,7 @@ val context= LocalContext.current
             modifier = Modifier
                 .padding(start = 30.dp, end = 30.dp, top = 20.dp)
                 .size(height = 40.dp, width = 300.dp),
-            colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue)),
+            colors = ButtonDefaults.buttonColors(colorResource(id = R.color.light_blue)),
 
 
             ) {

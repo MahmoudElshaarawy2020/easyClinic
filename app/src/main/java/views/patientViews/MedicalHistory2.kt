@@ -111,8 +111,8 @@ fun MedicalHistory2(navController: NavController){
                 fontWeight = FontWeight.Bold
             ),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                unfocusedBorderColor = colorResource(id = R.color.lightblue),
-                focusedBorderColor = colorResource(id = R.color.lightblue)
+                unfocusedBorderColor = colorResource(id = R.color.light_blue),
+                focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
         var checkDate by remember { mutableStateOf(TextFieldValue("")) }
@@ -135,8 +135,8 @@ fun MedicalHistory2(navController: NavController){
                 fontWeight = FontWeight.Bold
             ),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                unfocusedBorderColor = colorResource(id = R.color.lightblue),
-                focusedBorderColor = colorResource(id = R.color.lightblue)
+                unfocusedBorderColor = colorResource(id = R.color.light_blue),
+                focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
         var DoctorName by remember { mutableStateOf(TextFieldValue("")) }
@@ -159,8 +159,8 @@ fun MedicalHistory2(navController: NavController){
                 fontWeight = FontWeight.Bold
             ),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                unfocusedBorderColor = colorResource(id = R.color.lightblue),
-                focusedBorderColor = colorResource(id = R.color.lightblue)
+                unfocusedBorderColor = colorResource(id = R.color.light_blue),
+                focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
         Spacer(
@@ -216,7 +216,7 @@ Box(modifier = Modifier.fillMaxWidth(),
             },
             modifier = Modifier
                 .size(height = 60.dp, width = 280.dp),
-            colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue)),
+            colors = ButtonDefaults.buttonColors(colorResource(id = R.color.light_blue)),
             shape = RoundedCornerShape(20.dp),
 
             ) {

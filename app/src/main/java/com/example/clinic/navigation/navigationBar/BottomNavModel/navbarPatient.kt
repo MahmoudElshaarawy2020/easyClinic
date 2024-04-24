@@ -63,7 +63,7 @@ fun NavbarPatient(navController: NavController) {
                     .height(88.dp)
                     .padding(vertical = 10.dp, horizontal = 5.dp)
                     .clip(RoundedCornerShape(30.dp)),
-                backgroundColor = colorResource(id = R.color.lightblue)
+                backgroundColor = colorResource(id = R.color.light_blue)
             ) {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentRoute = navBackStackEntry?.destination?.route

@@ -60,7 +60,7 @@ fun DoctorData(navController: NavController){
         Text(
             text = "Enter your data",
             fontSize = 20.sp,
-            color = colorResource(R.color.lightblue)
+            color = colorResource(R.color.light_blue)
 
 
         )
@@ -80,8 +80,8 @@ fun DoctorData(navController: NavController){
             },
 
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                unfocusedBorderColor = colorResource(id = R.color.lightblue),
-                focusedBorderColor = colorResource(id = R.color.lightblue)
+                unfocusedBorderColor = colorResource(id = R.color.light_blue),
+                focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
         var specialization by remember { mutableStateOf(TextFieldValue("")) }
@@ -100,8 +100,8 @@ fun DoctorData(navController: NavController){
             },
 
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                unfocusedBorderColor = colorResource(id = R.color.lightblue),
-                focusedBorderColor = colorResource(id = R.color.lightblue)
+                unfocusedBorderColor = colorResource(id = R.color.light_blue),
+                focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
         var num by remember { mutableStateOf(TextFieldValue("")) }
@@ -120,8 +120,8 @@ fun DoctorData(navController: NavController){
             },
 
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                unfocusedBorderColor = colorResource(id = R.color.lightblue),
-                focusedBorderColor = colorResource(id = R.color.lightblue)
+                unfocusedBorderColor = colorResource(id = R.color.light_blue),
+                focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
         var clincaddress by remember { mutableStateOf(TextFieldValue("")) }
@@ -140,8 +140,8 @@ fun DoctorData(navController: NavController){
             },
 
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                unfocusedBorderColor = colorResource(id = R.color.lightblue),
-                focusedBorderColor = colorResource(id = R.color.lightblue)
+                unfocusedBorderColor = colorResource(id = R.color.light_blue),
+                focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
         var medicalfees by remember { mutableStateOf(TextFieldValue("")) }
@@ -160,8 +160,8 @@ fun DoctorData(navController: NavController){
             },
 
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                unfocusedBorderColor = colorResource(id = R.color.lightblue),
-                focusedBorderColor = colorResource(id = R.color.lightblue)
+                unfocusedBorderColor = colorResource(id = R.color.light_blue),
+                focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
         var appoinments by remember { mutableStateOf(TextFieldValue("")) }
@@ -179,8 +179,8 @@ fun DoctorData(navController: NavController){
                 )
             },
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                unfocusedBorderColor = colorResource(id = R.color.lightblue),
-                focusedBorderColor = colorResource(id = R.color.lightblue)
+                unfocusedBorderColor = colorResource(id = R.color.light_blue),
+                focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
             var Description by remember { mutableStateOf(TextFieldValue("")) }
@@ -198,8 +198,8 @@ fun DoctorData(navController: NavController){
                 )
             },
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                unfocusedBorderColor = colorResource(id = R.color.lightblue),
-                focusedBorderColor = colorResource(id = R.color.lightblue)
+                unfocusedBorderColor = colorResource(id = R.color.light_blue),
+                focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
         Button(
@@ -209,7 +209,7 @@ fun DoctorData(navController: NavController){
             modifier = Modifier
                 .padding(start = 250.dp, end = 5.dp, top = 8.dp)
                 .size(height = 40.dp, width = 100.dp),
-            colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue)),
+            colors = ButtonDefaults.buttonColors(colorResource(id = R.color.light_blue)),
 
             ) {
             Text(

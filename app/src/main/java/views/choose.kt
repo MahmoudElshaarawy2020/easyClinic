@@ -80,7 +80,7 @@ fun ChooseRole(navController: NavController) {
                     modifier = Modifier
                         .padding(top = 280.dp)
                         .size(height = 45.dp, width = 124.dp),
-                    colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue))
+                    colors = ButtonDefaults.buttonColors(colorResource(id = R.color.light_blue))
                 ) {
                     Text(text = "Doctor", fontWeight = FontWeight.Bold, fontStyle = FontStyle.Italic, fontSize = 20.sp)
 
@@ -103,7 +103,7 @@ fun ChooseRole(navController: NavController) {
                     modifier = Modifier
                         .padding(top = 280.dp, end = 30.dp)
                         .size(height = 45.dp, width = 124.dp),
-                    colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue))
+                    colors = ButtonDefaults.buttonColors(colorResource(id = R.color.light_blue))
                 ) {
                     Text(
                         text = "Patient",

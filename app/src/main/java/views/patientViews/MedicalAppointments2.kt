@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
@@ -25,7 +24,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -212,7 +210,7 @@ fun MedicalAppointments2(){
         Button(onClick = {},modifier = Modifier
 
             .size(height = 50.dp, width = 230.dp),
-            colors = ButtonDefaults.buttonColors(colorResource(id = R.color.lightblue)),
+            colors = ButtonDefaults.buttonColors(colorResource(id = R.color.light_blue)),
 
 
             ) {

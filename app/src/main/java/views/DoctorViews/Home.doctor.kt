@@ -15,7 +15,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -46,12 +45,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
 import views.FunctionsComposable.LocalImage
-import views.patientViews.address
-import views.patientViews.dName
-import views.patientViews.department
-import views.patientViews.fee
-import views.patientViews.timeFrom
-import views.patientViews.timeTo
 
 val patientName: String = "Patient name"
 val ID: String = "213406"
@@ -123,8 +116,8 @@ fun Homedoctor(navController : NavController) {
                 color = Color.Black, fontWeight = FontWeight.Bold
             ),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                unfocusedBorderColor = colorResource(id = R.color.lightblue),
-                focusedBorderColor = colorResource(id = R.color.lightblue)
+                unfocusedBorderColor = colorResource(id = R.color.light_blue),
+                focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
         LazyColumn() {
