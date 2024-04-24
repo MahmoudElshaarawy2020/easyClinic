@@ -22,5 +22,20 @@ sealed class BottomNavigationItem(
         route = "appoint",
         icon = R.drawable.appointment
     )
+    object drHome : BottomNavigationItem(
+        title = "Home",
+        route = "doctor_home",
+        icon = R.drawable.home1
+    )
+    object drRequests : BottomNavigationItem(
+        title = "Requests",
+        route = "doctor_requests",
+        icon = R.drawable.appointment
+    )
+    object drProfile : BottomNavigationItem(
+        title = "Profile",
+        route = "doctor_profile",
+        icon = R.drawable.appointment
+    )
 }
 

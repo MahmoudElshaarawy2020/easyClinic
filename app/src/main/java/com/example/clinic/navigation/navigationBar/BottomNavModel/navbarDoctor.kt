@@ -43,9 +43,9 @@ fun DrNav(navController: NavController) {
 
     val navController = rememberNavController()
     val items = listOf(
-        BottomNavigationItem.Appointment,
-        BottomNavigationItem.Home,
-        BottomNavigationItem.MyProfile
+        BottomNavigationItem.drRequests,
+        BottomNavigationItem.drHome,
+        BottomNavigationItem.drProfile
     )
     Scaffold(
 
