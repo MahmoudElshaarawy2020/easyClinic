@@ -1,4 +1,4 @@
-package views.patientViews
+package views.doctorViews
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -41,7 +41,7 @@ import views.FunctionsComposable.LocalImage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyProfilePatient(navController: NavController) {
+fun MyProfileDr(navController: NavController) {
     val fontFamily = FontFamily(
         Font(R.font.wendyoneregular, FontWeight.Thin)
     )
@@ -65,7 +65,7 @@ fun MyProfilePatient(navController: NavController) {
 
         .padding(10.dp)
         .clickable {
-            navController.navigate(route = "patient_profile")
+            navController.navigate(route = "doctor_profile")
         }) {
         LocalImage(
             painter = painterResource(id = R.drawable.whitearrow), imageSize = 60.dp,
@@ -89,11 +89,11 @@ fun MyProfilePatient(navController: NavController) {
         modifier = Modifier
             .padding(start = 14.dp, top = 100.dp, bottom = 5.dp)
     )
-    var text by remember { mutableStateOf(TextFieldValue("")) }
+    var drName by remember { mutableStateOf(TextFieldValue("")) }
     OutlinedTextField(modifier = Modifier
         .padding(start = 13.dp, end = 13.dp, top = 122.dp)
         .fillMaxWidth(),
-        value = text, onValueChange = { text = it },
+        value = drName, onValueChange = { drName = it },
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
             unfocusedBorderColor = colorResource(id = R.color.light_blue),
@@ -109,11 +109,11 @@ fun MyProfilePatient(navController: NavController) {
         modifier = Modifier
             .padding(start = 14.dp,bottom = 5.dp, top = 178.dp)
     )
-    var age by remember { mutableStateOf(TextFieldValue("")) }
+    var drAge by remember { mutableStateOf(TextFieldValue("")) }
     OutlinedTextField(modifier = Modifier
         .padding(start = 13.dp, end = 13.dp, top = 202.dp)
         .fillMaxWidth(),
-        value = age, onValueChange = { age = it },
+        value = drAge, onValueChange = { drAge = it },
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
             unfocusedBorderColor = colorResource(id = R.color.light_blue),
@@ -122,18 +122,18 @@ fun MyProfilePatient(navController: NavController) {
         )
     )
     Text(
-            text = "Phone Number",
-    fontSize = 18.sp,
-    color = colorResource(R.color.black),
-    textAlign = TextAlign.Center,
-    modifier = Modifier
-        .padding(start = 14.dp, bottom = 5.dp, top = 260.dp)
+        text = "Phone Number",
+        fontSize = 18.sp,
+        color = colorResource(R.color.black),
+        textAlign = TextAlign.Center,
+        modifier = Modifier
+            .padding(start = 14.dp, bottom = 5.dp, top = 260.dp)
     )
-    var num by remember { mutableStateOf(TextFieldValue("")) }
+    var drNum by remember { mutableStateOf(TextFieldValue("")) }
     OutlinedTextField(modifier = Modifier
         .padding(start = 13.dp, end = 13.dp, top = 282.dp)
         .fillMaxWidth(),
-        value = num, onValueChange = { num = it },
+        value = drNum, onValueChange = { drNum = it },
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
             unfocusedBorderColor = colorResource(id = R.color.light_blue),
@@ -142,18 +142,18 @@ fun MyProfilePatient(navController: NavController) {
         )
     )
     Text(
-            text = "Adress",
-    fontSize = 18.sp,
-    color = colorResource(R.color.black),
-    textAlign = TextAlign.Center,
-    modifier = Modifier
-        .padding(start = 14.dp,bottom = 5.dp, top = 340.dp)
+        text = "Clinic Address",
+        fontSize = 18.sp,
+        color = colorResource(R.color.black),
+        textAlign = TextAlign.Center,
+        modifier = Modifier
+            .padding(start = 14.dp,bottom = 5.dp, top = 340.dp)
     )
-    var address by remember { mutableStateOf(TextFieldValue("")) }
+    var drAddress by remember { mutableStateOf(TextFieldValue("")) }
     OutlinedTextField(modifier = Modifier
         .padding(start = 13.dp, end = 13.dp, top = 362.dp)
         .fillMaxWidth(),
-        value = address, onValueChange = { address = it },
+        value = drAddress, onValueChange = { drAddress = it },
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
             unfocusedBorderColor = colorResource(id = R.color.light_blue),
@@ -162,18 +162,18 @@ fun MyProfilePatient(navController: NavController) {
         )
     )
     Text(
-            text = "Gender",
-    fontSize = 18.sp,
-    color = colorResource(R.color.black),
-    textAlign = TextAlign.Center,
-    modifier = Modifier
-        .padding(start = 14.dp, bottom = 5.dp, top = 420.dp)
+        text = "Gender",
+        fontSize = 18.sp,
+        color = colorResource(R.color.black),
+        textAlign = TextAlign.Center,
+        modifier = Modifier
+            .padding(start = 14.dp, bottom = 5.dp, top = 420.dp)
     )
-    var gender by remember { mutableStateOf(TextFieldValue("")) }
+    var drGender by remember { mutableStateOf(TextFieldValue("")) }
     OutlinedTextField(modifier = Modifier
         .padding(start = 13.dp, end = 13.dp, top = 444.dp)
         .fillMaxWidth(),
-        value = gender, onValueChange = { gender = it },
+        value = drGender, onValueChange = { drGender = it },
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
             unfocusedBorderColor = colorResource(id = R.color.light_blue),
@@ -182,18 +182,18 @@ fun MyProfilePatient(navController: NavController) {
         )
     )
     Text(
-        text = "Height",
+        text = "Specialization",
         fontSize = 18.sp,
         color = colorResource(R.color.black),
         textAlign = TextAlign.Center,
         modifier = Modifier
             .padding(start = 14.dp, bottom = 5.dp, top = 500.dp)
     )
-    var height by remember { mutableStateOf(TextFieldValue("")) }
+    var drSpec by remember { mutableStateOf(TextFieldValue("")) }
     OutlinedTextField(modifier = Modifier
         .padding(start = 13.dp, end = 13.dp, top = 525.dp)
         .fillMaxWidth(),
-        value = height, onValueChange = { height = it },
+        value = drSpec, onValueChange = { drSpec = it },
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
             unfocusedBorderColor = colorResource(id = R.color.light_blue),
@@ -202,18 +202,18 @@ fun MyProfilePatient(navController: NavController) {
         )
     )
     Text(
-        text = "Weight",
+        text = "Medical Fees",
         fontSize = 18.sp,
         color = colorResource(R.color.black),
         textAlign = TextAlign.Center,
         modifier = Modifier
             .padding(start = 14.dp, bottom = 5.dp, top = 580.dp)
     )
-    var weight by remember { mutableStateOf(TextFieldValue("")) }
+    var drFees by remember { mutableStateOf(TextFieldValue("")) }
     OutlinedTextField(modifier = Modifier
         .padding(start = 13.dp, end = 13.dp, top = 605.dp)
         .fillMaxWidth(),
-        value = weight, onValueChange = { weight = it },
+        value = drFees, onValueChange = { drFees = it },
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
             unfocusedBorderColor = colorResource(id = R.color.light_blue),
@@ -222,18 +222,18 @@ fun MyProfilePatient(navController: NavController) {
         )
     )
     Text(
-        text = "Blood type",
+        text = "Appointments",
         fontSize = 18.sp,
         color = colorResource(R.color.black),
         textAlign = TextAlign.Center,
         modifier = Modifier
             .padding(start = 14.dp, bottom = 5.dp, top = 660.dp)
     )
-    var blood by remember { mutableStateOf(TextFieldValue("")) }
+    var drAppoint by remember { mutableStateOf(TextFieldValue("")) }
     OutlinedTextField(modifier = Modifier
         .padding(start = 13.dp, end = 13.dp, top = 688.dp)
         .fillMaxWidth(),
-        value = blood, onValueChange = { blood = it },
+        value = drAppoint, onValueChange = { drAppoint = it },
         shape = RoundedCornerShape(5.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
             unfocusedBorderColor = colorResource(id = R.color.light_blue),
@@ -243,14 +243,14 @@ fun MyProfilePatient(navController: NavController) {
     )
     Button(
         onClick = {
-            navController.navigate(route = "patient_profile")
+            navController.navigate(route = "doctor_profile")
         },
         modifier = Modifier
             .padding(start = 80.dp, end = 30.dp, top = 750.dp)
             .size(height = 60.dp, width = 250.dp),
         colors = ButtonDefaults.buttonColors(colorResource(id = R.color.light_blue)),
         shape = RoundedCornerShape(20.dp)
-        ) {
+    ) {
         Text(
             text = "Save",
             fontSize = 30.sp,
@@ -261,6 +261,6 @@ fun MyProfilePatient(navController: NavController) {
 }
 @Preview(showBackground = true)
 @Composable
-fun MyProfilePatientPreview(){
-    MyProfilePatient (navController=  rememberNavController())
+fun MyProfileDrPreview(){
+    MyProfileDr(navController=  rememberNavController())
 }

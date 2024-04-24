@@ -1,7 +1,7 @@
 package com.example.clinic.navigation.navigationModel
 
 
-import views.DoctorViews.DoctorData
+
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -15,7 +15,9 @@ import views.ChooseRole
 import views.Authentication.LoginScreenTextFields
 import views.patientViews.PatientData
 import views.Authentication.RegisterScreenTextFields
-import views.DoctorViews.SplashForDoctor
+import views.doctorViews.DoctorData
+import views.doctorViews.SplashForDoctor
+
 import views.patientViews.SplashForPatient
 
 

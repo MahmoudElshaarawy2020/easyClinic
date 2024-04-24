@@ -1,7 +1,8 @@
-package views.DoctorViews
+package views.doctorViews
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,7 +17,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
-import androidx.compose.material3.ExperimentalMaterial3Api
+
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -36,19 +37,16 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Requests(navController: NavController) {
+fun Requests(navController: NavController){
 
     val fontFamily = FontFamily(
         Font(R.font.wendyoneregular, FontWeight.Thin)
     )
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = Color(0xFFE9FAFF))
-    ) {
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .background(color = Color(0xFFE9FAFF))) {
 
         Box(
             modifier = Modifier
@@ -69,7 +67,7 @@ fun Requests(navController: NavController) {
             )
         }
 
-        LazyColumn() {
+        LazyColumn {
             items(10) {
                 ElevatedCard(
                     elevation = CardDefaults.cardElevation(
@@ -99,11 +97,7 @@ fun Requests(navController: NavController) {
                             modifier = Modifier.weight(2f)
                         ) {
                             Text(
-                                modifier = Modifier.padding(
-                                    start = 30.dp,
-                                    bottom = 10.dp,
-                                    top = 8.dp
-                                ),
+                                modifier = Modifier.padding(start = 30.dp, bottom = 10.dp, top = 8.dp),
                                 text = patientName,
                                 fontSize = 20.sp,
                                 fontFamily = fontFamily,
@@ -125,34 +119,21 @@ fun Requests(navController: NavController) {
 
                                 Button(
                                     onClick = { /*TODO*/ },
-                                    modifier = Modifier.padding(
-                                        start = 10.dp,
-                                        end = 5.dp,
-                                        bottom = 7.dp
-                                    ),
+                                    modifier = Modifier.padding(start = 10.dp, end = 5.dp, bottom = 7.dp),
                                     colors = ButtonDefaults.buttonColors(colorResource(id = R.color.light_red)),
                                 ) {
-                                    Text(
-                                        text = "Cancel",
+                                    Text(text = "Cancel",
                                         fontWeight = FontWeight.Bold,
-                                        fontSize = 20.sp
-                                    )
+                                        fontSize = 20.sp)
 
                                 }
-                                Button(
-                                    onClick = { /*TODO*/ },
-                                    modifier = Modifier.padding(
-                                        start = 5.dp,
-                                        end = 10.dp,
-                                        bottom = 7.dp
-                                    ),
+                                Button(onClick = { /*TODO*/ },
+                                    modifier = Modifier.padding(start = 5.dp, end = 10.dp, bottom = 7.dp),
                                     colors = ButtonDefaults.buttonColors(colorResource(id = R.color.light_blue)),
                                 ) {
-                                    Text(
-                                        text = "Accept",
+                                    Text(text = "Accept",
                                         fontWeight = FontWeight.Bold,
-                                        fontSize = 20.sp
-                                    )
+                                        fontSize = 20.sp)
 
 
                                 }
@@ -167,7 +148,10 @@ fun Requests(navController: NavController) {
     }
 
 
+
 }
+
+
 
 
 @Preview(showBackground = true)

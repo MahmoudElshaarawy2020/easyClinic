@@ -6,6 +6,8 @@ sealed class Screens(val route : String){
     object choose : Screens("choose_screen")
     object patientData  : Screens("patient_data")
     object doctorRequests  : Screens("doctor_requests")
+    object doctorProfile  : Screens("doctor_profile")
+    object doctorMyProfile  : Screens("doctor_my_profile")
     object doctorHome  : Screens("doctor_home")
     object doctorData  : Screens("doctor_data")
     object HospitalsRoute : Screens("hospitals")

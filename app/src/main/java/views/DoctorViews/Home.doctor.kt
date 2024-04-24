@@ -1,4 +1,4 @@
-package views.DoctorViews
+package views.doctorViews
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -58,7 +58,7 @@ val fontFamily = FontFamily(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Homedoctor(navController : NavController) {
-
+0
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -120,7 +120,7 @@ fun Homedoctor(navController : NavController) {
                 focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
-        LazyColumn() {
+        LazyColumn{
             items(10) {
                 ElevatedCard(
                     elevation = CardDefaults.cardElevation(
@@ -140,7 +140,7 @@ fun Homedoctor(navController : NavController) {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.img_2),
-                            contentDescription = "pati photo",
+                            contentDescription = "patient photo",
                             modifier = Modifier
                                 .padding(start = 8.dp, top = 12.dp, bottom = 12.dp)
                                 .size(100.dp)

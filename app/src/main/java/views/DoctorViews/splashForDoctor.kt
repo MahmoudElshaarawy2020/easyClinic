@@ -1,4 +1,4 @@
-package views.DoctorViews
+package views.doctorViews
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -29,7 +29,7 @@ fun SplashForDoctor(name : String?,navController: NavController){
     )
     LaunchedEffect(key1 = true){
         delay(2000L)
-        navController.navigate(route = "doctor_home")
+        navController.navigate(route = "navDr")
     }
     Column(modifier = Modifier
         .fillMaxSize(),

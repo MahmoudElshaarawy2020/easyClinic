@@ -29,8 +29,10 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import com.example.clinic.R
 import com.example.clinic.navigation.navigationModel.Screens
-import views.DoctorViews.Homedoctor
-import views.DoctorViews.Requests
+import views.doctorViews.Homedoctor
+import views.doctorViews.MyProfileDr
+import views.doctorViews.Requests
+import views.doctorViews.doctorProfile
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -97,6 +99,14 @@ fun DrNav(navController: NavController) {
                 composable(route = Screens.doctorRequests.route)
                 {
                     Requests(navController = navController)
+                }
+                composable(route = Screens.doctorProfile.route)
+                {
+                    doctorProfile(navController = navController)
+                }
+                composable(route = Screens.doctorMyProfile.route)
+                {
+                    MyProfileDr(navController = navController)
                 }
 
             }}}}
