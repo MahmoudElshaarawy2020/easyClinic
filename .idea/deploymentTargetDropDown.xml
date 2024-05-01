@@ -2,16 +2,16 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="AiPreview">
+        <State />
+      </entry>
+      <entry key="AiPreview (1)">
+        <State />
+      </entry>
       <entry key="BottomBarDrPreview">
         <State />
       </entry>
       <entry key="Doctor">
-        <State />
-      </entry>
-      <entry key="MedicalAppointmentsPreview2">
-        <State />
-      </entry>
-      <entry key="MyProfile">
         <State />
       </entry>
       <entry key="app">
