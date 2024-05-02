@@ -273,6 +273,44 @@ fun patientProfile(navController : NavController) {
                     thickness = 0.8.dp,
                     color = Color(0xFF486A89)
                 )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(10.dp)
+                        .clickable {navController.navigate(route="doctor_my_profile") },
+                    verticalAlignment = Alignment.CenterVertically
+
+                ) {
+
+                    LocalImage(
+                        painter = painterResource(id = R.drawable.logout2),
+                        imageSize = 70.dp, padding = 0.dp
+
+                    )
+                    Text(
+                        text = "Log out",
+                        fontFamily = fontFamily,
+                        fontSize = 25.sp,
+                        color = Color(0xFF1683E7),
+                        modifier = Modifier.padding(start = 18.dp)
+
+
+                    )
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        contentAlignment = Alignment.CenterEnd
+                    ) {
+
+                        LocalImage(
+                            painter = painterResource(id = R.drawable.img_4),
+                            imageSize = 40.dp, padding = 0.dp
+
+                        )
+                    }
+
+
+                }
 
             }
         }
@@ -280,21 +318,7 @@ fun patientProfile(navController : NavController) {
 
     }
 
-    Box(modifier = Modifier
-        .fillMaxWidth()
-        .clickable {
-            navController.navigate(route = "signIn_screen")
-        }
-        .padding(start = 330.dp, end = 10.dp, top = 15.dp),
-        contentAlignment = Alignment.TopEnd
-    ) {
-        LocalImage(
-            painter = painterResource(id = R.drawable.img_10),
-            imageSize = 45.dp,
-            padding = 0.dp
-        )
 
-    }
 }
 
 @Preview (showBackground = true)

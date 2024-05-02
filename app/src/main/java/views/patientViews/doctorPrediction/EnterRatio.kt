@@ -1,5 +1,6 @@
 package views.patientViews.doctorPrediction
 
+
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,9 +19,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
+
+import androidx.compose.ui.graphics.Color.Companion
+
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -30,6 +34,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.clinic.R
+
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -59,7 +64,7 @@ fun BoxOfData(
                     .size(45.dp),
                 singleLine = true,
                 textStyle = TextStyle(
-                    color = Color.Black,
+                    color = Companion.Black,
                     fontWeight = FontWeight.Bold
             )
             )
@@ -77,12 +82,12 @@ fun EnterAiData(){
         TopAppBar(
             title = { Text("AI Prediction") },
             backgroundColor = Color(0xFF0480C4),
-            contentColor = Color.White,
+            contentColor = Companion.White,
             elevation = 8.dp
         )
         BoxOfData(text = "Height(cm):", state = Inputs(height = ""))
         BoxOfData(text = "Weight(kg):", state = Inputs(weight = ""))
-        Divider(thickness = 1.dp, color = Color.Black)
+        Divider(thickness = 1.dp, color = Companion.Black)
         Text(
             "Enter a ratio (0 -> 120)",
             modifier = Modifier
@@ -90,7 +95,7 @@ fun EnterAiData(){
                 .fillMaxWidth()
             , textAlign = TextAlign.Center,
             fontSize = 15.sp,
-            color = Color.Magenta
+            color = Companion.Magenta
         )
         BoxOfData(text = "BMI:", state = Inputs(bmi = ""))
         BoxOfData(text = "Alcohol consumption:",state = Inputs(alcoholConsumption = ""))
@@ -107,7 +112,7 @@ fun EnterAiData(){
                     text = "Predict",
                     fontSize = 17.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.White
+                    color = Companion.White
                 )
             }
 

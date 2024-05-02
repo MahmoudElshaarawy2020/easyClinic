@@ -72,7 +72,9 @@ fun Booking(navController: NavController) {
         }
     )
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .background(color = Color(0XFFE9FAFF))) {
 
         Box(
             modifier = Modifier
@@ -111,7 +113,7 @@ fun Booking(navController: NavController) {
     Box (modifier = Modifier
         .fillMaxWidth()
         .padding(top = 80.dp)
-        .height(290.dp)
+        .height(250.dp)
 
     ){
         Image(painter = painterResource(id = R.drawable.doctorhamza), contentDescription ="",
@@ -122,7 +124,7 @@ fun Booking(navController: NavController) {
     }
 
     Box (modifier = Modifier
-        .padding(top = 370.dp)
+        .padding(top = 310.dp)
         .height(500.dp)
         .fillMaxWidth()
         .background(
@@ -131,7 +133,7 @@ fun Booking(navController: NavController) {
         )
     ,
     ){
-        Column (modifier = Modifier .padding(start = 50.dp, top = 80.dp, end = 50.dp)){
+        Column (modifier = Modifier .padding(start = 50.dp, top = 85.dp, end = 50.dp)){
             Row{
                 Icon(imageVector = Icons.Filled.Notifications, contentDescription = "",
                     tint = colorResource(id = R.color.light_blue))
@@ -179,7 +181,7 @@ fun Booking(navController: NavController) {
 
             Button(onClick = {},
                 modifier = Modifier
-                    .padding(start = 30.dp, end = 30.dp, top = 30.dp)
+                    .padding(start = 30.dp, end = 30.dp, top = 20.dp)
                     .size(height = 50.dp, width = 300.dp),
                 colors = ButtonDefaults.buttonColors(colorResource(id = R.color.light_blue))
 
@@ -199,7 +201,7 @@ fun Booking(navController: NavController) {
     Box( contentAlignment = Alignment.Center
         ,modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 360.dp, start = 50.dp, end = 50.dp)
+            .padding(top = 310.dp, start = 50.dp, end = 50.dp)
             .background(
                 color = Color(0xFF2697FF),
                 shape = RoundedCornerShape(25.dp)

@@ -51,7 +51,7 @@ fun Requests(navController: NavController){
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .size(100.dp)
+                .size(90.dp)
                 .background(color = Color(0xFF2697FF))
         ) {
             Text(
@@ -119,12 +119,12 @@ fun Requests(navController: NavController){
 
                                 Button(
                                     onClick = { /*TODO*/ },
-                                    modifier = Modifier.padding(start = 10.dp, end = 5.dp, bottom = 7.dp),
+                                    modifier = Modifier.padding(start = 20.dp, end = 5.dp, bottom = 7.dp),
                                     colors = ButtonDefaults.buttonColors(colorResource(id = R.color.light_red)),
                                 ) {
                                     Text(text = "Cancel",
                                         fontWeight = FontWeight.Bold,
-                                        fontSize = 20.sp)
+                                        fontSize = 15.sp)
 
                                 }
                                 Button(onClick = { /*TODO*/ },
@@ -133,7 +133,7 @@ fun Requests(navController: NavController){
                                 ) {
                                     Text(text = "Accept",
                                         fontWeight = FontWeight.Bold,
-                                        fontSize = 20.sp)
+                                        fontSize = 15.sp)
 
 
                                 }
