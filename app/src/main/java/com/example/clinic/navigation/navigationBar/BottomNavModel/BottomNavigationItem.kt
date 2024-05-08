@@ -19,7 +19,7 @@ sealed class BottomNavigationItem(
     )
     object Appointment : BottomNavigationItem(
         title = "Appointment",
-        route = "appoint",
+        route = "reservation",
         icon = R.drawable.appointment
     )
     object drHome : BottomNavigationItem(

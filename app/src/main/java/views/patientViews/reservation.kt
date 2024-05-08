@@ -43,6 +43,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
 import views.FunctionsComposable.LocalImage
 
@@ -56,7 +58,7 @@ val fee = "300 L.E"
 val address = "Tanta,stad st."
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun reservation(){
+fun reservation(navController: NavController){
 
     val fontFamily = FontFamily(
         Font(R.font.wendyoneregular, FontWeight.Thin))
@@ -138,6 +140,7 @@ fun reservation(){
                 .fillMaxWidth()
                 .padding(top = 100.dp, start = 10.dp, end = 10.dp)
                 .size(100.dp)
+                .clickable { navController.navigate(route = "booking") }
 
 
 
@@ -197,6 +200,6 @@ fun reservation(){
 @Composable
 @Preview(showBackground = true)
 fun reservationPreview(){
-    reservation()
+    reservation(navController = rememberNavController())
 }
 

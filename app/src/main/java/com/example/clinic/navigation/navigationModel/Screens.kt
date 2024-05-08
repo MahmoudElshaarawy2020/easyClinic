@@ -22,7 +22,8 @@ sealed class Screens(val route : String){
     //bottom navigation views
     object patientHome  : Screens("patient_home")
     object patientProfile : Screens("patient_profile")
-    object Appointment : Screens("Appoint")
+    object Reservation : Screens("reservation")
+    object Booking : Screens("booking")
 
 
 
