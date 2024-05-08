@@ -67,6 +67,7 @@ fun EnterAiData(){
         )
         Box(contentAlignment = Alignment.CenterStart,
             modifier = Modifier
+
                 .fillMaxWidth()
                 .padding(5.dp)
         ) {
