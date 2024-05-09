@@ -16,15 +16,19 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
@@ -59,16 +63,28 @@ import views.FunctionsComposable.LocalImage
 
 fun RegisterScreenTextFields(navController: NavController) {
 
-
+    var iExpanded by remember { mutableStateOf(false) }
+    var role  by remember { mutableStateOf("") }
     Column(
         modifier = Modifier
-            .background(color = Color.White)
             .fillMaxSize()
+            .background(color = Color.White)
             .verticalScroll(rememberScrollState())
-            ,
+        ,
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Top
     ) {
+        Box(modifier = Modifier
+            .align(Alignment.Start)
+            .padding(10.dp)
+            .clickable {
+                navController.navigate(route = "signIn_screen")
+            }) {
+            LocalImage(
+                painter = painterResource(id = R.drawable.backarrow), imageSize = 60.dp,
+                padding = 10.dp
+            )
+        }
 
         LocalImage(
             painter = painterResource(id = R.drawable.finalbluelogo),
@@ -255,55 +271,99 @@ fun RegisterScreenTextFields(navController: NavController) {
             )
         )
 val context= LocalContext.current
-        Button(
-            onClick = {
-               if (text.text.isEmpty()) {
-               Toast.makeText(context,"Please Enter Username",Toast.LENGTH_SHORT).show()
-               }else if (num.text.isEmpty()){
-                   Toast.makeText(context,"Please Enter Phone Number",Toast.LENGTH_SHORT).show()
-               }else if (email.text.isEmpty()){
-                   Toast.makeText(context,"Please Enter Email",Toast.LENGTH_SHORT).show()
-               }else if (password1.text.isEmpty()){
-                   Toast.makeText(context,"Please Enter Password",Toast.LENGTH_SHORT).show()
-               }else if (password2.text.isEmpty()){
-                   Toast.makeText(context,"Please Enter Confirm password",Toast.LENGTH_SHORT).show()
-               }
-               else if (password1.text != password2.text){
-                   Toast.makeText(context,"Please Enter a right confirmation password",Toast.LENGTH_SHORT).show()
-               }
-                   else { navController.navigate("choose_screen")}
-            },
-            modifier = Modifier
-                .padding(start = 30.dp, end = 30.dp, top = 20.dp)
-                .size(height = 40.dp, width = 300.dp),
-            colors = ButtonDefaults.buttonColors(colorResource(id = R.color.light_blue)),
 
+        Box(modifier = Modifier
+            .padding(5.dp)
+            .align(Alignment.CenterHorizontally),
+            contentAlignment = Alignment.Center) {
+            //input button
+            OutlinedButton(
+                onClick = { iExpanded = true },
+                border = ButtonDefaults.outlinedButtonBorder,
 
             ) {
-            Text(
-                text = stringResource(id = R.string.sign_up),
-                fontSize = 17.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.White
-            )
+                when (role) {
+                    "Patient" -> {
+                        Text(text = "Patient",
+                            color = Color.Blue)
+                    }
+                    "Doctor" -> {
+                        Text(text = "Doctor",
+                            color = Color.Blue)
+
+                    }
+                    else -> {
+                        Text(text = "Choose Role",
+                            color = Color.Blue)
+                    }
+                }
+                Icon(
+                    Icons.Default.ArrowDropDown,
+                    contentDescription = "Arrow Down"
+                )
+            }
+            DropdownMenu(expanded = iExpanded, onDismissRequest = { iExpanded = false }) {
+                DropdownMenuItem(text = { Text("Patient") },
+                    onClick = {
+                        iExpanded = false
+                        role = "Patient"
+
+                    })
+                DropdownMenuItem(text = { Text("Doctor") },
+                    onClick = {
+                        iExpanded = false
+                        role = "Doctor"
+
+                    })
+            }
         }
+                Button(
+                    onClick = {
+                        if (text.text.isEmpty()) {
+                            Toast.makeText(context, "Please Enter Username", Toast.LENGTH_SHORT)
+                                .show()
+                        } else if (num.text.isEmpty()) {
+                            Toast.makeText(context, "Please Enter Phone Number", Toast.LENGTH_SHORT)
+                                .show()
+                        } else if (email.text.isEmpty()) {
+                            Toast.makeText(context, "Please Enter Email", Toast.LENGTH_SHORT).show()
+                        } else if (password1.text.isEmpty()) {
+                            Toast.makeText(context, "Please Enter Password", Toast.LENGTH_SHORT)
+                                .show()
+                        } else if (password2.text.isEmpty()) {
+                            Toast.makeText(
+                                context,
+                                "Please Enter Confirm password",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else if (password1.text != password2.text) {
+                            Toast.makeText(
+                                context,
+                                "Please Enter a right confirmation password",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            navController.navigate("choose_screen")
+                        }
+                    },
+                    modifier = Modifier
+                        .padding(start = 30.dp, end = 30.dp, top = 5.dp, bottom = 20.dp)
+                        .size(height = 40.dp, width = 300.dp),
+                    colors = ButtonDefaults.buttonColors(colorResource(id = R.color.light_blue)),
+
+
+                    ) {
+                    Text(
+                        text = stringResource(id = R.string.sign_up),
+                        fontSize = 17.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
+                }
+
+
 
     }
-
-
-    Box(modifier = Modifier
-
-        .padding(10.dp)
-        .clickable {
-            navController.navigate(route = "signIn_screen")
-        }) {
-        LocalImage(
-            painter = painterResource(id = R.drawable.backarrow), imageSize = 60.dp,
-            padding = 10.dp
-        )
-    }
-
-
 
 }
 @Preview(showBackground = true)
