@@ -2,6 +2,7 @@ package views.patientViews.doctorPrediction
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -24,7 +25,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -34,82 +34,192 @@ import com.example.clinic.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BoxOfData(
-    state : Inputs,
-    text : String,
-              ){
-    val state by remember { mutableStateOf(TextFieldValue("")) }
-
-    Box(contentAlignment = Alignment.CenterStart,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(5.dp)
-        ) {
-        Column {
-            Text(
-                text = text,
-                fontSize = 18.sp
-            )
-            OutlinedTextField(
-                value = state,
-                onValueChange = {},
-                modifier = Modifier
-                    .padding(6.dp)
-                    .fillMaxWidth()
-                    .size(45.dp),
-                singleLine = true,
-                textStyle = TextStyle(
-                    color = Color.Black,
-                    fontWeight = FontWeight.Bold
-            )
-            )
-        }
-    }
-}
-
-@Composable
 fun EnterAiData(){
+    var Height by remember { mutableStateOf("") }
+    var Weight by remember { mutableStateOf("") }
+    var BMI by remember { mutableStateOf("") }
+    var Alcohol by remember { mutableStateOf("") }
+    var Fruit by remember { mutableStateOf("") }
+    var Vegetables by remember { mutableStateOf("") }
+    var Fried by remember { mutableStateOf("") }
 
     Column(modifier = Modifier
         .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+    ) {
         TopAppBar(
             title = { Text("AI Prediction") },
             backgroundColor = Color(0xFF0480C4),
             contentColor = Color.White,
             elevation = 8.dp
         )
-        BoxOfData(text = "Height(cm):", state = Inputs(height = ""))
-        BoxOfData(text = "Weight(kg):", state = Inputs(weight = ""))
-        Divider(thickness = 1.dp, color = Color.Black)
-        Text(
-            "Enter a ratio (0 -> 120)",
+        Box(contentAlignment = Alignment.CenterStart,
             modifier = Modifier
-                .padding(top = 10.dp)
                 .fillMaxWidth()
-            , textAlign = TextAlign.Center,
-            fontSize = 15.sp,
-            color = Color.Magenta
-        )
-        BoxOfData(text = "BMI:", state = Inputs(bmi = ""))
-        BoxOfData(text = "Alcohol consumption:",state = Inputs(alcoholConsumption = ""))
-        BoxOfData(text = "Fruit consumption:", state = Inputs(fruitConsumption = ""))
-        BoxOfData(text = "Green vegetables consumption:", state = Inputs(greenVegetablesConsumption = ""))
-        BoxOfData(text = "Fried potato consumption:", state = Inputs(friedPotatoConsumption = ""))
+                .padding(5.dp)
+        ) {
+            Column {
+                Text(
+                    modifier = Modifier.padding(start = 7.dp),
+                    text = "Height : ",
+                    fontSize = 18.sp
+                )
+                OutlinedTextField(
+                    value = Height,
+                    onValueChange = {Height = it},
+                    modifier = Modifier
+                        .padding(6.dp)
+                        .fillMaxWidth()
+                        .size(45.dp),
+                    singleLine = true,
+                    textStyle = TextStyle(
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold
+                    )
+                )
 
+                Text(
+                    modifier = Modifier.padding(start = 7.dp),
+                    text = "Weight : ",
+                    fontSize = 18.sp
+                )
+                OutlinedTextField(
+                    value = Weight,
+                    onValueChange = {Weight = it},
+                    modifier = Modifier
+                        .padding(6.dp)
+                        .fillMaxWidth()
+                        .size(45.dp),
+                    singleLine = true,
+                    textStyle = TextStyle(
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold
+                    )
+                )
+                Spacer(modifier = Modifier.size(height = 15.dp, width = 200.dp))
+
+                Divider(
+                    thickness = 1.dp,
+                    color = Color.Black
+                )
+                Spacer(modifier = Modifier.size(height = 15.dp, width = 200.dp))
+
+                Text(text = "Enter a ratio 0 -> 120",
+                    color = Color(0xFF0480C4),
+                    fontSize = 16.sp,
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center)
+
+                Text(
+                    modifier = Modifier.padding(start = 7.dp),
+                    text = "BMI : ",
+                    fontSize = 18.sp
+                )
+                OutlinedTextField(
+                    value = BMI,
+                    onValueChange = {BMI = it},
+                    modifier = Modifier
+                        .padding(6.dp)
+                        .fillMaxWidth()
+                        .size(45.dp),
+                    singleLine = true,
+                    textStyle = TextStyle(
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold
+                    )
+                )
+
+                Text(
+                    modifier = Modifier.padding(start = 7.dp),
+                    text = "Alcohol consumption : ",
+                    fontSize = 18.sp
+                )
+                OutlinedTextField(
+                    value = Alcohol,
+                    onValueChange = {Alcohol = it},
+                    modifier = Modifier
+                        .padding(6.dp)
+                        .fillMaxWidth()
+                        .size(45.dp),
+                    singleLine = true,
+                    textStyle = TextStyle(
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold
+                    )
+                )
+
+
+                Text(
+                    modifier = Modifier.padding(start = 7.dp),
+                    text = "Fruit consumption : ",
+                    fontSize = 18.sp
+                )
+                OutlinedTextField(
+                    value = Fruit,
+                    onValueChange = {Fruit = it},
+                    modifier = Modifier
+                        .padding(6.dp)
+                        .fillMaxWidth()
+                        .size(45.dp),
+                    singleLine = true,
+                    textStyle = TextStyle(
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold
+                    )
+                )
+
+                Text(
+                    modifier = Modifier.padding(start = 7.dp),
+                    text = "Green Vegetables consumption : ",
+                    fontSize = 18.sp
+                )
+                OutlinedTextField(
+                    value = Vegetables,
+                    onValueChange = {Vegetables = it},
+                    modifier = Modifier
+                        .padding(6.dp)
+                        .fillMaxWidth()
+                        .size(45.dp),
+                    singleLine = true,
+                    textStyle = TextStyle(
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold
+                    )
+                )
+
+                Text(
+                    modifier = Modifier.padding(start = 7.dp),
+                    text = "Fried potato consumption : ",
+                    fontSize = 18.sp
+                )
+                OutlinedTextField(
+                    value = Fried,
+                    onValueChange = {Fried = it},
+                    modifier = Modifier
+                        .padding(6.dp)
+                        .fillMaxWidth()
+                        .size(45.dp),
+                    singleLine = true,
+                    textStyle = TextStyle(
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold
+                    )
+                )
+
+            }
+        }
         Button(modifier = Modifier
             .padding(start = 30.dp, end = 30.dp, top = 20.dp)
             .size(height = 40.dp, width = 300.dp),
             colors = ButtonDefaults.buttonColors(colorResource(id = R.color.light_blue)),
             onClick = {}){
-                androidx.compose.material3.Text(
-                    text = "Predict",
-                    fontSize = 17.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White
-                )
-            }
+            Text(
+                text = "Predict",
+                fontSize = 17.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+        }
 
     }
 }
