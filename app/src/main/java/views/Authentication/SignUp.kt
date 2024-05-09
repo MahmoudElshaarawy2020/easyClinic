@@ -279,8 +279,6 @@ val context= LocalContext.current
             //input button
             OutlinedButton(
                 onClick = { iExpanded = true },
-                border = ButtonDefaults.outlinedButtonBorder,
-
             ) {
                 when (role) {
                     "Patient" -> {
@@ -290,7 +288,6 @@ val context= LocalContext.current
                     "Doctor" -> {
                         Text(text = "Doctor",
                             color = Color.Blue)
-
                     }
                     else -> {
                         Text(text = "Choose Role",
@@ -336,14 +333,24 @@ val context= LocalContext.current
                                 "Please Enter Confirm password",
                                 Toast.LENGTH_SHORT
                             ).show()
-                        } else if (password1.text != password2.text) {
+                        }else if (role != "Patient" && role != "Doctor"){
+                            Toast.makeText(
+                                context,
+                                "Please Choose a role !",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        else if (password1.text != password2.text) {
                             Toast.makeText(
                                 context,
                                 "Please Enter a right confirmation password",
                                 Toast.LENGTH_SHORT
                             ).show()
                         } else {
-                            navController.navigate("choose_screen")
+                            if (role == "Doctor")
+                                navController.navigate("doctor_data")
+                            else
+                                navController.navigate("patient_data")
                         }
                     },
                     modifier = Modifier
@@ -360,11 +367,7 @@ val context= LocalContext.current
                         color = Color.White
                     )
                 }
-
-
-
     }
-
 }
 @Preview(showBackground = true)
 @Composable
