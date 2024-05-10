@@ -220,7 +220,7 @@ fun EnterAiData(){
                 color = Color.White
             )
         }
-
+//finished
     }
 }
 
