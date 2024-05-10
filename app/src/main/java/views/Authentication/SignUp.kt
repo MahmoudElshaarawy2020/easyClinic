@@ -155,6 +155,8 @@ fun RegisterScreenTextFields(navController: NavController) {
                 focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
+
+        
         var email by remember { mutableStateOf(TextFieldValue("")) }
         OutlinedTextField(modifier = Modifier
             .padding(start = 15.dp, end = 15.dp, top = 15.dp)
