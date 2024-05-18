@@ -1,5 +1,6 @@
 package views.patientViews
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -27,7 +28,6 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,11 +35,25 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
+import com.example.clinic.api.ApiManager
+import com.example.clinic.api.models.patient_data.DataPatientResponse
+import com.example.clinic.models.data.DataPatient
+import com.example.clinic.models.data.UserDataPatient
+import com.example.clinic.models.data.UserDoctor
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import views.FunctionsComposable.LocalImage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PatientData(navController : NavController){
+fun PatientData(navController: NavController) {
+    var name by remember { mutableStateOf("") }
+    var age by remember { mutableStateOf("") }
+    var insuranceDetails by remember { mutableStateOf("") }
+    var diseases by remember { mutableStateOf("") }
+    var address by remember { mutableStateOf("") }
+    var gender by remember { mutableStateOf("") }
     Column(
         modifier = Modifier
             .background(color = Color.White)
@@ -63,16 +77,17 @@ fun PatientData(navController : NavController){
 
 
         )
-        var text by remember { mutableStateOf("") }
-        OutlinedTextField(modifier = Modifier
-            .padding(start = 13.dp, end = 13.dp, top = 25.dp)
-            .fillMaxWidth(),
-            value = text, onValueChange = { text = it },
+
+        OutlinedTextField(
+            modifier = Modifier
+                .padding(start = 13.dp, end = 13.dp, top = 25.dp)
+                .fillMaxWidth(),
+            value = name, onValueChange = { name = it },
             shape = RoundedCornerShape(15.dp),
             singleLine = true,
             label = {
                 Text(
-                    text = "name",
+                    text = "Name",
                     color = Color.LightGray,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.width(300.dp)
@@ -84,18 +99,19 @@ fun PatientData(navController : NavController){
                 focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
-        var age by remember { mutableStateOf(TextFieldValue("")) }
-        OutlinedTextField(modifier = Modifier
-            .padding(start = 13.dp, end = 13.dp, top = 25.dp)
-            .fillMaxWidth(),
+        OutlinedTextField(
+            modifier = Modifier
+                .padding(start = 13.dp, end = 13.dp, top = 25.dp)
+                .fillMaxWidth(),
             value = age, onValueChange = { age = it },
             shape = RoundedCornerShape(15.dp),
             singleLine = true,
             label = {
                 Text(
-                    text = "age",
+                    text = "Age",
                     style = TextStyle(
-                        color = Color.LightGray,textAlign=TextAlign.Center),
+                        color = Color.LightGray, textAlign = TextAlign.Center
+                    ),
                     modifier = Modifier.width(300.dp)
                 )
             },
@@ -105,18 +121,20 @@ fun PatientData(navController : NavController){
                 focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
-        var num by remember { mutableStateOf(TextFieldValue("")) }
-        OutlinedTextField(modifier = Modifier
-            .padding(start = 13.dp, end = 13.dp, top = 25.dp)
-            .fillMaxWidth(),
-            value = num, onValueChange = { num = it },
+
+        OutlinedTextField(
+            modifier = Modifier
+                .padding(start = 13.dp, end = 13.dp, top = 25.dp)
+                .fillMaxWidth(),
+            value = insuranceDetails, onValueChange = { insuranceDetails = it },
             singleLine = true,
             shape = RoundedCornerShape(15.dp),
             label = {
                 Text(
-                    text = "phone number",
+                    text = "InsuranceDetails",
                     style = TextStyle(
-                        color = Color.LightGray,textAlign=TextAlign.Center),
+                        color = Color.LightGray, textAlign = TextAlign.Center
+                    ),
                     modifier = Modifier.width(300.dp)
                 )
             },
@@ -126,10 +144,33 @@ fun PatientData(navController : NavController){
                 focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
-        var address by remember { mutableStateOf(TextFieldValue("")) }
-        OutlinedTextField(modifier = Modifier
-            .padding(start = 13.dp, end = 13.dp, top = 25.dp)
-            .fillMaxWidth(),
+        OutlinedTextField(
+            modifier = Modifier
+                .padding(start = 13.dp, end = 13.dp, top = 25.dp)
+                .fillMaxWidth(),
+            value = diseases, onValueChange = { diseases = it },
+            singleLine = true,
+            shape = RoundedCornerShape(15.dp),
+            label = {
+                Text(
+                    text = "Diseases",
+                    style = TextStyle(
+                        color = Color.LightGray, textAlign = TextAlign.Center
+                    ),
+                    modifier = Modifier.width(300.dp)
+                )
+            },
+
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                unfocusedBorderColor = colorResource(id = R.color.light_blue),
+                focusedBorderColor = colorResource(id = R.color.light_blue)
+            )
+        )
+
+        OutlinedTextField(
+            modifier = Modifier
+                .padding(start = 13.dp, end = 13.dp, top = 25.dp)
+                .fillMaxWidth(),
             value = address, onValueChange = { address = it },
             shape = RoundedCornerShape(15.dp),
             singleLine = true,
@@ -137,7 +178,8 @@ fun PatientData(navController : NavController){
                 Text(
                     text = "address",
                     style = TextStyle(
-                        color = Color.LightGray,textAlign=TextAlign.Center),
+                        color = Color.LightGray, textAlign = TextAlign.Center
+                    ),
                     modifier = Modifier.width(300.dp)
                 )
             },
@@ -147,10 +189,11 @@ fun PatientData(navController : NavController){
                 focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
-        var gender by remember { mutableStateOf(TextFieldValue("")) }
-        OutlinedTextField(modifier = Modifier
-            .padding(start = 13.dp, end = 13.dp, top = 25.dp)
-            .fillMaxWidth(),
+
+        OutlinedTextField(
+            modifier = Modifier
+                .padding(start = 13.dp, end = 13.dp, top = 25.dp)
+                .fillMaxWidth(),
             value = gender, onValueChange = { gender = it },
             shape = RoundedCornerShape(15.dp),
             singleLine = true,
@@ -158,7 +201,8 @@ fun PatientData(navController : NavController){
                 Text(
                     text = "gender",
                     style = TextStyle(
-                        color = Color.LightGray,textAlign=TextAlign.Center),
+                        color = Color.LightGray, textAlign = TextAlign.Center
+                    ),
                     modifier = Modifier.width(300.dp)
                 )
             },
@@ -170,7 +214,16 @@ fun PatientData(navController : NavController){
         )
         Button(
             onClick = {
-                navController.navigate(route = "splash_patient/$text")
+                if (name.isEmpty()) return@Button
+                patientData(
+                    name = name,
+                    age = age,
+                    insuranceDetails = insuranceDetails,
+                    diseases = diseases,
+                    adress = address,
+                    gender = gender
+                )
+                navController.navigate(route = "splash_patient/$name")
             },
             modifier = Modifier
                 .padding(start = 250.dp, end = 5.dp, top = 40.dp)
@@ -187,6 +240,41 @@ fun PatientData(navController : NavController){
         }
     }
 }
+
+fun patientData(
+    name: String,
+    age: String,
+    insuranceDetails: String,
+    diseases: String,
+    adress: String,
+    gender: String
+) {
+    ApiManager.getService().PatientData(
+        DataPatient(
+            id = UserDataPatient.id ?: "66493b55d58efc52d91bcfc0",
+            name = name,
+            age = age.toInt(),
+            insuranceDetails = insuranceDetails,
+            diseases = diseases,
+            adress = adress,
+            gender = gender
+        )
+    ).enqueue(object : Callback<DataPatientResponse> {
+        override fun onResponse(
+            call: Call<DataPatientResponse>,
+            response: Response<DataPatientResponse>
+        ) {
+            if (response.isSuccessful)
+                Log.e("dataPatient", "onResponse: $response")
+        }
+
+        override fun onFailure(call: Call<DataPatientResponse>, t: Throwable) {
+            Log.e("dataPatient", "onFailure: $t")
+        }
+
+    })
+}
+
 @Preview(showBackground = true)
 @Composable
 fun Data() {
