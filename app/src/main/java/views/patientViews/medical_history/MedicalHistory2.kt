@@ -1,4 +1,4 @@
-package views.patientViews
+package views.patientViews.medical_history
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
