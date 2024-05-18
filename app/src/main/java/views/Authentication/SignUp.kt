@@ -1,6 +1,6 @@
 package views.Authentication
 
-import android.widget.Toast
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -48,7 +48,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -56,6 +55,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
+import com.example.clinic.api.ApiManager
+import com.example.clinic.api.models.signup.SignUpResponse
+import com.example.clinic.models.data.SignUpUser
+import com.example.clinic.models.data.UserDataPatient
+import com.example.clinic.models.data.UserDoctor
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import views.FunctionsComposable.LocalImage
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -64,13 +71,20 @@ import views.FunctionsComposable.LocalImage
 fun RegisterScreenTextFields(navController: NavController) {
 
     var iExpanded by remember { mutableStateOf(false) }
-    var role  by remember { mutableStateOf("") }
+    var role by remember { mutableStateOf("") }
+    var userName by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var password1 by remember { mutableStateOf("") }
+    var passwordVisability by remember { mutableStateOf(false) }
+    var password2 by remember { mutableStateOf("") }
+    var passwordVisability2 by remember { mutableStateOf(false) }
+    var phone by remember { mutableStateOf("") }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(color = Color.White)
-            .verticalScroll(rememberScrollState())
-        ,
+            .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
@@ -98,13 +112,12 @@ fun RegisterScreenTextFields(navController: NavController) {
             color = colorResource(R.color.light_blue)
 
         )
-        var text by remember { mutableStateOf(TextFieldValue("")) }
 
         OutlinedTextField(
             modifier = Modifier
                 .padding(start = 15.dp, end = 15.dp, top = 5.dp)
                 .fillMaxWidth(),
-            value = text, onValueChange = { text = it },
+            value = userName, onValueChange = { userName = it },
             shape = RoundedCornerShape(15.dp),
             label = {
                 Text(
@@ -128,11 +141,11 @@ fun RegisterScreenTextFields(navController: NavController) {
                 focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
-        var num by remember { mutableStateOf(TextFieldValue("")) }
+
         OutlinedTextField(modifier = Modifier
             .padding(start = 15.dp, end = 15.dp, top = 15.dp)
             .fillMaxWidth(),
-            value = num, onValueChange = { num = it },
+            value = phone, onValueChange = { phone = it },
             shape = RoundedCornerShape(15.dp),
             label = {
                 Text(
@@ -156,8 +169,6 @@ fun RegisterScreenTextFields(navController: NavController) {
             )
         )
 
-        
-        var email by remember { mutableStateOf(TextFieldValue("")) }
         OutlinedTextField(modifier = Modifier
             .padding(start = 15.dp, end = 15.dp, top = 15.dp)
             .fillMaxWidth(),
@@ -184,12 +195,12 @@ fun RegisterScreenTextFields(navController: NavController) {
                 focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
-        var passwordVisability by remember { mutableStateOf(false) }
+
         val icon = if (passwordVisability)
             painterResource(id = R.drawable.visabilityon)
         else
             painterResource(id = R.drawable.visabilityoff)
-        var password1 by remember { mutableStateOf(TextFieldValue("")) }
+
         OutlinedTextField(
             modifier = Modifier
                 .padding(start = 13.dp, end = 13.dp, top = 15.dp)
@@ -201,7 +212,12 @@ fun RegisterScreenTextFields(navController: NavController) {
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             shape = RoundedCornerShape(15.dp),
 
-            label = { Text(text = stringResource(id = R.string.password), color = Color.LightGray) },
+            label = {
+                Text(
+                    text = stringResource(id = R.string.password),
+                    color = Color.LightGray
+                )
+            },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Filled.Lock, contentDescription = "Email icon"
@@ -228,8 +244,7 @@ fun RegisterScreenTextFields(navController: NavController) {
                 focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
-        var password2 by remember { mutableStateOf(TextFieldValue("")) }
-        var passwordVisability2 by remember { mutableStateOf(false) }
+
         val icon2 = if (passwordVisability2)
             painterResource(id = R.drawable.visabilityon)
         else
@@ -245,7 +260,12 @@ fun RegisterScreenTextFields(navController: NavController) {
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             shape = RoundedCornerShape(15.dp),
 
-            label = { Text(text = stringResource(id = R.string.confirm_password), color = Color.LightGray) },
+            label = {
+                Text(
+                    text = stringResource(id = R.string.confirm_password),
+                    color = Color.LightGray
+                )
+            },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Filled.Lock, contentDescription = "Email icon"
@@ -272,28 +292,38 @@ fun RegisterScreenTextFields(navController: NavController) {
                 focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
-val context= LocalContext.current
+        val context = LocalContext.current
 
-        Box(modifier = Modifier
-            .padding(5.dp)
-            .align(Alignment.CenterHorizontally),
-            contentAlignment = Alignment.Center) {
+        Box(
+            modifier = Modifier
+                .padding(5.dp)
+                .align(Alignment.CenterHorizontally),
+            contentAlignment = Alignment.Center
+        ) {
             //input button
             OutlinedButton(
                 onClick = { iExpanded = true },
             ) {
                 when (role) {
                     "Patient" -> {
-                        Text(text = "Patient",
-                            color = Color.Blue)
+                        Text(
+                            text = "Patient",
+                            color = Color.Blue
+                        )
                     }
+
                     "Doctor" -> {
-                        Text(text = "Doctor",
-                            color = Color.Blue)
+                        Text(
+                            text = "Doctor",
+                            color = Color.Blue
+                        )
                     }
+
                     else -> {
-                        Text(text = "Choose Role",
-                            color = Color.Blue)
+                        Text(
+                            text = "Choose Role",
+                            color = Color.Blue
+                        )
                     }
                 }
                 Icon(
@@ -316,62 +346,71 @@ val context= LocalContext.current
                     })
             }
         }
-                Button(
-                    onClick = {
-                        if (text.text.isEmpty()) {
-                            Toast.makeText(context, "Please Enter Username", Toast.LENGTH_SHORT)
-                                .show()
-                        } else if (num.text.isEmpty()) {
-                            Toast.makeText(context, "Please Enter Phone Number", Toast.LENGTH_SHORT)
-                                .show()
-                        } else if (email.text.isEmpty()) {
-                            Toast.makeText(context, "Please Enter Email", Toast.LENGTH_SHORT).show()
-                        } else if (password1.text.isEmpty()) {
-                            Toast.makeText(context, "Please Enter Password", Toast.LENGTH_SHORT)
-                                .show()
-                        } else if (password2.text.isEmpty()) {
-                            Toast.makeText(
-                                context,
-                                "Please Enter Confirm password",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }else if (role != "Patient" && role != "Doctor"){
-                            Toast.makeText(
-                                context,
-                                "Please Choose a role !",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                        else if (password1.text != password2.text) {
-                            Toast.makeText(
-                                context,
-                                "Please Enter a right confirmation password",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        } else {
-                            if (role == "Doctor")
-                                navController.navigate("doctor_data")
-                            else
-                                navController.navigate("patient_data")
-                        }
-                    },
-                    modifier = Modifier
-                        .padding(start = 30.dp, end = 30.dp, top = 5.dp, bottom = 20.dp)
-                        .size(height = 40.dp, width = 300.dp),
-                    colors = ButtonDefaults.buttonColors(colorResource(id = R.color.light_blue)),
+        Button(
+            onClick = {
+                if (email.isEmpty()) return@Button
+                 signUp(
+                    userName = userName,
+                    phone = phone,
+                    email = email,
+                    password = password1,
+                    confirmPassword = password2,
+                    role = role,
+                )
 
-
-                    ) {
-                    Text(
-                        text = stringResource(id = R.string.sign_up),
-                        fontSize = 17.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White
-                    )
+                if (role == "Doctor") {
+                    navController.navigate("doctor_data")
+                } else {
+                    navController.navigate("patient_data")
                 }
+            },
+            modifier = Modifier
+                .padding(start = 30.dp, end = 30.dp, top = 5.dp, bottom = 20.dp)
+                .size(height = 40.dp, width = 300.dp),
+            colors = ButtonDefaults.buttonColors(colorResource(id = R.color.light_blue)),
+
+
+            ) {
+            Text(
+                text = stringResource(id = R.string.sign_up),
+                fontSize = 17.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+        }
     }
 }
-@Preview(showBackground = true)
+
+fun signUp(
+    userName: String,
+    phone: String,
+    email: String,
+    password: String,
+    confirmPassword: String,
+    role: String,
+) {
+    ApiManager.getService()
+        .signUp(SignUpUser(userName, email, password, confirmPassword, phone, role)).enqueue(
+            object : Callback<SignUpResponse> {
+                override fun onResponse(
+                    call: Call<SignUpResponse>,
+                    response: Response<SignUpResponse>
+                ) {
+                    if (response.isSuccessful)
+                        Log.e("TAG", "onResponse: $response")
+                    UserDoctor.id = response.body()?.userSignUp?.id
+                    UserDataPatient.id = response.body()?.userSignUp?.id
+                }
+
+                override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
+                    Log.e("TAG", "onFailure: $t")
+                }
+
+            }
+        )
+}
+
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun SignUpPreview() {
     RegisterScreenTextFields(navController = rememberNavController())

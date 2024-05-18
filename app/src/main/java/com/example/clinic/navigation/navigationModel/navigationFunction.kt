@@ -1,7 +1,8 @@
 package com.example.clinic.navigation.navigationModel
 
 
-
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -16,11 +17,14 @@ import views.Authentication.LoginScreenTextFields
 import views.patientViews.PatientData
 import views.Authentication.RegisterScreenTextFields
 import views.doctorViews.DoctorData
+import views.doctorViews.Homedoctor
 import views.doctorViews.SplashForDoctor
+import views.patientViews.PatientHome
 
 import views.patientViews.SplashForPatient
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Navigation(navController: NavHostController) {
 
@@ -32,6 +36,12 @@ fun Navigation(navController: NavHostController) {
 
         composable(route = Screens.doctorData.route) {
             DoctorData(navController = navController)
+        }
+        composable(route = Screens.doctorHome.route) {
+            Homedoctor(navController = navController)
+        }
+        composable(route = Screens.patientHome.route) {
+            PatientHome(navController = navController)
         }
         composable(
             route = "splash_doctor/{name}",
@@ -74,7 +84,6 @@ fun Navigation(navController: NavHostController) {
         composable(route = Screens.choose.route) {
             ChooseRole(navController = navController)
         }
-
 
 
     }
