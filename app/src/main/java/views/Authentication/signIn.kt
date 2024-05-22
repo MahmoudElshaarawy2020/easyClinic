@@ -47,15 +47,17 @@ import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
 import com.example.clinic.api.ApiManager
 import com.example.clinic.api.models.signin.SignInResponse
+import com.example.clinic.models.data.PatientToken
+import com.example.clinic.models.data.DoctorToken
 import com.example.clinic.models.data.SignInUser
-import com.example.clinic.models.data.UserDataPatient
-import com.example.clinic.shared.SharedPerferenceHelper
+import com.example.clinic.models.data.UserPatient
+import com.example.clinic.models.data.UserDoctor
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import views.FunctionsComposable.LocalImage
 
-var response_id : String?=null
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreenTextFields(navController: NavController) {
@@ -168,13 +170,7 @@ fun LoginScreenTextFields(navController: NavController) {
         Button(
             onClick = {
                 if (email.isEmpty() && password.isEmpty()) return@Button
-                signIn(email, password)
-                if (response_id == UserDataPatient.id){
-                    navController.navigate("patient_home")
-                }else{
-                    navController.navigate("doctor_home")
-                }
-
+                signIn(email, password, navController = navController)
             },
             modifier = Modifier
                 .padding(start = 30.dp, end = 30.dp, top = 40.dp)
@@ -238,15 +234,23 @@ fun LoginScreenTextFields(navController: NavController) {
     }
 }
 
-fun signIn(email: String, password: String) {
+fun signIn(email: String, password: String, navController: NavController) {
     ApiManager.getService().signIn(SignInUser(email, password)).enqueue(
         object : Callback<SignInResponse> {
             override fun onResponse(
                 call: Call<SignInResponse>,
                 response: Response<SignInResponse>
             ) {
-                if (response.isSuccessful)
-                response_id = response.body()?.userSignIn?.id
+                if (response.isSuccessful && response.body()?.userSignIn?.id == UserDoctor.id) {
+                    UserDoctor.id = response.body()?.userSignIn?.id
+                    DoctorToken.token = response.body()?.accessToken
+                    Log.e("DoctorToken.token", "DoctorToken.token ${DoctorToken.token}", )
+                    navController.navigate("doctor_data")
+                } else if (response.isSuccessful && response.body()?.userSignIn?.id == UserPatient.id) {
+                    UserPatient.id = response.body()?.userSignIn?.id
+                    PatientToken.token = response.body()?.accessToken
+                    navController.navigate("patient_data")
+                }
                 Log.e("TAG", "onResponse: $response")
             }
 

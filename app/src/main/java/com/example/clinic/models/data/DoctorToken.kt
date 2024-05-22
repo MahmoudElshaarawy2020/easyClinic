@@ -1,7 +1,7 @@
 package com.example.clinic.models.data
 
-class UserDataPatient {
+class DoctorToken {
     companion object {
-        var id: String? = ""
+        var token: String? = ""
     }
 }

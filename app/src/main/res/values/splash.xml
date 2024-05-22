@@ -4,6 +4,5 @@
         <item name ="windowSplashScreenBackground">#E9FAFF</item>
         <item name = "windowSplashScreenAnimatedIcon">@drawable/bluelogo1__1_</item>
         <item name = "postSplashScreenTheme">@style/Theme.Clinic</item>
-
     </style>
 </resources>
