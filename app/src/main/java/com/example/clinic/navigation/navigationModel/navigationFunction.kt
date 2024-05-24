@@ -8,9 +8,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.clinic.navigation.navigationBar.BottomNavModel.DrNav
 import com.example.clinic.navigation.navigationBar.BottomNavModel.NavbarPatient
+import com.example.clinic.shared.SharedPerferenceHelper
 
 import views.ChooseRole
 import views.Authentication.LoginScreenTextFields
@@ -31,7 +33,13 @@ fun Navigation(navController: NavHostController) {
     NavHost(
         navController = navController,
 
-        startDestination = Screens.signInScreen.route
+        startDestination = (if (SharedPerferenceHelper.getRole() == "Doctor") {
+            Screens.NavDr.route
+        } else if (SharedPerferenceHelper.getRole() == "Patient") {
+            Screens.Nav.route
+        } else {
+            Screens.signInScreen.route
+        }).toString()
     ) {
 
         composable(route = Screens.doctorData.route) {

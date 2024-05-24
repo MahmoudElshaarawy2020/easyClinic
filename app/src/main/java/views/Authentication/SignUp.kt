@@ -61,6 +61,7 @@ import com.example.clinic.api.models.signup_patient.SignUpPatientResponse
 import com.example.clinic.models.data.SignUpUser
 import com.example.clinic.models.data.UserDoctor
 import com.example.clinic.models.data.UserPatient
+import com.example.clinic.shared.SharedPerferenceHelper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -408,6 +409,7 @@ fun signUpDoctor(
                     if (response.isSuccessful && role == "Doctor") {
                         navController.navigate("signIn_screen")
                         UserDoctor.id = response.body()?.userSignUpDoctor?.id
+                        SharedPerferenceHelper.saveToken(response.body()?.userSignUpDoctor?.role!!)
                         Log.e("UserDoctor.id", "Userdoctor ${UserDoctor.id}")
                     }
                 }
@@ -446,6 +448,7 @@ fun signUpPatient(
             if (response.isSuccessful && role == "Patient")
                 navController.navigate("signIn_screen")
             UserPatient.id = response.body()?.userSignUpPatient?.id
+            SharedPerferenceHelper.saveToken(response.body()?.userSignUpPatient?.role!!)
             Log.e("UserDoctor.id", "UserPatient ${UserPatient.id}")
         }
 

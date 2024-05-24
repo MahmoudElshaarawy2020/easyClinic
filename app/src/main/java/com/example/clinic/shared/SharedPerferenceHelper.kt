@@ -2,26 +2,27 @@ package com.example.clinic.shared
 
 import android.content.Context
 import android.content.SharedPreferences
+
 class SharedPerferenceHelper {
 
+    companion object{
+        private var sharedPreferences:SharedPreferences?= null
 
-//    companion object {
-//         var sharedPreferences: SharedPreferences? = null
-//        fun getInstance(context: Context) {
-//            return
-//            sharedPreferences = context.getSharedPreferences("MyDataBase", Context.MODE_PRIVATE)
-//        }
-//    }
-//
-//    fun saveToken(token: String) {
-//        with(sharedPreferences!!.edit()) {
-//            putString("token", token)
-//            apply()
-//        }
-//    }
-//
-//    fun getToken(): String? {
-//        return sharedPreferences?.getString("token", null)
-//
-//    }
+        fun getInstance(context: Context){
+            sharedPreferences = context.getSharedPreferences("clinic file",Context.MODE_PRIVATE)
+        }
+        fun getRole():String?{
+            return sharedPreferences!!.getString("role",null)
+        }
+        fun saveToken(role:String){
+            with(sharedPreferences!!.edit()){
+                putString("role",role)
+                apply()
+            }
+
+
+        }
+    }
 }
+
+
