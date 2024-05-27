@@ -38,9 +38,12 @@ import views.patientViews.Booking
 import views.patientViews.Diet
 import views.patientViews.Hospitals
 import views.patientViews.Labs
+import views.patientViews.MedicalAppointments
+import views.patientViews.MedicalAppointments2
 import views.patientViews.MedicalHistory1
 import views.patientViews.MedicalHistory2
 import views.patientViews.MedicalHistory3
+import views.patientViews.MyProfilePatient
 import views.patientViews.PatientHome
 import views.patientViews.patientProfile
 import views.patientViews.reservation
@@ -167,6 +170,15 @@ fun NavbarPatient(navController: NavController) {
                             name3 = it.arguments?.getString("name3"),
                             navController = navController
                         )
+                    }
+                    composable(route = Screens.MyProfilePatientRoute.route) {
+                        MyProfilePatient(navController = navController)
+                    }
+                    composable(route = Screens.MA1Route.route) {
+                        MedicalAppointments(navController = navController)
+                    }
+                    composable(route = Screens.MA2Route.route) {
+                        MedicalAppointments2(navController = navController)
                     }
 
 

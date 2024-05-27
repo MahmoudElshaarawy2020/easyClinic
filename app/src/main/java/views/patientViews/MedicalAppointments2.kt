@@ -31,11 +31,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
 import views.FunctionsComposable.LocalImage
 
 @Composable
-fun MedicalAppointments2(){
+fun MedicalAppointments2(navController: NavController){
     val fontFamily = FontFamily(
         Font(R.font.wendyoneregular, FontWeight.Thin)
     )
@@ -70,7 +72,7 @@ fun MedicalAppointments2(){
 
                 .padding(10.dp)
                 .clickable {
-
+                    navController.navigate(route = "MedAppointment1")
                 }) {
                 LocalImage(
                     painter = painterResource(id = R.drawable.whitearrow), imageSize = 60.dp,
@@ -207,7 +209,7 @@ fun MedicalAppointments2(){
 
         }
         Spacer(modifier = Modifier.size(250.dp))
-        Button(onClick = {},modifier = Modifier
+        Button(onClick = {navController.navigate(route = "MedAppointment1")},modifier = Modifier
 
             .size(height = 50.dp, width = 230.dp),
             colors = ButtonDefaults.buttonColors(colorResource(id = R.color.light_blue)),
@@ -228,5 +230,5 @@ fun MedicalAppointments2(){
 @Composable
 @Preview(showBackground = true)
 fun MedicalAppointmentsPreview2(){
-    MedicalAppointments2()
+    MedicalAppointments2(navController = rememberNavController())
 }
