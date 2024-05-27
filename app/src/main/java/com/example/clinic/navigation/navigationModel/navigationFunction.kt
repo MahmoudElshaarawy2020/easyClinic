@@ -21,6 +21,7 @@ import views.Authentication.RegisterScreenTextFields
 import views.doctorViews.DoctorData
 import views.doctorViews.Homedoctor
 import views.doctorViews.SplashForDoctor
+import views.patientViews.Booking
 import views.patientViews.PatientHome
 
 import views.patientViews.SplashForPatient
@@ -33,9 +34,9 @@ fun Navigation(navController: NavHostController) {
     NavHost(
         navController = navController,
 
-        startDestination = (if (SharedPerferenceHelper.getRole() == "Doctor") {
+        startDestination = (if (SharedPerferenceHelper.getIdDoctor()?.isNotEmpty() == true) {
             Screens.NavDr.route
-        } else if (SharedPerferenceHelper.getRole() == "Patient") {
+        } else if (SharedPerferenceHelper.getIdPatient()?.isNotEmpty() == true) {
             Screens.Nav.route
         } else {
             Screens.signInScreen.route

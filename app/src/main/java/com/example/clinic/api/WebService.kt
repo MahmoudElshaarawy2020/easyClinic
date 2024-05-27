@@ -1,7 +1,9 @@
 package com.example.clinic.api
 
 import com.example.clinic.api.models.doctor_data.DoctorDataResponse
+import com.example.clinic.api.models.hospital.HospitalResponse
 import com.example.clinic.api.models.patient_data.DataPatientResponse
+import com.example.clinic.api.models.patient_doctor_data.PatientDoctorDataResponse
 import com.example.clinic.api.models.signin.SignInResponse
 import com.example.clinic.api.models.signup_doctor.SignUpDoctorResponse
 import com.example.clinic.api.models.signup_patient.SignUpPatientResponse
@@ -11,6 +13,7 @@ import com.example.clinic.models.data.SignInUser
 import com.example.clinic.models.data.SignUpUser
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.POST
@@ -45,4 +48,9 @@ interface WebService {
         @Header("authorization") token: String = "",
         @Body dataPatient: DataPatient
     ): Call<DataPatientResponse>
+
+    @GET("/patient/DoctorData")
+    fun getAllDoctorAvaliable(
+        @Header("authorization") token: String = ""
+    ): Call<PatientDoctorDataResponse>
 }

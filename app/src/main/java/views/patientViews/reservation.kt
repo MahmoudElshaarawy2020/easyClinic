@@ -1,5 +1,7 @@
 package views.patientViews
 
+import android.os.Bundle
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -10,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -23,7 +26,11 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -46,6 +53,15 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
+import com.example.clinic.api.ApiManager
+import com.example.clinic.api.models.patient_doctor_data.DoctorItem
+import com.example.clinic.api.models.patient_doctor_data.PatientDoctorDataResponse
+import com.example.clinic.api.models.test.TestClass
+import com.example.clinic.models.data.DoctorToken
+import com.example.clinic.shared.SharedPerferenceHelper
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import views.FunctionsComposable.LocalImage
 
 val doctorEmail = "hamza@gmail.com"
@@ -56,22 +72,33 @@ val timeFrom = "10:30"
 val timeTo = "3:30"
 val fee = "300 L.E"
 val address = "Tanta,stad st."
+
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun reservation(navController: NavController){
+fun reservation(navController: NavController) {
+    var listOfDoctors = remember {
+        mutableStateListOf<DoctorItem>()
+    }
 
     val fontFamily = FontFamily(
-        Font(R.font.wendyoneregular, FontWeight.Thin))
+        Font(R.font.wendyoneregular, FontWeight.Thin)
+    )
 
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .background(color = Color(0xFFE9FAFF))){
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color(0xFFE9FAFF))
+    ) {
 
-        Box(modifier = Modifier
-            .fillMaxWidth()
-            .size(100.dp)
-            .background(color = Color(0xFF2697FF))){
-            Text(text = "Reservation",
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .size(100.dp)
+                .background(color = Color(0xFF2697FF))
+        ) {
+            Text(
+                text = "Reservation",
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 70.dp, top = 25.dp),
@@ -79,7 +106,8 @@ fun reservation(navController: NavController){
                 color = Color(0xFFFFFFFF),
                 textAlign = TextAlign.Start,
                 fontFamily = fontFamily,
-                fontSize = 26.sp)
+                fontSize = 26.sp
+            )
 
 
             Box(modifier = Modifier
@@ -100,7 +128,7 @@ fun reservation(navController: NavController){
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 70.dp)
-    ){
+    ) {
         var doctorName by remember { mutableStateOf(TextFieldValue("")) }
         OutlinedTextField(
             modifier = Modifier
@@ -131,75 +159,115 @@ fun reservation(navController: NavController){
                 focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
-        ElevatedCard(
-            elevation = CardDefaults.cardElevation(
-                defaultElevation = 20.dp
-            ),
-            colors = CardDefaults.cardColors(containerColor = Color.White),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 100.dp, start = 10.dp, end = 10.dp)
-                .size(100.dp)
-                .clickable { navController.navigate(route = "booking") }
+        LazyColumn {
+            items(listOfDoctors.size) {
+                listOfDoctors.forEachIndexed { index, doctorItem ->
+                    val preloaded = Bundle().apply {
+                        putInt("price", doctorItem.price!!)
+                    }
+                    ElevatedCard(
+                        elevation = CardDefaults.cardElevation(
+                            defaultElevation = 20.dp
+                        ),
+                        colors = CardDefaults.cardColors(containerColor = Color.White),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 60.dp, start = 10.dp)
+                            .size(100.dp)
+                            .clickable {
+                                preloaded
+                                navController.navigate(route = "booking")
+                                Log.e("TAG", "reservation: ${preloaded}")
+                            }
 
 
+                    ) {
 
-        ) {
+                        Row() {
+                            Image(
+                                painter = painterResource(id = R.drawable.doctorhamza),
+                                contentDescription = "doctor photo",
+                                modifier = Modifier
+                                    .padding(start = 8.dp, top = 12.dp, bottom = 12.dp)
+                                    .size(100.dp)
+                                    .clip(RoundedCornerShape(10.dp)),
+                            )
+                            Column(
+                                modifier = Modifier
+                                    .weight(2f)
+                                    .verticalScroll(rememberScrollState())
+                            )
+                            {
+                                Text(
+                                    modifier = Modifier.padding(top = 7.dp, start = 10.dp),
+                                    text = doctorItem.userName!!,
+                                    fontSize = 17.sp,
+                                    fontWeight = Bold,
+                                    color = Color(0xFF2697FF)
+                                )
+                                Text(
+                                    modifier = Modifier.padding(start = 10.dp),
+                                    text = doctorItem.status!!,
+                                    fontSize = 13.sp,
+                                )
+                                Text(
+                                    modifier = Modifier.padding(start = 10.dp),
+                                    text = doctorItem.phone!!,
+                                    fontSize = 10.sp,
+                                    color = Color.Gray,
+                                )
+                                Text(
+                                    modifier = Modifier.padding(start = 10.dp),
+                                    text = doctorItem.gender!!,
+                                    fontSize = 10.sp,
+                                    color = Color.Gray
+                                )
+                                Text(
+                                    modifier = Modifier.padding(start = 10.dp),
+                                    text = doctorItem.role ?: "Doctor",
+                                    fontSize = 10.sp,
+                                    color = Color.Gray
+                                )
 
-            Row(){
-                Image(painter = painterResource(id = R.drawable.doctorhamza),
-                    contentDescription = "doctor photo",
-                    modifier = Modifier
-                        .padding(start = 8.dp, top = 12.dp, bottom = 12.dp)
-                        .size(100.dp)
-                        .clip(RoundedCornerShape(10.dp)),
-                )
-                Column(modifier = Modifier
-                    .weight(2f)
-                    .verticalScroll(rememberScrollState())) {
-                    Text(
-                        modifier = Modifier .padding(top = 7.dp,start = 10.dp),
-                        text = dName,
-                        fontSize = 17.sp,
-                        fontWeight = Bold,
-                        color = Color(0xFF2697FF))
-                    Text(
-                        modifier = Modifier .padding(start = 10.dp),
-                        text =  department,
-                        fontSize = 13.sp,
-                    )
-                    Text(
-                        modifier = Modifier .padding(start = 10.dp),
-                        text =  "$timeFrom - $timeTo",
-                        fontSize = 10.sp,
-                        color = Color.Gray,
-                    )
-                    Text(
-                        modifier = Modifier .padding(start = 10.dp),
-                        text =  "fee : $fee L.E",
-                        fontSize = 10.sp,
-                        color = Color.Gray
-                    )
-                    Text(
-                        modifier = Modifier .padding(start = 10.dp),
-                        text =  "address : $address",
-                        fontSize = 10.sp,
-                        color = Color.Gray
-                    )
+                            }
+                        }
 
+                    }
                 }
             }
-
-
         }
+    }
+    LaunchedEffect(Unit) {
+        ApiManager.getService()
+            .getAllDoctorAvaliable("Bearer ${SharedPerferenceHelper.getToken()}")
+            .enqueue(object : Callback<PatientDoctorDataResponse> {
+                override fun onResponse(
+                    call: Call<PatientDoctorDataResponse>,
+                    response: Response<PatientDoctorDataResponse>
+                ) {
+                    if (response.body()!!.doctor!!.isNotEmpty()) {
+                        listOfDoctors.addAll(
+                            response.body()!!.doctor!!.filterNotNull().toMutableList()
+                        )
+                    }
+                    Log.e("TAG", "reservation: ${listOfDoctors.size}")
+                    Log.e("TAG", "reservation: ${listOfDoctors}")
+                }
+
+                override fun onFailure(call: Call<PatientDoctorDataResponse>, t: Throwable) {
+                    Log.e("TAG", "onFailure: $t")
+                    Log.e("TAG", "reservation: ${listOfDoctors.size}")
+                    Log.e("TAG", "reservation: ${listOfDoctors}")
+                }
+
+            })
     }
 }
 
 
-
 @Composable
 @Preview(showBackground = true)
-fun reservationPreview(){
+fun reservationPreview() {
     reservation(navController = rememberNavController())
 }
 
