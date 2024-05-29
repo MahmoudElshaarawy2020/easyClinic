@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import androidx.navigation.navDeepLink
 import com.example.clinic.navigation.navigationBar.BottomNavModel.DrNav
 import com.example.clinic.navigation.navigationBar.BottomNavModel.NavbarPatient
 import com.example.clinic.shared.SharedPerferenceHelper
@@ -22,9 +23,11 @@ import views.doctorViews.DoctorData
 import views.doctorViews.Homedoctor
 import views.doctorViews.SplashForDoctor
 import views.patientViews.Booking
+import views.patientViews.MyProfilePatient
 import views.patientViews.PatientHome
 
 import views.patientViews.SplashForPatient
+import views.patientViews.patientProfile
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -43,6 +46,10 @@ fun Navigation(navController: NavHostController) {
         }).toString()
     ) {
 
+        composable(route = Screens.patientProfile.route) {
+            patientProfile(navController = navController)
+        }
+        
         composable(route = Screens.doctorData.route) {
             DoctorData(navController = navController)
         }
@@ -52,6 +59,7 @@ fun Navigation(navController: NavHostController) {
         composable(route = Screens.patientHome.route) {
             PatientHome(navController = navController)
         }
+
         composable(
             route = "splash_doctor/{name}",
             arguments = listOf(navArgument(name = "name") {

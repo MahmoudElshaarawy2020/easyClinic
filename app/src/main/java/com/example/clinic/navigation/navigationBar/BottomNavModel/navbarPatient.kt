@@ -41,6 +41,7 @@ import views.patientViews.Labs
 import views.patientViews.MedicalHistory1
 import views.patientViews.MedicalHistory2
 import views.patientViews.MedicalHistory3
+import views.patientViews.MyProfilePatient
 import views.patientViews.PatientHome
 import views.patientViews.patientProfile
 import views.patientViews.reservation
@@ -104,6 +105,9 @@ fun NavbarPatient(navController: NavController) {
                     startDestination = Screens.patientHome.route,
                     route = Screens.Nav.route
                 ) {
+                    composable(route = Screens.MyProfilePatient.route) {
+                        MyProfilePatient(navController = navController)
+                    }
                     composable(route = Screens.Reservation.route) {
                         reservation(navController = navController)
                     }
