@@ -15,6 +15,7 @@ import com.example.clinic.navigation.navigationModel.Navigation
 
 import com.example.clinic.ViewModel.MainViewModel
 import com.example.clinic.shared.SharedPerferenceHelper
+import views.patientViews.uripathfinder.MainView
 
 
 class MainActivity : ComponentActivity() {

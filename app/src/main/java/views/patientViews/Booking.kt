@@ -38,6 +38,8 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -143,7 +145,7 @@ fun Booking(navController: NavController) {
                 .padding(top = 5.dp, bottom = 5.dp)){
                 Icon(imageVector = Icons.Filled.Edit, contentDescription = "",
                     tint = colorResource(id = R.color.light_blue))
-                Text(text = "Fee: $fee LE", fontSize = 17.sp,fontWeight = FontWeight.Bold)
+                Text(text = "Fee: $fee ", fontSize = 17.sp,fontWeight = FontWeight.Bold)
             }
             Row{
                 Icon(imageVector = Icons.Filled.LocationOn, contentDescription = "",
@@ -175,7 +177,9 @@ fun Booking(navController: NavController) {
             Row(modifier = Modifier .clickable { calendarState.show() }) {
                 Icon(imageVector = Icons.Filled.DateRange, contentDescription = "",
                     tint = colorResource(id = R.color.light_blue), modifier = Modifier.size(32.dp))
-                Text(text =" $dateOfDay", fontSize = 20.sp, fontWeight = FontWeight.Bold
+                Text(text =" $dateOfDay", fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    textDecoration = TextDecoration.Underline
                 , color = Color.Gray)
             }
 

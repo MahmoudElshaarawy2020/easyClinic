@@ -128,4 +128,14 @@ dependencies {
     implementation ("com.maxkeppeler.sheets-compose-dialogs:calendar:1.0.2")
 
 
+    //permission handling in compose
+    implementation ("com.google.accompanist:accompanist-permissions:0.24.13-rc")
+
+
+    //for view-model in compose
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0")
+
+
+
+
 }
