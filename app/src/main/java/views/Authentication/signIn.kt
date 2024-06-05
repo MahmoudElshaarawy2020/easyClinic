@@ -242,14 +242,12 @@ fun signIn(email: String, password: String, navController: NavController) {
                 call: Call<SignInResponse>,
                 response: Response<SignInResponse>
             ) {
-                if (response.isSuccessful && response.body()?.userSignIn?.id == UserDoctor.id) {
-                    UserDoctor.id = response.body()?.userSignIn?.id
-                    DoctorToken.token = response.body()?.accessToken
+                if (response.isSuccessful && response.body()?.userSignIn?.id == SharedPerferenceHelper.getIdDoctor()) {
+                    SharedPerferenceHelper.saveToken(response.body()?.accessToken!!)
                     Log.e("DoctorToken.token", "DoctorToken.token ${DoctorToken.token}", )
                     navController.navigate("doctor_data")
-                } else if (response.isSuccessful && response.body()?.userSignIn?.id == UserPatient.id) {
-                    UserPatient.id = response.body()?.userSignIn?.id
-                    PatientToken.token = response.body()?.accessToken
+                } else if (response.isSuccessful && response.body()?.userSignIn?.id == SharedPerferenceHelper.getIdPatient()) {
+                    SharedPerferenceHelper.saveToken(response.body()?.accessToken!!)
                     navController.navigate("patient_data")
                 }
                 Log.e("TAG", "onResponse: $response")

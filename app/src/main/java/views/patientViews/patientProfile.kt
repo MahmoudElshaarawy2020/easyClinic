@@ -91,11 +91,7 @@ fun patientProfile(navController : NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp)
-                        .clickable {navController.navigate(route = "my_profile_patient"){
-                            popUpTo("patient_profile"){
-                                inclusive = true
-                            }
-                        }  },
+                        .clickable { },
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
@@ -188,11 +184,7 @@ fun patientProfile(navController : NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp)
-                        .clickable { navController.navigate(route = "MedAppointment1"){
-                            popUpTo("patient_profile"){
-                                inclusive = true
-                            }
-                        } },
+                        .clickable { },
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
@@ -202,7 +194,7 @@ fun patientProfile(navController : NavController) {
 
                     )
                     Text(
-                        text = "Appointments",
+                        text = "Medical appointments",
                         fontFamily = fontFamily,
                         fontSize = 25.sp,
                         color = Color(0xFF1683E7),
@@ -231,12 +223,61 @@ fun patientProfile(navController : NavController) {
                     thickness = 0.8.dp,
                     color = Color(0xFF486A89)
                 )
-
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp)
-                        .clickable {navController.navigate(route="signIn_screen") },
+                        .clickable { },
+                    verticalAlignment = Alignment.CenterVertically
+
+                ) {
+                    Box(contentAlignment = Alignment.Center) {
+
+                        LocalImage(
+                            painter = painterResource(id = R.drawable.malicon1),
+                            imageSize = 70.dp, padding = 0.dp
+
+                        )
+                        LocalImage(
+                            painter = painterResource(id = R.drawable.alarmicon),
+                            imageSize = 45.dp, padding = 0.dp
+                        )
+                    }
+                    Text(
+                        text = "Drugs alarm",
+                        fontFamily = fontFamily,
+                        fontSize = 25.sp,
+                        color = Color(0xFF1683E7),
+                        modifier = Modifier.padding(start = 18.dp)
+
+
+                    )
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        contentAlignment = Alignment.CenterEnd
+                    ) {
+
+                        LocalImage(
+                            painter = painterResource(id = R.drawable.img_4),
+                            imageSize = 40.dp, padding = 0.dp
+
+                        )
+                    }
+
+                }
+                Divider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 20.dp, end = 20.dp),
+                    thickness = 0.8.dp,
+                    color = Color(0xFF486A89)
+                )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(10.dp)
+                        .clickable {navController.navigate(route="doctor_my_profile") },
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {

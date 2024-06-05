@@ -14,6 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.clinic.navigation.navigationModel.Navigation
 
 import com.example.clinic.ViewModel.MainViewModel
+import com.example.clinic.shared.SharedPerferenceHelper
 
 
 class MainActivity : ComponentActivity() {
@@ -28,13 +29,13 @@ class MainActivity : ComponentActivity() {
             viewModel.isLoading.value
         }
         setContent {
-            CheckRole()
+            CheckeRole()
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     @Composable
-    private fun CheckRole() {
+    private fun CheckeRole() {
             navController = rememberNavController()
             Navigation(navController = navController)
     }

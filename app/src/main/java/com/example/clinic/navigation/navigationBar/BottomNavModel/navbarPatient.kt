@@ -107,6 +107,9 @@ fun NavbarPatient(navController: NavController) {
                     startDestination = Screens.patientHome.route,
                     route = Screens.Nav.route
                 ) {
+                    composable(route = Screens.MyProfilePatient.route) {
+                        MyProfilePatient(navController = navController)
+                    }
                     composable(route = Screens.Reservation.route) {
                         reservation(navController = navController)
                     }
@@ -144,19 +147,19 @@ fun NavbarPatient(navController: NavController) {
                         route = "MedHis3/{name1}/{name2}/{name3}",
                         arguments = listOf(
                             navArgument(name = "name1") {
-                            defaultValue = -1
+                            defaultValue = ""
                             type = NavType.StringType
 
 
                         },
                             navArgument(name = "name2") {
-                                defaultValue = -1
+                                defaultValue = ""
                                 type = NavType.StringType
 
 
                             },
                             navArgument(name = "name3") {
-                                defaultValue = -1
+                                defaultValue = ""
                                 type = NavType.StringType
 
 

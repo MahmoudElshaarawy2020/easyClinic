@@ -39,6 +39,7 @@ import com.example.clinic.api.models.patient_data.DataPatientResponse
 import com.example.clinic.models.data.PatientToken
 import com.example.clinic.models.data.DataPatient
 import com.example.clinic.models.data.UserPatient
+import com.example.clinic.shared.SharedPerferenceHelper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -251,9 +252,9 @@ fun patientData(
     navController: NavController
 ) {
     ApiManager.getService().PatientData(
-        token = "Bearer ${PatientToken.token}",
+        token = "Bearer ${SharedPerferenceHelper.getToken()}",
         DataPatient(
-            id = UserPatient.id!!,
+            id = SharedPerferenceHelper.getIdPatient()!!,
             name = name,
             age = age.toInt(),
             insuranceDetails = insuranceDetails,

@@ -43,6 +43,7 @@ import androidx.compose.material3.Text as Text
 import com.example.clinic.models.data.DataDoctor
 import com.example.clinic.models.data.DoctorToken
 import com.example.clinic.models.data.UserDoctor
+import com.example.clinic.shared.SharedPerferenceHelper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -302,8 +303,8 @@ fun enterDataDoctor(
     navController: NavController
 ) {
     ApiManager.getService().DoctorData(
-        token = "Bearer ${DoctorToken.token}", DataDoctor(
-            id = UserDoctor.id,
+        token = "Bearer ${SharedPerferenceHelper.getToken()}", DataDoctor(
+            id = SharedPerferenceHelper.getIdDoctor(),
             name = name,
             age = age,
             specialties = specialties,

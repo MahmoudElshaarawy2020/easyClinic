@@ -409,7 +409,9 @@ fun signUpDoctor(
                     if (response.isSuccessful && role == "Doctor") {
                         navController.navigate("signIn_screen")
                         UserDoctor.id = response.body()?.userSignUpDoctor?.id
-                        SharedPerferenceHelper.saveToken(response.body()?.userSignUpDoctor?.role!!)
+                        SharedPerferenceHelper.saveIdDoctor(response.body()?.userSignUpDoctor?.id!!)
+                        SharedPerferenceHelper.saveRole(response.body()?.userSignUpDoctor?.role!!)
+                        SharedPerferenceHelper.saveName(response.body()!!.userSignUpDoctor!!.userName!!)
                         Log.e("UserDoctor.id", "Userdoctor ${UserDoctor.id}")
                     }
                 }
@@ -448,7 +450,9 @@ fun signUpPatient(
             if (response.isSuccessful && role == "Patient")
                 navController.navigate("signIn_screen")
             UserPatient.id = response.body()?.userSignUpPatient?.id
-            SharedPerferenceHelper.saveToken(response.body()?.userSignUpPatient?.role!!)
+            SharedPerferenceHelper.saveIdPatient(response.body()?.userSignUpPatient?.id!!)
+            SharedPerferenceHelper.saveRole(response.body()?.userSignUpPatient?.role!!)
+            SharedPerferenceHelper.saveName(response.body()?.userSignUpPatient?.userName!!)
             Log.e("UserDoctor.id", "UserPatient ${UserPatient.id}")
         }
 
