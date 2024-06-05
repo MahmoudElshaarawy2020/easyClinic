@@ -411,6 +411,7 @@ fun signUpDoctor(
                         UserDoctor.id = response.body()?.userSignUpDoctor?.id
                         SharedPerferenceHelper.saveIdDoctor(response.body()?.userSignUpDoctor?.id!!)
                         SharedPerferenceHelper.saveRole(response.body()?.userSignUpDoctor?.role!!)
+                        SharedPerferenceHelper.saveName(response.body()!!.userSignUpDoctor!!.userName!!)
                         Log.e("UserDoctor.id", "Userdoctor ${UserDoctor.id}")
                     }
                 }
@@ -451,6 +452,7 @@ fun signUpPatient(
             UserPatient.id = response.body()?.userSignUpPatient?.id
             SharedPerferenceHelper.saveIdPatient(response.body()?.userSignUpPatient?.id!!)
             SharedPerferenceHelper.saveRole(response.body()?.userSignUpPatient?.role!!)
+            SharedPerferenceHelper.saveName(response.body()?.userSignUpPatient?.userName!!)
             Log.e("UserDoctor.id", "UserPatient ${UserPatient.id}")
         }
 

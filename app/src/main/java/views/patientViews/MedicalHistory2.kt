@@ -2,6 +2,8 @@ package views.patientViews
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.icu.text.SimpleDateFormat
+import android.icu.util.TimeZone
 import android.net.Uri
 import android.provider.OpenableColumns
 import android.util.Log
@@ -90,6 +92,7 @@ fun MedicalHistory2(navController: NavController) {
     ) { uri: Uri? ->
         imageUri = uri
     }
+
     val fontFamily = FontFamily(
         Font(R.font.wendyoneregular, FontWeight.Thin)
     )
@@ -249,6 +252,7 @@ fun MedicalHistory2(navController: NavController) {
 
         Button(
             onClick = {
+
                 if (fileUri != null && imageUri != null) {
                     val fileExtension = getFileExtension(context, fileUri!!)
                     val imageExtension = getFileExtension(context, imageUri!!)
@@ -311,7 +315,6 @@ fun uploadMedicalHistory(
 
     val filePart = MultipartBody.Part.createFormData("AddFile", file.name, requestFile)
     val imagePart = MultipartBody.Part.createFormData("AddImage", image.name, requestImage)
-
     ApiManager.getService().uploadMedicalHistory(
         token = "Bearer ${SharedPerferenceHelper.getToken()}",
         MedicalHistoryData(
@@ -327,9 +330,10 @@ fun uploadMedicalHistory(
             call: Call<MedicalHistoryResponse>,
             response: Response<MedicalHistoryResponse>
         ) {
-            if (response.isSuccessful)
-                navController.navigate("patient_profile")
-            Log.e("TAG", "onResponse: $response")
+            if (response.isSuccessful) {
+                navController.navigate("MedHis3/${name}/${date}/${doctorName}")
+                Log.e("TAG", "onResponse: $response")
+            }
         }
 
         override fun onFailure(call: Call<MedicalHistoryResponse>, t: Throwable) {

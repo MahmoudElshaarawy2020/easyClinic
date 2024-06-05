@@ -145,19 +145,19 @@ fun NavbarPatient(navController: NavController) {
                         route = "MedHis3/{name1}/{name2}/{name3}",
                         arguments = listOf(
                             navArgument(name = "name1") {
-                            defaultValue = -1
+                            defaultValue = ""
                             type = NavType.StringType
 
 
                         },
                             navArgument(name = "name2") {
-                                defaultValue = -1
+                                defaultValue = ""
                                 type = NavType.StringType
 
 
                             },
                             navArgument(name = "name3") {
-                                defaultValue = -1
+                                defaultValue = ""
                                 type = NavType.StringType
 
 

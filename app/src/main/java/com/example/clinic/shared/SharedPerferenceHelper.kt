@@ -59,6 +59,16 @@ class SharedPerferenceHelper {
                 apply()
             }
         }
+        fun getName(): String? {
+            return sharedPreferences!!.getString(Constants.NAME, null)
+        }
+
+        fun saveName(name: String) {
+            with(sharedPreferences!!.edit()) {
+                putString(Constants.NAME, name)
+                apply()
+            }
+        }
     }
 }
 

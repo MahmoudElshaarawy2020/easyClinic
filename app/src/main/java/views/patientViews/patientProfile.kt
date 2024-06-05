@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
+import com.example.clinic.shared.SharedPerferenceHelper
 import views.FunctionsComposable.LocalImage
 
 
@@ -63,7 +64,7 @@ fun patientProfile(navController: NavController) {
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = "Name",
+                text = SharedPerferenceHelper.getName() ?: "",
                 color = Color.White,
                 fontSize = 25.sp,
                 fontWeight = FontWeight.Bold
