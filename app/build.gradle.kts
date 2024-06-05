@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
+    id ("kotlin-kapt")
     id("kotlin-parcelize")
 }
 
@@ -52,6 +53,7 @@ android {
 }
 
 dependencies {
+    val room_version = "2.6.1"
     val navVersion = "2.7.5"
     implementation( "androidx.hilt:hilt-navigation-compose:1.1.0")
     implementation("androidx.core:core-ktx:1.12.0")
@@ -79,6 +81,15 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.0.0")
     implementation("com.squareup.retrofit2:converter-gson:2.0.0")
     implementation("com.squareup.retrofit2:converter-scalars:2.5.0")
+    implementation("io.coil-kt:coil-compose:2.2.2")
+    //Room DataBase
+
+
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:$room_version")
 
     // Kotlinx Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")

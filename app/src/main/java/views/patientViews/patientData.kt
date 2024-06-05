@@ -1,6 +1,5 @@
 package views.patientViews
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -37,9 +36,10 @@ import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
 import com.example.clinic.api.ApiManager
 import com.example.clinic.api.models.patient_data.DataPatientResponse
+import com.example.clinic.models.data.PatientToken
 import com.example.clinic.models.data.DataPatient
-import com.example.clinic.models.data.UserDataPatient
-import com.example.clinic.models.data.UserDoctor
+import com.example.clinic.models.data.UserPatient
+import com.example.clinic.shared.SharedPerferenceHelper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -221,9 +221,10 @@ fun PatientData(navController: NavController) {
                     insuranceDetails = insuranceDetails,
                     diseases = diseases,
                     adress = address,
-                    gender = gender
+                    gender = gender,
+                    navController = navController
                 )
-                navController.navigate(route = "splash_patient/$name")
+
             },
             modifier = Modifier
                 .padding(start = 250.dp, end = 5.dp, top = 40.dp)
@@ -247,11 +248,13 @@ fun patientData(
     insuranceDetails: String,
     diseases: String,
     adress: String,
-    gender: String
+    gender: String,
+    navController: NavController
 ) {
     ApiManager.getService().PatientData(
+        token = "Bearer ${SharedPerferenceHelper.getToken()}",
         DataPatient(
-            id = UserDataPatient.id ?: "66493b55d58efc52d91bcfc0",
+            id = SharedPerferenceHelper.getIdPatient()!!,
             name = name,
             age = age.toInt(),
             insuranceDetails = insuranceDetails,
@@ -265,11 +268,11 @@ fun patientData(
             response: Response<DataPatientResponse>
         ) {
             if (response.isSuccessful)
-                Log.e("dataPatient", "onResponse: $response")
+                navController.navigate(route = "splash_patient/$name")
         }
 
         override fun onFailure(call: Call<DataPatientResponse>, t: Throwable) {
-            Log.e("dataPatient", "onFailure: $t")
+            TODO("Not yet implemented")
         }
 
     })

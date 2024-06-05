@@ -55,6 +55,7 @@ val dateOfDay = "Friday - 23DEC"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Booking(navController: NavController) {
+
     val fontFamily = FontFamily(
         Font(R.font.wendyoneregular, FontWeight.Thin)
     )

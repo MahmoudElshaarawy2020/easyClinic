@@ -13,7 +13,7 @@
     <string name="user_name">User name</string>
     <string name="email">Email</string>
     <string name="phone_number">Phone number</string>
-
+    <string name="file_save_token" translatable="false">Save Token</string>
 
 
 </resources>

@@ -32,11 +32,12 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
+import com.example.clinic.shared.SharedPerferenceHelper
 import views.FunctionsComposable.LocalImage
 
 
 @Composable
-fun patientProfile(navController : NavController) {
+fun patientProfile(navController: NavController) {
     val fontFamily = FontFamily(
         Font(R.font.audiowideregular, FontWeight.Thin)
     )
@@ -63,7 +64,7 @@ fun patientProfile(navController : NavController) {
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = "Name",
+                text = SharedPerferenceHelper.getName() ?: "",
                 color = Color.White,
                 fontSize = 25.sp,
                 fontWeight = FontWeight.Bold
@@ -91,7 +92,7 @@ fun patientProfile(navController : NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp)
-                        .clickable { },
+                        .clickable { navController.navigate("MyProfilePatient") },
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
@@ -136,11 +137,13 @@ fun patientProfile(navController : NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp)
-                        .clickable {navController.navigate(route = "MedHis1"){
-                            popUpTo("patient_profile"){
-                                inclusive = true
+                        .clickable {
+                            navController.navigate(route = "MedHis1") {
+                                popUpTo("patient_profile") {
+                                    inclusive = true
+                                }
                             }
-                        } },
+                        },
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
@@ -227,7 +230,9 @@ fun patientProfile(navController : NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp)
-                        .clickable { },
+                        .clickable {
+
+                        },
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
@@ -239,12 +244,12 @@ fun patientProfile(navController : NavController) {
 
                         )
                         LocalImage(
-                            painter = painterResource(id = R.drawable.alarmicon),
+                            painter = painterResource(id = R.drawable.img_3),
                             imageSize = 45.dp, padding = 0.dp
                         )
                     }
                     Text(
-                        text = "Drugs alarm",
+                        text = "Get My Profile",
                         fontFamily = fontFamily,
                         fontSize = 25.sp,
                         color = Color(0xFF1683E7),
@@ -277,7 +282,7 @@ fun patientProfile(navController : NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp)
-                        .clickable {navController.navigate(route="doctor_my_profile") },
+                        .clickable { navController.navigate(route = "doctor_my_profile") },
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
@@ -321,8 +326,8 @@ fun patientProfile(navController : NavController) {
 
 }
 
-@Preview (showBackground = true)
+@Preview(showBackground = true)
 @Composable
-fun ShowPreview(){
+fun ShowPreview() {
     patientProfile(navController = rememberNavController())
 }

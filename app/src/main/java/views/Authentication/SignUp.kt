@@ -56,10 +56,12 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
 import com.example.clinic.api.ApiManager
-import com.example.clinic.api.models.signup.SignUpResponse
+import com.example.clinic.api.models.signup_doctor.SignUpDoctorResponse
+import com.example.clinic.api.models.signup_patient.SignUpPatientResponse
 import com.example.clinic.models.data.SignUpUser
-import com.example.clinic.models.data.UserDataPatient
 import com.example.clinic.models.data.UserDoctor
+import com.example.clinic.models.data.UserPatient
+import com.example.clinic.shared.SharedPerferenceHelper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -349,19 +351,26 @@ fun RegisterScreenTextFields(navController: NavController) {
         Button(
             onClick = {
                 if (email.isEmpty()) return@Button
-                 signUp(
-                    userName = userName,
-                    phone = phone,
-                    email = email,
-                    password = password1,
-                    confirmPassword = password2,
-                    role = role,
-                )
-
                 if (role == "Doctor") {
-                    navController.navigate("doctor_data")
+                    signUpDoctor(
+                        userName = userName,
+                        phone = phone,
+                        email = email,
+                        password = password1,
+                        confirmPassword = password2,
+                        role = role,
+                        navController = navController
+                    )
                 } else {
-                    navController.navigate("patient_data")
+                    signUpPatient(
+                        userName = userName,
+                        phone = phone,
+                        email = email,
+                        password = password1,
+                        confirmPassword = password2,
+                        role = role,
+                        navController = navController
+                    )
                 }
             },
             modifier = Modifier
@@ -381,33 +390,77 @@ fun RegisterScreenTextFields(navController: NavController) {
     }
 }
 
-fun signUp(
+fun signUpDoctor(
     userName: String,
     phone: String,
     email: String,
     password: String,
     confirmPassword: String,
     role: String,
+    navController: NavController
 ) {
     ApiManager.getService()
-        .signUp(SignUpUser(userName, email, password, confirmPassword, phone, role)).enqueue(
-            object : Callback<SignUpResponse> {
+        .signUpDoctor(SignUpUser(userName, email, password, confirmPassword, phone, role)).enqueue(
+            object : Callback<SignUpDoctorResponse> {
                 override fun onResponse(
-                    call: Call<SignUpResponse>,
-                    response: Response<SignUpResponse>
+                    call: Call<SignUpDoctorResponse>,
+                    response: Response<SignUpDoctorResponse>
                 ) {
-                    if (response.isSuccessful)
-                        Log.e("TAG", "onResponse: $response")
-                    UserDoctor.id = response.body()?.userSignUp?.id
-                    UserDataPatient.id = response.body()?.userSignUp?.id
+                    if (response.isSuccessful && role == "Doctor") {
+                        navController.navigate("signIn_screen")
+                        UserDoctor.id = response.body()?.userSignUpDoctor?.id
+                        SharedPerferenceHelper.saveIdDoctor(response.body()?.userSignUpDoctor?.id!!)
+                        SharedPerferenceHelper.saveRole(response.body()?.userSignUpDoctor?.role!!)
+                        SharedPerferenceHelper.saveName(response.body()!!.userSignUpDoctor!!.userName!!)
+                        Log.e("UserDoctor.id", "Userdoctor ${UserDoctor.id}")
+                    }
                 }
 
-                override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
+                override fun onFailure(call: Call<SignUpDoctorResponse>, t: Throwable) {
                     Log.e("TAG", "onFailure: $t")
                 }
 
             }
         )
+}
+
+fun signUpPatient(
+    userName: String,
+    phone: String,
+    email: String,
+    password: String,
+    confirmPassword: String,
+    role: String,
+    navController: NavController
+) {
+    ApiManager.getService().signUpPatient(
+        SignUpUser(
+            userName = userName,
+            email = email,
+            password = password,
+            cPassword = confirmPassword,
+            phone = phone,
+            role = role
+        )
+    ).enqueue(object : Callback<SignUpPatientResponse> {
+        override fun onResponse(
+            call: Call<SignUpPatientResponse>,
+            response: Response<SignUpPatientResponse>
+        ) {
+            if (response.isSuccessful && role == "Patient")
+                navController.navigate("signIn_screen")
+            UserPatient.id = response.body()?.userSignUpPatient?.id
+            SharedPerferenceHelper.saveIdPatient(response.body()?.userSignUpPatient?.id!!)
+            SharedPerferenceHelper.saveRole(response.body()?.userSignUpPatient?.role!!)
+            SharedPerferenceHelper.saveName(response.body()?.userSignUpPatient?.userName!!)
+            Log.e("UserDoctor.id", "UserPatient ${UserPatient.id}")
+        }
+
+        override fun onFailure(call: Call<SignUpPatientResponse>, t: Throwable) {
+            Log.e("TAG", "onFailure: $t")
+        }
+
+    })
 }
 
 @Preview(showBackground = true, showSystemUi = true)

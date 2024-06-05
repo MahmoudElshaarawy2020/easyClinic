@@ -6,5 +6,6 @@ import com.example.clinic.shared.SharedPerferenceHelper
 class MyAppliction : Application() {
     override fun onCreate() {
         super.onCreate()
+        SharedPerferenceHelper.getInstance(this)
     }
 }

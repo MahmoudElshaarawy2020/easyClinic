@@ -17,6 +17,7 @@ import androidx.compose.material3.ElevatedCard
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -30,6 +31,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.clinic.R
+import com.example.clinic.api.ApiManager
+import com.example.clinic.api.models.patient_doctor_data.DoctorItem
+import com.example.clinic.api.models.patient_doctor_data.PatientDoctorDataResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import views.FunctionsComposable.LocalImage
 
 
@@ -147,6 +154,7 @@ fun MedicalAppointments() {
         }
     }
 }
+
 
 
 @Composable

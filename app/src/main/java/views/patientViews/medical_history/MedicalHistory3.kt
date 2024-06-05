@@ -68,6 +68,7 @@ fun MedicalHistory3(
 
                 .padding(10.dp)
                 .clickable {
+                    navController.navigate("patient_profile")
                 })
                 {
                 LocalImage(

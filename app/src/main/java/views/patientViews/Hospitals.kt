@@ -1,5 +1,6 @@
 package views.patientViews
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -48,17 +49,32 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
+import com.example.clinic.api.ApiManager
+import com.example.clinic.api.models.hospital.GetDataItem
+import com.example.clinic.api.models.hospital.HospitalResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import views.FunctionsComposable.LocalImage
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
 fun Hospitals(navController: NavController) {
+<<<<<<< HEAD
 
     val list = listOf("Tanta", "Kafr Elziat", "Mahla")
 
     var selectedText by remember { mutableStateOf(list[0]) }
 
     var isExpanded by remember { mutableStateOf(false) }
+=======
+    var isexpanded by remember {
+        mutableStateOf(false)
+    }
+    var city by remember {
+        mutableStateOf("")
+    }
+>>>>>>> api-feature
 
     val fontFamily = FontFamily(
         Font(R.font.wendyoneregular, FontWeight.Thin)
@@ -69,7 +85,11 @@ fun Hospitals(navController: NavController) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
+<<<<<<< HEAD
                 .size(80.dp)
+=======
+                .size(100.dp)
+>>>>>>> api-feature
                 .background(color = Color(0xFF2697FF))
         ) {
             Text(
@@ -102,6 +122,7 @@ fun Hospitals(navController: NavController) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
+<<<<<<< HEAD
                 .padding(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -113,6 +134,27 @@ fun Hospitals(navController: NavController) {
                     value = selectedText,
                     label = { Text(text = "choose a city") },
                     onValueChange = { selectedText },
+=======
+        ) {
+            ExposedDropdownMenuBox(
+                expanded = isexpanded,
+                onExpandedChange = { isexpanded = it }) {
+                OutlinedTextField(
+                    value = city,
+                    onValueChange = {},
+                    readOnly = true,
+                    label = {
+                        Text(
+                            text = "Select your city",
+                            color = Color.LightGray
+                        )
+                    },
+                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = isexpanded) },
+                    modifier = Modifier
+                        .menuAnchor()
+                        .background(color = Color(0xFFFFFFFF)),
+                    shape = RoundedCornerShape(15.dp),
+>>>>>>> api-feature
                     colors = TextFieldDefaults.outlinedTextFieldColors(
                         unfocusedBorderColor = colorResource(id = R.color.light_blue),
                         focusedBorderColor = colorResource(id = R.color.light_blue)),
@@ -122,6 +164,7 @@ fun Hospitals(navController: NavController) {
                 )
 
                 ExposedDropdownMenu(
+<<<<<<< HEAD
                     expanded = isExpanded,
                     onDismissRequest = { isExpanded = false }) {
                     list.forEachIndexed { index, text ->
@@ -133,9 +176,35 @@ fun Hospitals(navController: NavController) {
                             },
                         )
                     }
+=======
+                    expanded = isexpanded,
+                    onDismissRequest = { isexpanded = false }) {
+                    DropdownMenuItem(
+                        text = { Text(text = "Tanta") },
+                        onClick = {
+                            city = "Tanta"
+                            isexpanded = false
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = { Text(text = "Mahala") },
+                        onClick = {
+                            city = "Mahala"
+                            isexpanded = false
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = { Text(text = "Kafr elziat") },
+                        onClick = {
+                            city = "Kafr elziat"
+                            isexpanded = false
+                        }
+                    )
+>>>>>>> api-feature
 
                 }
             }
+<<<<<<< HEAD
             if (selectedText == list[0]) {
                 LazyColumn(
                     modifier = Modifier
@@ -643,9 +712,36 @@ fun Hospitals(navController: NavController) {
     }
 }
 
+=======
+        }
+    }
+}
+
+//fun getAllHospital(): List<GetDataItem?>? {
+//    var listOfHospitals = listOf<GetDataItem>()
+//    ApiManager.getService().getAllHospitals().enqueue(object : Callback<HospitalResponse> {
+//        override fun onResponse(
+//            call: Call<HospitalResponse>,
+//            response: Response<HospitalResponse>
+//        ) {
+//            if (response.isSuccessful) {
+//                listOfHospitals = response.body()?.getData as List<GetDataItem>
+//                Log.e("TAG", "onResponse: $listOfHospitals", )
+//            }
+//
+//        }
+//
+//        override fun onFailure(call: Call<HospitalResponse>, t: Throwable) {
+//            Log.e("TAG", "hospitals onFailure: ${t.localizedMessage}")
+//        }
+//
+//    })
+//    return listOfHospitals
+//}
+>>>>>>> api-feature
 
 @Composable
 @Preview(showBackground = true)
-fun HosPreview(){
+fun HosPreview() {
     Hospitals(navController = rememberNavController())
 }

@@ -18,6 +18,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -40,7 +41,9 @@ import com.example.clinic.api.models.doctor_data.DoctorDataResponse
 import views.FunctionsComposable.LocalImage
 import androidx.compose.material3.Text as Text
 import com.example.clinic.models.data.DataDoctor
+import com.example.clinic.models.data.DoctorToken
 import com.example.clinic.models.data.UserDoctor
+import com.example.clinic.shared.SharedPerferenceHelper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -255,15 +258,16 @@ fun DoctorData(navController: NavController) {
             onClick = {
                 enterDataDoctor(
                     name = name,
-                    age = age,
+                    age = age.toInt(),
                     specialties = specialization,
                     qualifications = qualifications,
                     adress = clincaddress,
                     price = price,
                     section = section,
-                    gender = gender
+                    gender = gender,
+                    navController = navController
                 )
-                navController.navigate(route = "splash_doctor/$name")
+
             },
             modifier = Modifier
                 .padding(start = 250.dp, end = 5.dp, top = 8.dp)
@@ -289,17 +293,18 @@ fun DoctorData(navController: NavController) {
 
 fun enterDataDoctor(
     name: String,
-    age: String,
+    age: Int,
     specialties: String,
     qualifications: String,
     adress: String,
     price: String,
     section: String,
-    gender: String
+    gender: String,
+    navController: NavController
 ) {
     ApiManager.getService().DoctorData(
-        DataDoctor(
-            id = UserDoctor.id,
+        token = "Bearer ${SharedPerferenceHelper.getToken()}", DataDoctor(
+            id = SharedPerferenceHelper.getIdDoctor(),
             name = name,
             age = age,
             specialties = specialties,
@@ -315,11 +320,12 @@ fun enterDataDoctor(
             response: Response<DoctorDataResponse>
         ) {
             if (response.isSuccessful)
-                Log.e("TAG", "onResponse: $response")
+                Log.e("Data Doctor", "Data Doctor ${response.body()}")
+            navController.navigate(route = "splash_doctor/$name")
         }
 
         override fun onFailure(call: Call<DoctorDataResponse>, t: Throwable) {
-
+            Log.e("Data Doctor", "Data Doctor Faluires ${t.localizedMessage}")
 
         }
 
