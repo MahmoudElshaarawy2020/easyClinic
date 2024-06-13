@@ -49,6 +49,7 @@ class SharedPerferenceHelper {
                 apply()
             }
         }
+
         fun getIdPatient(): String? {
             return sharedPreferences!!.getString(Constants.ID_PATIENT, null)
         }
@@ -59,6 +60,7 @@ class SharedPerferenceHelper {
                 apply()
             }
         }
+
         fun getName(): String? {
             return sharedPreferences!!.getString(Constants.NAME, null)
         }
@@ -66,6 +68,28 @@ class SharedPerferenceHelper {
         fun saveName(name: String) {
             with(sharedPreferences!!.edit()) {
                 putString(Constants.NAME, name)
+                apply()
+            }
+        }
+
+        fun getTokenAppointment(): String? {
+            return sharedPreferences!!.getString(Constants.TOKENAPPOINTMENT, null)
+        }
+
+        fun saveTokenAppointment(TokenAppointment: String) {
+            with(sharedPreferences!!.edit()) {
+                putString(Constants.TOKENAPPOINTMENT, TokenAppointment)
+                apply()
+            }
+
+        }
+        fun getIdAppointment(): String? {
+            return sharedPreferences!!.getString(Constants.IDAPPOINTMENT, null)
+        }
+
+        fun saveIdAppointment(IdAppointment: String) {
+            with(sharedPreferences!!.edit()) {
+                putString(Constants.IDAPPOINTMENT, IdAppointment)
                 apply()
             }
         }

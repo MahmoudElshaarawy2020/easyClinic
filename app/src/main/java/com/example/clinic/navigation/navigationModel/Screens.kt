@@ -30,6 +30,7 @@ sealed class Screens(val route : String){
     object MyProfilePatient : Screens("MyProfilePatient")
     object Reservation : Screens("reservation")
     object Booking : Screens("booking")
+    object ChooseTime : Screens("choose_Time")
 
 
 

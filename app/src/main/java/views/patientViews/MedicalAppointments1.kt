@@ -34,7 +34,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
 import com.example.clinic.api.ApiManager
-import com.example.clinic.api.models.patient_doctor_data.DoctorItem
+import com.example.clinic.api.models.patient_doctor_data.DoctorsItem
 import com.example.clinic.api.models.patient_doctor_data.PatientDoctorDataResponse
 import retrofit2.Call
 import retrofit2.Callback

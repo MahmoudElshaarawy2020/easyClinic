@@ -1,4 +1,5 @@
 package views.patientViews
+
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
@@ -46,6 +47,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
+import com.example.clinic.api.models.patient_doctor_data.DoctorsItem
+import com.example.clinic.navigation.navigationModel.Screens
 import com.maxkeppeker.sheets.core.models.base.rememberSheetState
 import com.maxkeppeler.sheets.calendar.CalendarDialog
 import com.maxkeppeler.sheets.calendar.models.CalendarConfig
@@ -53,10 +56,11 @@ import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import views.FunctionsComposable.LocalImage
 
 val dateOfDay = "Friday - 23DEC"
+
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Booking(navController: NavController) {
+fun Booking(doctorsItem: DoctorsItem, navController: NavController) {
 
     val fontFamily = FontFamily(
         Font(R.font.wendyoneregular, FontWeight.Thin)
@@ -66,18 +70,20 @@ fun Booking(navController: NavController) {
 
     CalendarDialog(
         state = calendarState,
-        config=CalendarConfig(
+        config = CalendarConfig(
             monthSelection = true
         ),
-        selection = CalendarSelection.Date {date ->
-            Log.d("SelectedDate","$date")
+        selection = CalendarSelection.Date { date ->
+            Log.d("SelectedDate", "$date")
 
         }
     )
 
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .background(color = Color(0XFFE9FAFF))) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color(0XFFE9FAFF))
+    ) {
 
         Box(
             modifier = Modifier
@@ -111,80 +117,107 @@ fun Booking(navController: NavController) {
                 )
             }
         }
-}
+    }
 
-    Box (modifier = Modifier
-        .fillMaxWidth()
-        .padding(top = 80.dp)
-        .height(250.dp)
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 80.dp)
+            .height(250.dp)
 
-    ){
-        Image(painter = painterResource(id = R.drawable.doctorhamza), contentDescription ="",
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.doctorhamza), contentDescription = "",
             modifier = Modifier
                 .fillMaxSize()
         )
 
     }
 
-    Box (modifier = Modifier
-        .padding(top = 310.dp)
-        .height(500.dp)
-        .fillMaxWidth()
-        .background(
-            color = Color(0XFFE9FAFF),
-            shape = RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp)
-        )
-    ,
-    ){
-        Column (modifier = Modifier .padding(start = 50.dp, top = 85.dp, end = 50.dp)){
-            Row{
-                Icon(imageVector = Icons.Filled.Notifications, contentDescription = "",
-                    tint = colorResource(id = R.color.light_blue))
-                Text(text = "$timeFrom - $timeTo", fontSize = 17.sp,fontWeight = FontWeight.Bold)
+    Box(
+        modifier = Modifier
+            .padding(top = 310.dp)
+            .height(500.dp)
+            .fillMaxWidth()
+            .background(
+                color = Color(0XFFE9FAFF),
+                shape = RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp)
+            ),
+    ) {
+        Column(modifier = Modifier.padding(start = 50.dp, top = 85.dp, end = 50.dp)) {
+//            Row{
+//                Icon(imageVector = Icons.Filled.Notifications, contentDescription = "",
+//                    tint = colorResource(id = R.color.light_blue))
+//                Text(text = "$timeFrom - $timeTo", fontSize = 17.sp,fontWeight = FontWeight.Bold)
+//            }
+            Row(
+                modifier = Modifier
+                    .padding(top = 5.dp, bottom = 5.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Edit, contentDescription = "",
+                    tint = colorResource(id = R.color.light_blue)
+                )
+                Text(
+                    text = "${doctorsItem.price ?: ""}",
+                    fontSize = 17.sp,
+                    fontWeight = FontWeight.Bold
+                )
             }
-            Row(modifier = Modifier
-                .padding(top = 5.dp, bottom = 5.dp)){
-                Icon(imageVector = Icons.Filled.Edit, contentDescription = "",
-                    tint = colorResource(id = R.color.light_blue))
-                Text(text = "Fee: $fee ", fontSize = 17.sp,fontWeight = FontWeight.Bold)
-            }
-            Row{
-                Icon(imageVector = Icons.Filled.LocationOn, contentDescription = "",
-                    tint = colorResource(id = R.color.light_blue))
-                Text(text = address, fontSize = 17.sp,fontWeight = FontWeight.Bold)
-            }
+//            Row{
+//                Icon(imageVector = Icons.Filled.LocationOn, contentDescription = "",
+//                    tint = colorResource(id = R.color.light_blue))
+//                Text(text = address, fontSize = 17.sp,fontWeight = FontWeight.Bold)
+//            }
 
-            Divider(modifier = Modifier.padding(top = 17.dp, bottom = 10.dp),
-                color =colorResource(id = R.color.light_blue) )
+            Divider(
+                modifier = Modifier.padding(top = 17.dp, bottom = 10.dp),
+                color = colorResource(id = R.color.light_blue)
+            )
 
-            Row{
-                Icon(imageVector = Icons.Filled.Call, contentDescription = "",
-                    tint = colorResource(id = R.color.light_blue), modifier = Modifier.size(32.dp))
-                Text(text = "  $doctorPhone", fontSize = 22.sp, fontWeight = FontWeight.Bold)
+            Row {
+                Icon(
+                    imageVector = Icons.Filled.Call, contentDescription = "",
+                    tint = colorResource(id = R.color.light_blue), modifier = Modifier.size(32.dp)
+                )
+                Text(text = doctorsItem.phone ?: "", fontSize = 22.sp, fontWeight = FontWeight.Bold)
             }
 
-            Divider(modifier = Modifier.padding(top = 10.dp, bottom = 10.dp),
-                color =colorResource(id = R.color.light_blue) )
+            Divider(
+                modifier = Modifier.padding(top = 10.dp, bottom = 10.dp),
+                color = colorResource(id = R.color.light_blue)
+            )
 
-            Row{
-                Icon(imageVector = Icons.Filled.Email, contentDescription = "",
-                    tint = colorResource(id = R.color.light_blue), modifier = Modifier.size(32.dp))
-                Text(text = "  $doctorEmail", fontSize = 20.sp, fontWeight = FontWeight.Bold)
-            }
+//            Row {
+//                Icon(
+//                    imageVector = Icons.Filled.Email, contentDescription = "",
+//                    tint = colorResource(id = R.color.light_blue), modifier = Modifier.size(32.dp)
+//                )
+//                Text(text = "  $doctorEmail", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+//            }
 
-            Divider(modifier = Modifier.padding(top = 10.dp, bottom = 10.dp),
-                color =colorResource(id = R.color.light_blue) )
+            Divider(
+                modifier = Modifier.padding(top = 10.dp, bottom = 10.dp),
+                color = colorResource(id = R.color.light_blue)
+            )
 
-            Row(modifier = Modifier .clickable { calendarState.show() }) {
-                Icon(imageVector = Icons.Filled.DateRange, contentDescription = "",
-                    tint = colorResource(id = R.color.light_blue), modifier = Modifier.size(32.dp))
-                Text(text =" $dateOfDay", fontSize = 20.sp,
+            Row(modifier = Modifier.clickable { calendarState.show() }) {
+                Icon(
+                    imageVector = Icons.Filled.DateRange, contentDescription = "",
+                    tint = colorResource(id = R.color.light_blue), modifier = Modifier.size(32.dp)
+                )
+                Text(
+                    text = "Choose Time", fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
-                    textDecoration = TextDecoration.Underline
-                , color = Color.Gray)
+                    textDecoration = TextDecoration.Underline, color = Color.Gray,
+                    modifier = Modifier.clickable {
+                        navController.navigate(Screens.ChooseTime.route)
+                    }
+                )
             }
 
-            Button(onClick = {},
+            Button(
+                onClick = {},
                 modifier = Modifier
                     .padding(start = 30.dp, end = 30.dp, top = 20.dp)
                     .size(height = 50.dp, width = 300.dp),
@@ -198,37 +231,44 @@ fun Booking(navController: NavController) {
                     color = Color.White
                 )
             }
-                
-            }
 
         }
 
-    Box( contentAlignment = Alignment.Center
-        ,modifier = Modifier
+    }
+
+    Box(
+        contentAlignment = Alignment.Center, modifier = Modifier
             .fillMaxWidth()
             .padding(top = 310.dp, start = 50.dp, end = 50.dp)
             .background(
                 color = Color(0xFF2697FF),
                 shape = RoundedCornerShape(25.dp)
 
-            )){
-        Column(verticalArrangement = Arrangement.Center
-        , horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(bottom = 10.dp)) {
+            )
+    ) {
+        Column(
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(bottom = 10.dp)
+        ) {
 
-            Text(text = dName, fontSize = 32.sp,
-                fontWeight = FontWeight.Bold, color = Color.White)
-            Text(text = department, fontSize = 18.sp,
-                fontWeight = FontWeight.Bold, color = Color.Black)
+            Text(
+                text = doctorsItem.userName ?: "AhmedTest", fontSize = 32.sp,
+                fontWeight = FontWeight.Bold, color = Color.White
+            )
+            Text(
+                text = doctorsItem.qualifications ?: "", fontSize = 18.sp,
+                fontWeight = FontWeight.Bold, color = Color.Black
+            )
         }
 
     }
 
-    }
+}
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    @Composable
-    @Preview(showBackground = true)
-    fun BookingPreview(){
-        Booking(navController = rememberNavController())
-    }
+@RequiresApi(Build.VERSION_CODES.O)
+@Composable
+@Preview(showBackground = true)
+fun BookingPreview() {
+    Booking(DoctorsItem(), navController = rememberNavController())
+}

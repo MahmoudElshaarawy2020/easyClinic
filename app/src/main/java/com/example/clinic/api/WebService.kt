@@ -1,6 +1,7 @@
 package com.example.clinic.api
 
 import com.example.clinic.api.models.doctor_data.DoctorDataResponse
+import com.example.clinic.api.models.getappintment.getAppointmentResponse
 import com.example.clinic.api.models.medical_history.MedicalHistoryResponse
 import com.example.clinic.api.models.patient_data.DataPatientResponse
 import com.example.clinic.api.models.patient_doctor_data.PatientDoctorDataResponse
@@ -89,4 +90,10 @@ interface WebService {
         @Header("authorization") token: String = "",
         @Body medicalHistoryData: MedicalHistoryData
     ): Call<MedicalHistoryResponse>
+
+    @GET("/appointment/get/{id}")
+    fun getAppointment(
+        @Path("id") doctorId: String?,
+        @Header("authorization") token: String = ""
+    ):Call<getAppointmentResponse>
 }

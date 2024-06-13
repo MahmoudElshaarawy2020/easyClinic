@@ -7,4 +7,6 @@ object Constants {
     const val ID_DOCTOR = "id_doctor"
     const val ID_PATIENT = "id_patient"
     const val NAME = "name"
+    const val TOKENAPPOINTMENT = "TokenAppointment"
+    const val IDAPPOINTMENT = "IdAppointment"
 }

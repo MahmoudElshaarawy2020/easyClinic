@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class PatientDoctorDataResponse(
 
-	@field:SerializedName("doctor")
-	val doctor: List<DoctorItem?>? = null,
+	@field:SerializedName("doctors")
+	val doctors: List<DoctorsItem?>? = null,
 
 	@field:SerializedName("message")
 	val message: String? = null

@@ -7,7 +7,7 @@ data class DataDoctor(
     val specialties: String? = "",
     val qualifications: String? = "",
     val adress: String? = "",
-    val price: String? = "",
+    val price: String? = "0",
     val section: String? = "",
     val gender: String? = "",
 
