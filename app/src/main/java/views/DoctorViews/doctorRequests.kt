@@ -43,7 +43,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
 import com.example.clinic.api.ApiManager
-import com.example.clinic.api.models.patinets_requests.RequestItem
+import com.example.clinic.api.models.patinets_requests.AppointmentsItem
 import com.example.clinic.api.models.patinets_requests.PatientsRequestsResponse
 import com.example.clinic.shared.SharedPerferenceHelper
 import retrofit2.Call
@@ -53,7 +53,7 @@ import retrofit2.Response
 @Composable
 fun Requests(navController: NavController) {
     var listOfRequests = remember {
-        mutableStateListOf<RequestItem>()
+        mutableStateListOf<AppointmentsItem>()
     }
     val outputFormat = SimpleDateFormat("dd MMM yyyy hh:mm a")
     val isoFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
@@ -90,9 +90,9 @@ fun Requests(navController: NavController) {
 
         LazyColumn {
             items(listOfRequests.size) {
-                listOfRequests.forEachIndexed { index, requestItem ->
-                    var date = isoFormat.parse(requestItem.appointmentDateTime)
-                    var dateCreate = isoFormat.parse(requestItem.createdAt)
+                listOfRequests.forEachIndexed { index, AppointmentsItem ->
+                    var date = isoFormat.parse(AppointmentsItem.appointmentDateTime)
+                    var dateCreate = isoFormat.parse(AppointmentsItem.createdAt)
                     ElevatedCard(
                         elevation = CardDefaults.cardElevation(
                             defaultElevation = 20.dp
@@ -134,7 +134,7 @@ fun Requests(navController: NavController) {
                                 )
                                 Text(
                                     modifier = Modifier.padding(start = 30.dp, bottom = 5.dp),
-                                    text = "ID : ${requestItem.id}",
+                                    text = "ID : ${AppointmentsItem.id}",
                                     fontSize = 16.sp,
                                 )
                                 Text(
@@ -144,7 +144,6 @@ fun Requests(navController: NavController) {
                                     color = Color.Gray,
                                 )
                                 Row {
-
                                     Button(
                                         onClick = { /*TODO*/ },
                                         modifier = Modifier.padding(
@@ -190,7 +189,7 @@ fun Requests(navController: NavController) {
     }
     LaunchedEffect(key1 = Unit) {
         ApiManager.getService().getAllRequestsPatients(
-            userId = SharedPerferenceHelper.getIdDoctor(),
+            userId = SharedPerferenceHelper.getIdDoctor()!!,
             token = "Bearer ${SharedPerferenceHelper.getToken()}"
         ).enqueue(object : Callback<PatientsRequestsResponse> {
             override fun onResponse(
@@ -199,7 +198,7 @@ fun Requests(navController: NavController) {
             ) {
                 if (response.isSuccessful)
                     listOfRequests.addAll(
-                        response.body()?.appointments!!.filterNotNull().toMutableList()
+                        response.body()?.appointments?.filterNotNull()!!.toMutableList()
                     )
             }
 

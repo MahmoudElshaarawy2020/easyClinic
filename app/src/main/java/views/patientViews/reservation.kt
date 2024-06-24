@@ -175,6 +175,11 @@ fun reservation(navController: NavController, function: (DoctorsItem) -> Unit) {
                                 SharedPerferenceHelper.saveIdAppointment(
                                     listOfDoctors[index].id ?: ""
                                 )
+                                SharedPerferenceHelper.saveDoctorName(listOfDoctors[index].name!!)
+                                SharedPerferenceHelper.saveDoctorPhone(listOfDoctors[index].phone!!)
+                                SharedPerferenceHelper.saveDoctorPrice(listOfDoctors[index].price!!)
+                                SharedPerferenceHelper.saveDoctorAddress(listOfDoctors[index].address!!)
+                                SharedPerferenceHelper.saveDoctorExperience(listOfDoctors[index].experience!!)
                             }
                     ) {
 

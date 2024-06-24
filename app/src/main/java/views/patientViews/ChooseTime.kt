@@ -5,7 +5,9 @@ import android.icu.util.TimeZone
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -26,12 +28,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.clinic.R
 import com.example.clinic.api.ApiManager
 import com.example.clinic.api.models.getappintment.AppointmentsItem
 import com.example.clinic.api.models.getappintment.getAppointmentResponse
@@ -39,6 +44,8 @@ import com.example.clinic.shared.SharedPerferenceHelper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import views.FunctionsComposable.LocalImage
+import views.doctorViews.fontFamily
 
 @Composable
 fun ChooseTime(navController: NavController) {
@@ -49,17 +56,43 @@ fun ChooseTime(navController: NavController) {
     val isoFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     isoFormat.timeZone = TimeZone.getTimeZone("UTC")
     Column(modifier = Modifier.fillMaxSize()) {
-        TopAppBar(
-            title = { Text("Pick a time") },
-            backgroundColor = Color(0xFF0480C4),
-            contentColor = Color.White,
-            elevation = 8.dp
-        )
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .size(100.dp)
+                .background(color = Color(0xFF2697FF))
+        ) {
+            Text(
+                text = "Pick a Time",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 70.dp, top = 25.dp),
+
+                color = Color(0xFFFFFFFF),
+                textAlign = TextAlign.Start,
+                fontSize = 26.sp
+            )
+
+
+            Box(modifier = Modifier
+
+                .padding(10.dp)
+                .clickable {
+                    navController.navigate(route = "booking")
+
+                }) {
+                LocalImage(
+                    painter = painterResource(id = R.drawable.whitearrow), imageSize = 60.dp,
+                    padding = 10.dp
+                )
+            }
+        }
 
         LazyColumn(
-            modifier = Modifier
+            modifier = Modifier.background(Color.White)
                 .fillMaxSize()
-                .background(color = Color.LightGray),
+                ,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             items(listOfAppointment.size) {
@@ -75,7 +108,10 @@ fun ChooseTime(navController: NavController) {
                             .padding(top = 60.dp, start = 10.dp)
                             .size(100.dp)
                             .clickable {
-
+                                SharedPerferenceHelper.saveNewIdAppointment(
+                                    listOfAppointment[index].appointmentId ?: ""
+                                )
+                                navController.navigate("booking")
                             }
                     ) {
                         Text(

@@ -123,7 +123,7 @@ fun NavbarPatient(navController: NavController) {
                 composable(Screens.Booking.route) {
                     val doctor =
                         navController.previousBackStackEntry?.savedStateHandle?.get<DoctorsItem>("doctor")
-                            ?: DoctorsItem("", "", "", 0, "", "", 0, "", "", "")
+                            ?: DoctorsItem("","","","","","","","","","","","","","","")
                     Booking(doctorsItem = doctor, navController = navController)
                 }
             }

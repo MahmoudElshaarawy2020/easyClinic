@@ -8,10 +8,18 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
@@ -54,9 +62,13 @@ fun PatientData(navController: NavController) {
     var diseases by remember { mutableStateOf("") }
     var address by remember { mutableStateOf("") }
     var gender by remember { mutableStateOf("") }
+    var iExpanded by remember { mutableStateOf(false) }
+    val scrollState = rememberScrollState()
+
     Column(
         modifier = Modifier
             .background(color = Color.White)
+            .verticalScroll(scrollState)
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -190,28 +202,50 @@ fun PatientData(navController: NavController) {
             )
         )
 
-        OutlinedTextField(
-            modifier = Modifier
-                .padding(start = 13.dp, end = 13.dp, top = 25.dp)
-                .fillMaxWidth(),
-            value = gender, onValueChange = { gender = it },
-            shape = RoundedCornerShape(15.dp),
-            singleLine = true,
-            label = {
-                Text(
-                    text = "gender",
-                    style = TextStyle(
-                        color = Color.LightGray, textAlign = TextAlign.Center
-                    ),
-                    modifier = Modifier.width(300.dp)
-                )
-            },
+        OutlinedButton(
+            onClick = { iExpanded = true },
+        ) {
+            when (gender) {
+                "Male" -> {
+                    Text(
+                        text = "Male",
+                        color = Color.Blue
+                    )
+                }
 
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                unfocusedBorderColor = colorResource(id = R.color.light_blue),
-                focusedBorderColor = colorResource(id = R.color.light_blue)
+                "Female" -> {
+                    Text(
+                        text = "Female",
+                        color = Color.Blue
+                    )
+                }
+
+                else -> {
+                    Text(
+                        text = "Choose Role",
+                        color = Color.Blue
+                    )
+                }
+            }
+            Icon(
+                Icons.Default.ArrowDropDown,
+                contentDescription = "Arrow Down"
             )
-        )
+        }
+        DropdownMenu(expanded = iExpanded, onDismissRequest = { iExpanded = false }) {
+            DropdownMenuItem(text = { Text("Male") },
+                onClick = {
+                    iExpanded = false
+                    gender = "Male"
+
+                })
+            DropdownMenuItem(text = { Text("Female") },
+                onClick = {
+                    iExpanded = false
+                    gender = "Female"
+
+                })
+        }
         Button(
             onClick = {
                 if (name.isEmpty()) return@Button
@@ -267,8 +301,11 @@ fun patientData(
             call: Call<DataPatientResponse>,
             response: Response<DataPatientResponse>
         ) {
-            if (response.isSuccessful)
+            if (response.isSuccessful){
                 navController.navigate(route = "splash_patient/$name")
+                SharedPerferenceHelper.saveName(name)
+            }
+
         }
 
         override fun onFailure(call: Call<DataPatientResponse>, t: Throwable) {

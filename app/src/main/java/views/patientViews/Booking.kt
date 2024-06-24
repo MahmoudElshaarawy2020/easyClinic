@@ -1,7 +1,9 @@
 package views.patientViews
 
+import android.content.Context
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -47,13 +49,21 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
+import com.example.clinic.api.ApiManager
+import com.example.clinic.api.models.createappoint.CreateAppointmentResponse
 import com.example.clinic.api.models.patient_doctor_data.DoctorsItem
+import com.example.clinic.models.data.CreateAppointment
 import com.example.clinic.navigation.navigationModel.Screens
+import com.example.clinic.shared.SharedPerferenceHelper
 import com.maxkeppeker.sheets.core.models.base.rememberSheetState
 import com.maxkeppeler.sheets.calendar.CalendarDialog
 import com.maxkeppeler.sheets.calendar.models.CalendarConfig
 import com.maxkeppeler.sheets.calendar.models.CalendarSelection
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import views.FunctionsComposable.LocalImage
+import kotlin.math.log
 
 val dateOfDay = "Friday - 23DEC"
 
@@ -61,10 +71,15 @@ val dateOfDay = "Friday - 23DEC"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Booking(doctorsItem: DoctorsItem, navController: NavController) {
-
     val fontFamily = FontFamily(
         Font(R.font.wendyoneregular, FontWeight.Thin)
     )
+
+//    SharedPerferenceHelper.saveDoctorName(doctorsItem.name!!)
+//    SharedPerferenceHelper.saveDoctorPrice(doctorsItem.price!!)
+//    SharedPerferenceHelper.saveDoctorAddress(doctorsItem.address!!)
+//    SharedPerferenceHelper.saveDoctorExperience(doctorsItem.experience!!)
+//    SharedPerferenceHelper.saveDoctorPhone(doctorsItem.phone!!)
 
     val calendarState = rememberSheetState()
 
@@ -159,16 +174,16 @@ fun Booking(doctorsItem: DoctorsItem, navController: NavController) {
                     tint = colorResource(id = R.color.light_blue)
                 )
                 Text(
-                    text = "${doctorsItem.price ?: ""}",
+                    text = "  ${SharedPerferenceHelper.getDoctorPrice()}",
                     fontSize = 17.sp,
                     fontWeight = FontWeight.Bold
                 )
             }
-//            Row{
-//                Icon(imageVector = Icons.Filled.LocationOn, contentDescription = "",
-//                    tint = colorResource(id = R.color.light_blue))
-//                Text(text = address, fontSize = 17.sp,fontWeight = FontWeight.Bold)
-//            }
+            Row{
+                Icon(imageVector = Icons.Filled.LocationOn, contentDescription = "",
+                    tint = colorResource(id = R.color.light_blue))
+                Text(text = "  ${SharedPerferenceHelper.getDoctorAddress()}", fontSize = 17.sp,fontWeight = FontWeight.Bold)
+            }
 
             Divider(
                 modifier = Modifier.padding(top = 17.dp, bottom = 10.dp),
@@ -180,7 +195,7 @@ fun Booking(doctorsItem: DoctorsItem, navController: NavController) {
                     imageVector = Icons.Filled.Call, contentDescription = "",
                     tint = colorResource(id = R.color.light_blue), modifier = Modifier.size(32.dp)
                 )
-                Text(text = doctorsItem.phone ?: "", fontSize = 22.sp, fontWeight = FontWeight.Bold)
+                Text(text =  SharedPerferenceHelper.getDoctorPhone()!!, fontSize = 22.sp, fontWeight = FontWeight.Bold)
             }
 
             Divider(
@@ -188,13 +203,13 @@ fun Booking(doctorsItem: DoctorsItem, navController: NavController) {
                 color = colorResource(id = R.color.light_blue)
             )
 
-//            Row {
-//                Icon(
-//                    imageVector = Icons.Filled.Email, contentDescription = "",
-//                    tint = colorResource(id = R.color.light_blue), modifier = Modifier.size(32.dp)
-//                )
-//                Text(text = "  $doctorEmail", fontSize = 20.sp, fontWeight = FontWeight.Bold)
-//            }
+            Row {
+                Icon(
+                    imageVector = Icons.Filled.Email, contentDescription = "",
+                    tint = colorResource(id = R.color.light_blue), modifier = Modifier.size(32.dp)
+                )
+                Text(text = "  ${ SharedPerferenceHelper.getDoctorExperience()}", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+            }
 
             Divider(
                 modifier = Modifier.padding(top = 10.dp, bottom = 10.dp),
@@ -217,7 +232,9 @@ fun Booking(doctorsItem: DoctorsItem, navController: NavController) {
             }
 
             Button(
-                onClick = {},
+                onClick = {
+                    createAppointment(navController = navController)
+                },
                 modifier = Modifier
                     .padding(start = 30.dp, end = 30.dp, top = 20.dp)
                     .size(height = 50.dp, width = 300.dp),
@@ -253,19 +270,39 @@ fun Booking(doctorsItem: DoctorsItem, navController: NavController) {
         ) {
 
             Text(
-                text = doctorsItem.userName ?: "AhmedTest", fontSize = 32.sp,
+                text = SharedPerferenceHelper.getDoctorName()!!, fontSize = 32.sp,
                 fontWeight = FontWeight.Bold, color = Color.White
             )
-            Text(
-                text = doctorsItem.qualifications ?: "", fontSize = 18.sp,
-                fontWeight = FontWeight.Bold, color = Color.Black
-            )
+//            Text(
+//                text = doctorsItem.qualifications ?: "", fontSize = 18.sp,
+//                fontWeight = FontWeight.Bold, color = Color.Black
+//            )
         }
 
     }
 
 }
 
+fun createAppointment(navController: NavController){
+    ApiManager.getService().createAppointment(
+        token = "Bearer ${SharedPerferenceHelper.getToken()}",
+        CreateAppointment(patientId = SharedPerferenceHelper.getIdPatient(), appointmentId = SharedPerferenceHelper.getNewIdAppointment())
+    ).enqueue(object :Callback<CreateAppointmentResponse>{
+        override fun onResponse(
+            call: Call<CreateAppointmentResponse>,
+            response: Response<CreateAppointmentResponse>
+        ) {
+            if(response.isSuccessful)
+                navController.navigate("patient_home")
+            Log.e("TAG", "onResponse: ${response}", )
+        }
+
+        override fun onFailure(call: Call<CreateAppointmentResponse>, t: Throwable) {
+            Log.e("TAG", "onFailure: $t", )
+        }
+
+    })
+}
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 @Preview(showBackground = true)
