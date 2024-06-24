@@ -15,4 +15,5 @@ object Constants {
     const val DOCTOR_PRICE = "doctorPrice"
     const val DOCTOR_EXPERIENCE = "doctorExperience"
     const val DOCTOR_PHONE = "doctorExperience"
+    const val REQUEST_APPOINTMENT_ID = "request_appointmentId"
 }

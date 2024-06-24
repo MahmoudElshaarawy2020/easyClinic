@@ -43,8 +43,11 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
 import com.example.clinic.api.ApiManager
+import com.example.clinic.api.models.cancelrequest.CancelRequestResponse
+import com.example.clinic.api.models.confirm_request.ConfirmRequestResponse
 import com.example.clinic.api.models.patinets_requests.AppointmentsItem
 import com.example.clinic.api.models.patinets_requests.PatientsRequestsResponse
+import com.example.clinic.models.data.Appointment
 import com.example.clinic.shared.SharedPerferenceHelper
 import retrofit2.Call
 import retrofit2.Callback
@@ -89,8 +92,8 @@ fun Requests(navController: NavController) {
         }
 
         LazyColumn {
-            items(listOfRequests.size) {
-                listOfRequests.forEachIndexed { index, AppointmentsItem ->
+            items(listOfRequests.size) { index,  ->
+                val AppointmentsItem = listOfRequests[index]
                     var date = isoFormat.parse(AppointmentsItem.appointmentDateTime)
                     var dateCreate = isoFormat.parse(AppointmentsItem.createdAt)
                     ElevatedCard(
@@ -145,7 +148,12 @@ fun Requests(navController: NavController) {
                                 )
                                 Row {
                                     Button(
-                                        onClick = { /*TODO*/ },
+                                        onClick = {SharedPerferenceHelper.saveRequestId(AppointmentsItem.id!!)
+                                            if (SharedPerferenceHelper.getRequestId()!!.isNotEmpty()){
+                                                cancelRequest()
+                                                listOfRequests.remove(AppointmentsItem)
+                                            }
+                                                                                      },
                                         modifier = Modifier.padding(
                                             start = 20.dp,
                                             end = 5.dp,
@@ -161,7 +169,11 @@ fun Requests(navController: NavController) {
 
                                     }
                                     Button(
-                                        onClick = { /*TODO*/ },
+                                        onClick = { if (SharedPerferenceHelper.getRequestId()!!.isNotEmpty()){
+                                            confirmRequest()
+                                            listOfRequests.remove(AppointmentsItem)
+                                        }
+                                                  },
                                         modifier = Modifier.padding(
                                             start = 5.dp,
                                             end = 10.dp,
@@ -181,8 +193,6 @@ fun Requests(navController: NavController) {
                                 }
                             }
                         }
-
-                    }
                 }
             }
         }
@@ -208,10 +218,49 @@ fun Requests(navController: NavController) {
 
         })
     }
-
-
 }
 
+fun confirmRequest(){
+    ApiManager.getService().ConfirmRequest(
+        token = "Bearer ${SharedPerferenceHelper.getToken()}",
+        Appointment(appointmentId = SharedPerferenceHelper.getRequestId())
+    ).enqueue(object : Callback<ConfirmRequestResponse>{
+        override fun onResponse(
+            call: Call<ConfirmRequestResponse>,
+            response: Response<ConfirmRequestResponse>
+        ) {
+            if (response.isSuccessful){
+                Log.e("TAG", "onResponse: ${response}", )
+            }
+        }
+
+        override fun onFailure(call: Call<ConfirmRequestResponse>, t: Throwable) {
+            Log.e("TAG", "onFailure: $t", )
+        }
+
+    })
+}
+
+fun cancelRequest(){
+    ApiManager.getService().CancelRequest(
+        token ="Bearer ${SharedPerferenceHelper.getToken()}",
+        Appointment(appointmentId = SharedPerferenceHelper.getRequestId())
+    ).enqueue(object : Callback<CancelRequestResponse>{
+        override fun onResponse(
+            call: Call<CancelRequestResponse>,
+            response: Response<CancelRequestResponse>
+        ) {
+            if (response.isSuccessful){
+                Log.e("TAG", "onResponse: $response", )
+            }
+        }
+
+        override fun onFailure(call: Call<CancelRequestResponse>, t: Throwable) {
+            Log.e("TAG", "onFailure: $t", )
+        }
+
+    })
+}
 
 @Preview(showBackground = true)
 @Composable

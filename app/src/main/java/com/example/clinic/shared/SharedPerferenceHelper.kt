@@ -152,6 +152,15 @@ class SharedPerferenceHelper {
                 apply()
             }
         }
+        fun getRequestId():String?{
+            return sharedPreferences!!.getString(Constants.REQUEST_APPOINTMENT_ID, null)
+        }
+        fun saveRequestId(requestId: String) {
+            with(sharedPreferences!!.edit()) {
+                putString(Constants.REQUEST_APPOINTMENT_ID, requestId)
+                apply()
+            }
+        }
     }
 }
 
