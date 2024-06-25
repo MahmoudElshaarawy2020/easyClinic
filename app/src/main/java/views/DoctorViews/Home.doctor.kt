@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -105,34 +106,35 @@ fun Homedoctor(navController : NavController) {
 
 
         var text by remember { mutableStateOf(TextFieldValue("")) }
-        OutlinedTextField(
-            modifier = Modifier
-                .padding(start = 50.dp, end = 50.dp, top = 0.dp)
-                .fillMaxWidth()
-                .background(color = Color.White),
-            value = text,
-            onValueChange = { text = it },
-            shape = RoundedCornerShape(50.dp),
-            label = {
-                Text(
-                    text = "Search Name or ID", color = Color.LightGray
-                )
-            },
-            leadingIcon = {
-                Icon(
-                    imageVector = Icons.Filled.Search, contentDescription = "Email icon",
-                )
-
-            },
-            singleLine = true,
-            textStyle = TextStyle(
-                color = Color.Black, fontWeight = FontWeight.Bold
-            ),
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                unfocusedBorderColor = colorResource(id = R.color.light_blue),
-                focusedBorderColor = colorResource(id = R.color.light_blue)
-            )
-        )
+//        OutlinedTextField(
+//            modifier = Modifier
+//                .padding(start = 50.dp, end = 50.dp, top = 0.dp)
+//                .fillMaxWidth()
+//                .background(color = Color.White),
+//            value = text,
+//            onValueChange = { text = it },
+//            shape = RoundedCornerShape(50.dp),
+//            label = {
+//                Text(
+//                    text = "Search Name or ID", color = Color.LightGray
+//                )
+//            },
+//            leadingIcon = {
+//                Icon(
+//                    imageVector = Icons.Filled.Search, contentDescription = "Email icon",
+//                )
+//
+//            },
+//            singleLine = true,
+//            textStyle = TextStyle(
+//                color = Color.Black, fontWeight = FontWeight.Bold
+//            ),
+//            colors = TextFieldDefaults.outlinedTextFieldColors(
+//                unfocusedBorderColor = colorResource(id = R.color.light_blue),
+//                focusedBorderColor = colorResource(id = R.color.light_blue)
+//            )
+//        )
+        Spacer(modifier = Modifier.padding(15.dp))
         LazyColumn{
             items(listofConfirmedPatients.size) { index->
                 ElevatedCard(
