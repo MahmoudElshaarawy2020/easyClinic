@@ -144,6 +144,6 @@ fun Hospitals(navController: NavController){
 
 @Composable
 @Preview(showBackground = true)
-fun HosPreview(){
+fun HosPreviewrrr(){
     Hospitals(navController = rememberNavController())
 }
