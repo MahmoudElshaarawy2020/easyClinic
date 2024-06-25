@@ -49,6 +49,7 @@ class SharedPerferenceHelper {
                 apply()
             }
         }
+
         fun getIdPatient(): String? {
             return sharedPreferences!!.getString(Constants.ID_PATIENT, null)
         }
@@ -59,6 +60,7 @@ class SharedPerferenceHelper {
                 apply()
             }
         }
+
         fun getName(): String? {
             return sharedPreferences!!.getString(Constants.NAME, null)
         }
@@ -66,6 +68,96 @@ class SharedPerferenceHelper {
         fun saveName(name: String) {
             with(sharedPreferences!!.edit()) {
                 putString(Constants.NAME, name)
+                apply()
+            }
+        }
+
+        fun getTokenAppointment(): String? {
+            return sharedPreferences!!.getString(Constants.TOKEN_APPOINTMENT, null)
+        }
+
+        fun saveTokenAppointment(TokenAppointment: String) {
+            with(sharedPreferences!!.edit()) {
+                putString(Constants.TOKEN_APPOINTMENT, TokenAppointment)
+                apply()
+            }
+
+        }
+        fun getIdAppointment(): String? {
+            return sharedPreferences!!.getString(Constants.ID_APPOINTMENT, null)
+        }
+
+        fun saveIdAppointment(IdAppointment: String) {
+            with(sharedPreferences!!.edit()) {
+                putString(Constants.ID_APPOINTMENT, IdAppointment)
+                apply()
+            }
+        }
+        fun getNewIdAppointment(): String? {
+            return sharedPreferences!!.getString(Constants.NEW_ID_APPOINTMENT, null)
+        }
+
+        fun saveNewIdAppointment(NewIdAppointment: String) {
+            with(sharedPreferences!!.edit()) {
+                putString(Constants.NEW_ID_APPOINTMENT, NewIdAppointment)
+                apply()
+            }
+        }
+        fun getDoctorName(): String? {
+            return sharedPreferences!!.getString(Constants.DOCTOR_NAME, null)
+        }
+
+        fun saveDoctorName(doctorName: String) {
+            with(sharedPreferences!!.edit()) {
+                putString(Constants.DOCTOR_NAME, doctorName)
+                apply()
+            }
+        }
+        fun getDoctorPrice(): String? {
+            return sharedPreferences!!.getString(Constants.DOCTOR_PRICE, null)
+        }
+
+        fun saveDoctorPrice(doctorPrice: String) {
+            with(sharedPreferences!!.edit()) {
+                putString(Constants.DOCTOR_PRICE, doctorPrice)
+                apply()
+            }
+        }
+        fun getDoctorAddress(): String? {
+            return sharedPreferences!!.getString(Constants.DOCTOR_ADDRESS, null)
+        }
+
+        fun saveDoctorAddress(doctorAddress: String) {
+            with(sharedPreferences!!.edit()) {
+                putString(Constants.DOCTOR_ADDRESS, doctorAddress)
+                apply()
+            }
+        }
+        fun getDoctorExperience(): String? {
+            return sharedPreferences!!.getString(Constants.DOCTOR_EXPERIENCE, null)
+        }
+
+        fun saveDoctorExperience(doctorExperience: String) {
+            with(sharedPreferences!!.edit()) {
+                putString(Constants.DOCTOR_EXPERIENCE, doctorExperience)
+                apply()
+            }
+        }
+        fun getDoctorPhone():String?{
+            return sharedPreferences!!.getString(Constants.DOCTOR_PHONE, null)
+        }
+        fun saveDoctorPhone(doctorPhone: String) {
+            with(sharedPreferences!!.edit()) {
+                putString(Constants.DOCTOR_PHONE, doctorPhone)
+                apply()
+            }
+        }
+        fun getRequestId():String?{
+            return sharedPreferences!!.getString(Constants.REQUEST_APPOINTMENT_ID, null)
+        }
+        fun saveRequestId(requestId: String) {
+            with(sharedPreferences!!.edit()) {
+                putString(Constants.REQUEST_APPOINTMENT_ID, requestId)
                 apply()
             }
         }

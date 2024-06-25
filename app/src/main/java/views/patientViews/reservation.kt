@@ -1,6 +1,5 @@
 package views.patientViews
 
-import android.os.Bundle
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -27,9 +26,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -54,10 +51,9 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
 import com.example.clinic.api.ApiManager
-import com.example.clinic.api.models.patient_doctor_data.DoctorItem
+import com.example.clinic.api.models.patient_doctor_data.DoctorsItem
 import com.example.clinic.api.models.patient_doctor_data.PatientDoctorDataResponse
-import com.example.clinic.api.models.test.TestClass
-import com.example.clinic.models.data.DoctorToken
+import com.example.clinic.navigation.navigationModel.Screens
 import com.example.clinic.shared.SharedPerferenceHelper
 import retrofit2.Call
 import retrofit2.Callback
@@ -76,9 +72,9 @@ val address = "Tanta,stad st."
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun reservation(navController: NavController) {
+fun reservation(navController: NavController, function: (DoctorsItem) -> Unit) {
     var listOfDoctors = remember {
-        mutableStateListOf<DoctorItem>()
+        mutableStateListOf<DoctorsItem>()
     }
 
     val fontFamily = FontFamily(
@@ -160,11 +156,8 @@ fun reservation(navController: NavController) {
             )
         )
         LazyColumn {
-            items(listOfDoctors.size) {
+            items(listOfDoctors.size) { position ->
                 listOfDoctors.forEachIndexed { index, doctorItem ->
-                    val preloaded = Bundle().apply {
-                        putInt("price", doctorItem.price!!)
-                    }
                     ElevatedCard(
                         elevation = CardDefaults.cardElevation(
                             defaultElevation = 20.dp
@@ -175,12 +168,19 @@ fun reservation(navController: NavController) {
                             .padding(top = 60.dp, start = 10.dp)
                             .size(100.dp)
                             .clickable {
-                                preloaded
-                                navController.navigate(route = "booking")
-                                Log.e("TAG", "reservation: ${preloaded}")
+                                function(listOfDoctors[index])
+                                SharedPerferenceHelper.saveTokenAppointment(
+                                    listOfDoctors[index].token ?: ""
+                                )
+                                SharedPerferenceHelper.saveIdAppointment(
+                                    listOfDoctors[index].id ?: ""
+                                )
+                                SharedPerferenceHelper.saveDoctorName(listOfDoctors[index].name!!)
+                                SharedPerferenceHelper.saveDoctorPhone(listOfDoctors[index].phone!!)
+                                SharedPerferenceHelper.saveDoctorPrice(listOfDoctors[index].price!!)
+                                SharedPerferenceHelper.saveDoctorAddress(listOfDoctors[index].address!!)
+                                SharedPerferenceHelper.saveDoctorExperience(listOfDoctors[index].experience!!)
                             }
-
-
                     ) {
 
                         Row() {
@@ -245,9 +245,9 @@ fun reservation(navController: NavController) {
                     call: Call<PatientDoctorDataResponse>,
                     response: Response<PatientDoctorDataResponse>
                 ) {
-                    if (response.body()!!.doctor!!.isNotEmpty()) {
+                    if (response.body()!!.doctors!!.isNotEmpty()) {
                         listOfDoctors.addAll(
-                            response.body()!!.doctor!!.filterNotNull().toMutableList()
+                            response.body()!!.doctors!!.filterNotNull().toMutableList()
                         )
                     }
                     Log.e("TAG", "reservation: ${listOfDoctors.size}")
@@ -268,6 +268,8 @@ fun reservation(navController: NavController) {
 @Composable
 @Preview(showBackground = true)
 fun reservationPreview() {
-    reservation(navController = rememberNavController())
+    reservation(navController = rememberNavController(), function = {
+
+    })
 }
 

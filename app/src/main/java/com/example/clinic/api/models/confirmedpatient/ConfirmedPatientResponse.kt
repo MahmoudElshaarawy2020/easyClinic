@@ -1,11 +1,11 @@
-package com.example.clinic.api.models.patinets_requests
+package com.example.clinic.api.models.confirmedpatient
 
 import com.google.gson.annotations.SerializedName
 
-data class PatientsRequestsResponse(
+data class ConfirmedPatientResponse(
 
 	@field:SerializedName("appointments")
-	val appointments: List<AppointmentsItem?>? = null,
+	val appointments: List<Appointment?>? = null,
 
 	@field:SerializedName("message")
 	val message: String? = null

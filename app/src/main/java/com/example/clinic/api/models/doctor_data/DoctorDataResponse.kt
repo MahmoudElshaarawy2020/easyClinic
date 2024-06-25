@@ -4,11 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class DoctorDataResponse(
 
+	@field:SerializedName("updatedDoctor")
+	val updatedDoctor: UpdatedDoctor? = null,
+
 	@field:SerializedName("message")
-	val message: String? = null,
-
-	@field:SerializedName("DoctorData")
-	val doctorData: DoctorData? = null
+	val message: String? = null
 )
-
-

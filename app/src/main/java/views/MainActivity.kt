@@ -10,9 +10,11 @@ import androidx.compose.runtime.Composable
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.clinic.navigation.navigationModel.Navigation
-import com.example.clinic.ViewModel.MainViewModel
 
+import com.example.clinic.navigation.navigationModel.Navigation
+
+import com.example.clinic.ViewModel.MainViewModel
+import com.example.clinic.shared.SharedPerferenceHelper
 
 
 class MainActivity : ComponentActivity() {

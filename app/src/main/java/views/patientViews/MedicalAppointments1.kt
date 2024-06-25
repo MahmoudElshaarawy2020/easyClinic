@@ -30,9 +30,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
 import com.example.clinic.api.ApiManager
-import com.example.clinic.api.models.patient_doctor_data.DoctorItem
+import com.example.clinic.api.models.patient_doctor_data.DoctorsItem
 import com.example.clinic.api.models.patient_doctor_data.PatientDoctorDataResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -41,7 +43,7 @@ import views.FunctionsComposable.LocalImage
 
 
 @Composable
-fun MedicalAppointments() {
+fun MedicalAppointments(navController: NavController) {
 
     val fontFamily = FontFamily(
         Font(R.font.wendyoneregular, FontWeight.Thin)
@@ -112,7 +114,7 @@ fun MedicalAppointments() {
                                 .clip(RoundedCornerShape(10.dp)),
                         )
                         Column(
-                            modifier = Modifier.weight(2f)
+                            modifier = Modifier.weight(2f).clickable { navController.navigate(route = "MedAppointment2") }
                         ) {
                             Text(
                                 modifier = Modifier.padding(top = 7.dp, start = 10.dp),
@@ -160,5 +162,5 @@ fun MedicalAppointments() {
 @Composable
 @Preview(showBackground = true)
 fun MedicalAppointmentsPreview() {
-    MedicalAppointments()
+    MedicalAppointments(navController = rememberNavController())
 }

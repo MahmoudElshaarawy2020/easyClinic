@@ -37,7 +37,7 @@ import views.FunctionsComposable.LocalImage
 
 
 @Composable
-fun patientProfile(navController: NavController) {
+fun patientProfile(navController : NavController) {
     val fontFamily = FontFamily(
         Font(R.font.audiowideregular, FontWeight.Thin)
     )
@@ -92,7 +92,7 @@ fun patientProfile(navController: NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp)
-                        .clickable { navController.navigate("MyProfilePatient") },
+                        .clickable { navController.navigate("my_profile_patient")},
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
@@ -137,13 +137,11 @@ fun patientProfile(navController: NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp)
-                        .clickable {
-                            navController.navigate(route = "MedHis1") {
-                                popUpTo("patient_profile") {
-                                    inclusive = true
-                                }
+                        .clickable {navController.navigate(route = "MedHis1"){
+                            popUpTo("patient_profile"){
+                                inclusive = true
                             }
-                        },
+                        } },
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
@@ -230,9 +228,7 @@ fun patientProfile(navController: NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp)
-                        .clickable {
-
-                        },
+                        .clickable { },
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
@@ -244,12 +240,12 @@ fun patientProfile(navController: NavController) {
 
                         )
                         LocalImage(
-                            painter = painterResource(id = R.drawable.img_3),
+                            painter = painterResource(id = R.drawable.alarmicon),
                             imageSize = 45.dp, padding = 0.dp
                         )
                     }
                     Text(
-                        text = "Get My Profile",
+                        text = "Drugs alarm",
                         fontFamily = fontFamily,
                         fontSize = 25.sp,
                         color = Color(0xFF1683E7),
@@ -282,7 +278,7 @@ fun patientProfile(navController: NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp)
-                        .clickable { navController.navigate(route = "doctor_my_profile") },
+                        .clickable {navController.navigate(route="doctor_my_profile") },
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
@@ -326,8 +322,8 @@ fun patientProfile(navController: NavController) {
 
 }
 
-@Preview(showBackground = true)
+@Preview (showBackground = true)
 @Composable
-fun ShowPreview() {
+fun ShowPreview(){
     patientProfile(navController = rememberNavController())
 }

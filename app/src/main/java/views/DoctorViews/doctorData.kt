@@ -10,13 +10,22 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -59,9 +68,13 @@ fun DoctorData(navController: NavController) {
     var price by remember { mutableStateOf("") }
     var section by remember { mutableStateOf("") }
     var gender by remember { mutableStateOf("") }
+    var experience by remember { mutableStateOf("") }
+    var iExpanded by remember { mutableStateOf(false) }
+    val scrollState = rememberScrollState()
     Column(
         modifier = Modifier
             .background(color = Color.White)
+            .verticalScroll(scrollState)
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -196,7 +209,7 @@ fun DoctorData(navController: NavController) {
             modifier = Modifier
                 .padding(start = 13.dp, end = 13.dp, top = 10.dp)
                 .fillMaxWidth(),
-            value = price, onValueChange = { price = it },
+            value = price, onValueChange = {  price = it },
             shape = RoundedCornerShape(15.dp),
             singleLine = true,
             label = {
@@ -234,16 +247,16 @@ fun DoctorData(navController: NavController) {
                 focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
-
         OutlinedTextField(
             modifier = Modifier
-                .padding(start = 13.dp, end = 13.dp, top = 10.dp)
+                .padding(start = 13.dp, end = 13.dp, top = 5.dp)
                 .fillMaxWidth(),
-            value = gender, onValueChange = { gender = it },
-            shape = RoundedCornerShape(topStart = 13.dp, bottomEnd = 13.dp),
+            value = experience, onValueChange = { experience = it },
+            shape = RoundedCornerShape(15.dp),
+            singleLine = true,
             label = {
                 Text(
-                    text = "Gender",
+                    text = "Experience",
                     style = TextStyle(
                         color = Color.LightGray, textAlign = TextAlign.Center
                     )
@@ -254,17 +267,62 @@ fun DoctorData(navController: NavController) {
                 focusedBorderColor = colorResource(id = R.color.light_blue)
             )
         )
+        OutlinedButton(
+            onClick = { iExpanded = true },
+        ) {
+            when (gender) {
+                "Male" -> {
+                    Text(
+                        text = "Male",
+                        color = Color.Blue
+                    )
+                }
+
+                "Female" -> {
+                    Text(
+                        text = "Female",
+                        color = Color.Blue
+                    )
+                }
+
+                else -> {
+                    Text(
+                        text = "Choose Role",
+                        color = Color.Blue
+                    )
+                }
+            }
+            Icon(
+                Icons.Default.ArrowDropDown,
+                contentDescription = "Arrow Down"
+            )
+        }
+        DropdownMenu(expanded = iExpanded, onDismissRequest = { iExpanded = false }) {
+            DropdownMenuItem(text = { Text("Male") },
+                onClick = {
+                    iExpanded = false
+                    gender = "Male"
+
+                })
+            DropdownMenuItem(text = { Text("Female") },
+                onClick = {
+                    iExpanded = false
+                    gender = "Female"
+
+                })
+        }
         Button(
             onClick = {
                 enterDataDoctor(
                     name = name,
-                    age = age.toInt(),
+                    age = age,
                     specialties = specialization,
                     qualifications = qualifications,
-                    adress = clincaddress,
+                    address = clincaddress,
                     price = price,
                     section = section,
                     gender = gender,
+                    experience = experience,
                     navController = navController
                 )
 
@@ -293,35 +351,39 @@ fun DoctorData(navController: NavController) {
 
 fun enterDataDoctor(
     name: String,
-    age: Int,
+    age: String,
     specialties: String,
     qualifications: String,
-    adress: String,
+    address: String,
     price: String,
     section: String,
+    experience: String,
     gender: String,
     navController: NavController
 ) {
     ApiManager.getService().DoctorData(
         token = "Bearer ${SharedPerferenceHelper.getToken()}", DataDoctor(
-            id = SharedPerferenceHelper.getIdDoctor(),
-            name = name,
-            age = age,
-            specialties = specialties,
-            qualifications = qualifications,
-            adress = adress,
-            price = price,
-            section = section,
-            gender = gender
+            doctorId = SharedPerferenceHelper.getIdDoctor(),
+            Name = name,
+            Age = age,
+            Specialties = specialties,
+            Qualifications = qualifications,
+            Address = address,
+            Price = price,
+            gender = gender,
+            Section = section,
+            Experience = experience
         )
     ).enqueue(object : Callback<DoctorDataResponse> {
         override fun onResponse(
             call: Call<DoctorDataResponse>,
             response: Response<DoctorDataResponse>
         ) {
-            if (response.isSuccessful)
-                Log.e("Data Doctor", "Data Doctor ${response.body()}")
-            navController.navigate(route = "splash_doctor/$name")
+            if (response.isSuccessful){Log.e("Data Doctor", "Data Doctor ${response.body()}")
+                navController.navigate(route = "splash_doctor/$name")
+                SharedPerferenceHelper.saveName(name)
+            }
+
         }
 
         override fun onFailure(call: Call<DoctorDataResponse>, t: Throwable) {

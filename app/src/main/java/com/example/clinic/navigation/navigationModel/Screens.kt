@@ -13,10 +13,15 @@ sealed class Screens(val route : String){
     object HospitalsRoute : Screens("hospitals")
     object MH1Route : Screens("MedHis1")
     object MH2Route : Screens("MedHis2")
+    object MA1Route : Screens("MedAppointment1")
+    object MA2Route : Screens("MedAppointment2")
+    object MyProfilePatientRoute : Screens("my_profile_patient")
     object LabsRoute : Screens("labs")
     object DietRoute : Screens("diet")
     object Nav : Screens("nav")
     object NavDr : Screens("navDr")
+
+
 
 
     //bottom navigation views
@@ -25,6 +30,7 @@ sealed class Screens(val route : String){
     object MyProfilePatient : Screens("MyProfilePatient")
     object Reservation : Screens("reservation")
     object Booking : Screens("booking")
+    object ChooseTime : Screens("choose_Time")
 
 
 
