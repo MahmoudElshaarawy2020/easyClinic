@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class ConfirmedPatientResponse(
 
 	@field:SerializedName("appointments")
-	val appointments: List<AppointmentsItem?>? = null,
+	val appointments: List<Appointment?>? = null,
 
 	@field:SerializedName("message")
 	val message: String? = null

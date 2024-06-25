@@ -2,6 +2,7 @@ package com.example.clinic.api
 
 import com.example.clinic.api.models.cancelrequest.CancelRequestResponse
 import com.example.clinic.api.models.confirm_request.ConfirmRequestResponse
+import com.example.clinic.api.models.confirmedpatient.ConfirmedPatientResponse
 import com.example.clinic.api.models.createappoint.CreateAppointmentResponse
 import com.example.clinic.api.models.doctor_data.DoctorDataResponse
 import com.example.clinic.api.models.getappintment.getAppointmentResponse
@@ -14,6 +15,7 @@ import com.example.clinic.api.models.signup_doctor.SignUpDoctorResponse
 import com.example.clinic.api.models.signup_patient.SignUpPatientResponse
 import com.example.clinic.api.models.update_doctor_profile.UpdateDoctorProfileResponse
 import com.example.clinic.api.models.updatepatientdata.UpdatePatientDataResponse
+import com.example.clinic.models.PatientsConfirmed
 import com.example.clinic.models.data.Appointment
 import com.example.clinic.models.data.CreateAppointment
 import com.example.clinic.models.data.DataDoctor
@@ -115,4 +117,10 @@ interface WebService {
         @Header("authorization") token: String = "",
         @Body appointment: Appointment
     ):Call<CancelRequestResponse>
+
+    @POST("/doctor/PatientConfirmed")
+    fun patientsConfirmed(
+        @Header("authorization") token: String = "",
+        @Body patientsConfirmed: PatientsConfirmed
+    ):Call<ConfirmedPatientResponse>
 }

@@ -1,5 +1,6 @@
 package views.doctorViews
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -22,7 +23,9 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -44,6 +47,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
+import com.example.clinic.api.ApiManager
+import com.example.clinic.api.models.confirmedpatient.Appointment
+import com.example.clinic.api.models.confirmedpatient.ConfirmedPatientResponse
+import com.example.clinic.models.PatientsConfirmed
+import com.example.clinic.shared.SharedPerferenceHelper
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import views.FunctionsComposable.LocalImage
 
 val patientName: String = "Patient name"
@@ -58,7 +69,9 @@ val fontFamily = FontFamily(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Homedoctor(navController : NavController) {
-0
+    var listofConfirmedPatients = remember {
+        mutableStateListOf<Appointment>()
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -121,7 +134,7 @@ fun Homedoctor(navController : NavController) {
             )
         )
         LazyColumn{
-            items(10) {
+            items(listofConfirmedPatients.size) { index->
                 ElevatedCard(
                     elevation = CardDefaults.cardElevation(
                         defaultElevation = 20.dp
@@ -151,7 +164,7 @@ fun Homedoctor(navController : NavController) {
                         ) {
                             Text(
                                 modifier = Modifier.padding(start = 30.dp, bottom = 15.dp),
-                                text = patientName,
+                                text = listofConfirmedPatients[index].patientId?.name ?: "Test",
                                 fontSize = 20.sp,
                                 fontFamily = fontFamily,
                                 fontWeight = FontWeight.Bold,
@@ -159,12 +172,18 @@ fun Homedoctor(navController : NavController) {
                             )
                             Text(
                                 modifier = Modifier.padding(start = 30.dp, bottom = 5.dp),
-                                text = "ID : $ID",
+                                text = "Age : ${listofConfirmedPatients[index].patientId?.age}",
                                 fontSize = 16.sp,
                             )
                             Text(
                                 modifier = Modifier.padding(start = 30.dp),
-                                text = date,
+                                text = "Address :${listofConfirmedPatients[index].patientId?.adress}",
+                                fontSize = 14.sp,
+                                color = Color.Gray,
+                            )
+                            Text(
+                                modifier = Modifier.padding(start = 30.dp),
+                                text = "Gender : ${listofConfirmedPatients[index].patientId?.gender}",
                                 fontSize = 14.sp,
                                 color = Color.Gray,
                             )
@@ -178,49 +197,72 @@ fun Homedoctor(navController : NavController) {
         }
 
 
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 5.dp, end = 5.dp, bottom = 10.dp, top = 50.dp)
-                .background(
-                    color = Color(0xFF39A0FF),
-                    shape = RoundedCornerShape(25.dp),
-
-                    )
-        ) {
-            Box(
-                modifier = Modifier.weight(1f), contentAlignment = Alignment.Center
-            ) {
-                LocalImage(
-                    painter = painterResource(id = R.drawable.img_12),
-                    imageSize = 70.dp,
-                    padding = 0.dp,
-                )
-            }
-            Box(
-                modifier = Modifier.weight(1f), contentAlignment = Alignment.Center
-            ) {
-                LocalImage(
-                    painter = painterResource(id = R.drawable.homeicon),
-                    imageSize = 90.dp,
-                    padding = 0.dp
-                )
-            }
-            Box(
-                modifier = Modifier.weight(1f), contentAlignment = Alignment.Center
-            ) {
-                LocalImage(
-                    painter = painterResource(id = R.drawable.proficon),
-                    imageSize = 55.dp,
-                    padding = 0.dp
-                )
-            }
-
-        }
+//        Row(
+//            verticalAlignment = Alignment.CenterVertically,
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .padding(start = 5.dp, end = 5.dp, bottom = 10.dp, top = 50.dp)
+//                .background(
+//                    color = Color(0xFF39A0FF),
+//                    shape = RoundedCornerShape(25.dp),
+//
+//                    )
+//        ) {
+//            Box(
+//                modifier = Modifier.weight(1f), contentAlignment = Alignment.Center
+//            ) {
+//                LocalImage(
+//                    painter = painterResource(id = R.drawable.img_12),
+//                    imageSize = 70.dp,
+//                    padding = 0.dp,
+//                )
+//            }
+//            Box(
+//                modifier = Modifier.weight(1f), contentAlignment = Alignment.Center
+//            ) {
+//                LocalImage(
+//                    painter = painterResource(id = R.drawable.homeicon),
+//                    imageSize = 90.dp,
+//                    padding = 0.dp
+//                )
+//            }
+//            Box(
+//                modifier = Modifier.weight(1f), contentAlignment = Alignment.Center
+//            ) {
+//                LocalImage(
+//                    painter = painterResource(id = R.drawable.proficon),
+//                    imageSize = 55.dp,
+//                    padding = 0.dp
+//                )
+//            }
+//
+//        }
 
     }
+    LaunchedEffect(key1 = Unit) {
+        ApiManager.getService().patientsConfirmed(
+            token = "Bearer ${SharedPerferenceHelper.getToken()}",
+            PatientsConfirmed(doctorId = SharedPerferenceHelper.getIdDoctor())
+        ).enqueue(object : Callback<ConfirmedPatientResponse>{
+            override fun onResponse(
+                call: Call<ConfirmedPatientResponse>,
+                response: Response<ConfirmedPatientResponse>
+            ) {
+                if(response.isSuccessful){
+                    listofConfirmedPatients.addAll(
+                        response.body()!!.appointments!!.filterNotNull().toMutableList()
+                    )
+                    Log.e("TAG", "onResponse: $response", )
+                }
+            }
 
+            override fun onFailure(call: Call<ConfirmedPatientResponse>, t: Throwable) {
+                Log.e("TAG", "onFailure: $t", )
+            }
+
+        })
+        
+    }
 }
 @Composable
 @Preview(showBackground = true)

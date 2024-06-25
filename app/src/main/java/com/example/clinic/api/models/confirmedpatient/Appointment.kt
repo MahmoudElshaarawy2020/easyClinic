@@ -2,7 +2,7 @@ package com.example.clinic.api.models.confirmedpatient
 
 import com.google.gson.annotations.SerializedName
 
-data class AppointmentsItem(
+data class Appointment(
 
 	@field:SerializedName("doctorId")
 	val doctorId: String? = null,
