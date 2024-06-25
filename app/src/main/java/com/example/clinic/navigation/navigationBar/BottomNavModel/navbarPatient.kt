@@ -39,12 +39,19 @@ import views.patientViews.ChooseTime
 import views.patientViews.Diet
 import views.patientViews.Hospitals
 import views.patientViews.Labs
+
 import views.patientViews.MedicalAppointments
 import views.patientViews.MedicalAppointments2
+
+import views.patientViews.medical_history.MedicalHistory1
+import views.patientViews.medical_history.MedicalHistory2
+import views.patientViews.medical_history.MedicalHistory3
+
 import views.patientViews.MedicalHistory1
 import views.patientViews.MedicalHistory2
 import views.patientViews.MedicalHistory3
 import views.patientViews.MyProfilePatient
+
 import views.patientViews.PatientHome
 import views.patientViews.patientProfile
 import views.patientViews.reservation

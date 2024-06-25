@@ -1,4 +1,4 @@
-package views.patientViews
+package views.patientViews.medical_history
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -12,6 +12,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,11 +32,25 @@ import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
 import views.FunctionsComposable.LocalImage
 
+
+data class MedicalHistoryEntry(
+    val id: Int,
+    var checkName: String,
+    var checkDate: String,
+    var checkDoctor: String
+)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MedicalHistory1(navController: NavController){
     val fontFamily = FontFamily(
         Font(R.font.wendyoneregular, FontWeight.Thin))
+
+    var medicalItem by remember { mutableStateOf(listOf<MedicalHistoryEntry>()) }
+    var showDialog by remember { mutableStateOf(false) }
+    var checkName by remember { mutableStateOf("") }
+    var checkDate by remember { mutableStateOf("") }
+    var checkdoctor by remember { mutableStateOf("") }
+
 
     Column(modifier = Modifier
         .fillMaxSize()

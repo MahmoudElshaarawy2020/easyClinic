@@ -1,9 +1,13 @@
+<<<<<<< HEAD:app/src/main/java/views/patientViews/medical_history/MedicalHistory2.kt
+package views.patientViews.medical_history
+=======
 package views.patientViews
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.icu.text.SimpleDateFormat
 import android.icu.util.TimeZone
+>>>>>>> api-feature:app/src/main/java/views/patientViews/MedicalHistory2.kt
 import android.net.Uri
 import android.provider.OpenableColumns
 import android.util.Log
