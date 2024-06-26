@@ -37,6 +37,7 @@ import com.example.clinic.navigation.navigationModel.Screens
 import views.patientViews.Booking
 import views.patientViews.ChooseTime
 import views.patientViews.Diet
+import views.patientViews.Hospitals
 import views.patientViews.Labs
 
 import views.patientViews.MedicalAppointments
@@ -49,6 +50,8 @@ import views.patientViews.medical_history.MedicalHistory3
 import views.patientViews.MyProfilePatient
 
 import views.patientViews.PatientHome
+import views.patientViews.doctorPrediction.AiResults
+import views.patientViews.doctorPrediction.EnterAiData
 import views.patientViews.patientProfile
 import views.patientViews.reservation
 
@@ -142,9 +145,9 @@ fun NavbarPatient(navController: NavController) {
             composable(route = Screens.ChooseTime.route) {
                 ChooseTime( navController = navController)
             }
-//            composable(route = Screens.HospitalsRoute.route) {
-//                Hospitals(navController = navController)
-//            }
+            composable(route = Screens.HospitalsRoute.route) {
+                Hospitals(navController = navController)
+            }
             composable(route = Screens.LabsRoute.route) {
                 Labs(navController = navController)
             }
@@ -198,6 +201,12 @@ fun NavbarPatient(navController: NavController) {
             }
             composable(route = Screens.MA2Route.route) {
                 MedicalAppointments2(navController = navController)
+            }
+            composable(route = Screens.enterRatio.route) {
+                EnterAiData(navController = navController)
+            }
+            composable(route = Screens.AiResults.route) {
+                AiResults(navController = navController)
             }
 
 

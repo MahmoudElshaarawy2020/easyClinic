@@ -1,6 +1,9 @@
 package com.example.clinic.api.models.confirmedpatient
 
+import android.os.Parcelable
+import com.example.clinic.api.models.medical_history.MedicalHistory
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class PatientId(
 
@@ -23,7 +26,7 @@ data class PatientId(
 	val id: String? = null,
 
 	@field:SerializedName("medicalHistory")
-	val medicalHistory: List<Any?>? = null,
+	val medicalHistory: List<MedicalHistory?>? = null,
 
 	@field:SerializedName("age")
 	val age: String? = null

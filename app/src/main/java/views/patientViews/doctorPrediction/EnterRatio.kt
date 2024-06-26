@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material3.Button
@@ -25,16 +26,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EnterAiData(){
+fun EnterAiData(navController: NavController){
     var Height by remember { mutableStateOf("") }
     var Weight by remember { mutableStateOf("") }
     var BMI by remember { mutableStateOf("") }
@@ -66,7 +70,7 @@ fun EnterAiData(){
                 )
                 OutlinedTextField(
                     value = Height,
-                    onValueChange = {Height = it},
+                    onValueChange = {Height = it},keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                     modifier = Modifier
                         .padding(6.dp)
                         .fillMaxWidth()
@@ -85,7 +89,7 @@ fun EnterAiData(){
                 )
                 OutlinedTextField(
                     value = Weight,
-                    onValueChange = {Weight = it},
+                    onValueChange = {Weight = it},keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                     modifier = Modifier
                         .padding(6.dp)
                         .fillMaxWidth()
@@ -118,6 +122,7 @@ fun EnterAiData(){
                 OutlinedTextField(
                     value = BMI,
                     onValueChange = {BMI = it},
+                    keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                     modifier = Modifier
                         .padding(6.dp)
                         .fillMaxWidth()
@@ -137,6 +142,7 @@ fun EnterAiData(){
                 OutlinedTextField(
                     value = Alcohol,
                     onValueChange = {Alcohol = it},
+                    keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                     modifier = Modifier
                         .padding(6.dp)
                         .fillMaxWidth()
@@ -157,6 +163,7 @@ fun EnterAiData(){
                 OutlinedTextField(
                     value = Fruit,
                     onValueChange = {Fruit = it},
+                    keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                     modifier = Modifier
                         .padding(6.dp)
                         .fillMaxWidth()
@@ -176,6 +183,7 @@ fun EnterAiData(){
                 OutlinedTextField(
                     value = Vegetables,
                     onValueChange = {Vegetables = it},
+                    keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                     modifier = Modifier
                         .padding(6.dp)
                         .fillMaxWidth()
@@ -195,6 +203,7 @@ fun EnterAiData(){
                 OutlinedTextField(
                     value = Fried,
                     onValueChange = {Fried = it},
+                    keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                     modifier = Modifier
                         .padding(6.dp)
                         .fillMaxWidth()
@@ -212,7 +221,9 @@ fun EnterAiData(){
             .padding(start = 30.dp, end = 30.dp, top = 20.dp)
             .size(height = 40.dp, width = 300.dp),
             colors = ButtonDefaults.buttonColors(colorResource(id = R.color.light_blue)),
-            onClick = {}){
+            onClick = {
+                navController.navigate("ai_results")
+            }){
             Text(
                 text = "Predict",
                 fontSize = 17.sp,
@@ -227,5 +238,5 @@ fun EnterAiData(){
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun AiPreview(){
-    EnterAiData()
+    EnterAiData(rememberNavController())
 }

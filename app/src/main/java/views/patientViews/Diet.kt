@@ -87,30 +87,30 @@ fun Diet(navController: NavController){
                 .background(color = Color.DarkGray)
         ){
 
-                OutlinedTextField(value = diet,
-                    onValueChange = {diet = it},
-                    label = {
-                        Text(
-                            text = "Search for diet",
-                            color = Color.LightGray
-                        )
-                    },
-                    singleLine = true,
-                    leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Filled.Search, contentDescription = "Search"
-                        )
-
-                    },
-                    modifier = Modifier
-                        .background(color = Color(0xFFFFFFFF)),
-                    shape = RoundedCornerShape(15.dp),
-                    colors = TextFieldDefaults.outlinedTextFieldColors(
-                        containerColor = Color.White,
-                        unfocusedBorderColor = colorResource(id = R.color.light_blue),
-                        focusedBorderColor = colorResource(id = R.color.light_blue)
+            OutlinedTextField(value = diet,
+                onValueChange = {diet = it},
+                label = {
+                    Text(
+                        text = "Search for diet",
+                        color = Color.LightGray
                     )
+                },
+                singleLine = true,
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Filled.Search, contentDescription = "Search"
+                    )
+
+                },
+                modifier = Modifier
+                    .background(color = Color(0xFFFFFFFF)),
+                shape = RoundedCornerShape(15.dp),
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    containerColor = Color.White,
+                    unfocusedBorderColor = colorResource(id = R.color.light_blue),
+                    focusedBorderColor = colorResource(id = R.color.light_blue)
                 )
+            )
 
         }
     }

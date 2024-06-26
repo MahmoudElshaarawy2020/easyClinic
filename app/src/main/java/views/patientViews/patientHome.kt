@@ -26,27 +26,35 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
+import com.example.clinic.navigation.navigationModel.Screens
 import views.FunctionsComposable.LocalImage
 
 @Composable
-fun PatientHome (navController: NavController){
+fun PatientHome(navController: NavController) {
     val fontFamily = FontFamily(
         Font(R.font.audiowideregular, FontWeight.Thin)
     )
 
 
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .background(color = Color(0xFFE9FAFF)),
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color(0xFFE9FAFF)),
         horizontalAlignment = Alignment.CenterHorizontally
     )
     {
-        Box (contentAlignment = Alignment.Center,
-            modifier = Modifier.fillMaxWidth()
-            ){
-            LocalImage(painter = painterResource(id = R.drawable.robot),
-                imageSize =310.dp,
-                padding = 0.dp)
+        Box(contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable {
+                    navController.navigate(Screens.enterRatio.route)
+                }
+        ) {
+            LocalImage(
+                painter = painterResource(id = R.drawable.robot),
+                imageSize = 310.dp,
+                padding = 0.dp
+            )
             Text(
                 "Doctor\n" +
                         "suggestion",
@@ -59,20 +67,27 @@ fun PatientHome (navController: NavController){
                 textAlign = TextAlign.Center
             )
         }
-        Row (modifier = Modifier.fillMaxWidth(),
+        Row(
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
-            )
+        )
         {
             Box(contentAlignment = Alignment.BottomCenter,
                 modifier = Modifier
                     .padding(6.dp)
-                    .clickable { navController.navigate(route = "hospitals"){
-                        popUpTo("patient_home"){
-                            inclusive = true
+                    .clickable {
+                        navController.navigate(route = "hospitals") {
+                            popUpTo("patient_home") {
+                                inclusive = true
+                            }
                         }
-                    } })
+                    })
             {
-                LocalImage(painter = painterResource(id = R.drawable.img_6), imageSize =190.dp , padding = 0.dp )
+                LocalImage(
+                    painter = painterResource(id = R.drawable.img_6),
+                    imageSize = 190.dp,
+                    padding = 0.dp
+                )
                 Text(
                     "Hospitals",
                     fontSize = 20.sp,
@@ -85,14 +100,18 @@ fun PatientHome (navController: NavController){
                 modifier = Modifier
                     .padding(6.dp)
                     .clickable {
-                        navController.navigate(route = "labs"){
-                            popUpTo("patient_home"){
+                        navController.navigate(route = "labs") {
+                            popUpTo("patient_home") {
                                 inclusive = true
                             }
                         }
                     })
             {
-                LocalImage(painter = painterResource(id = R.drawable.img_7), imageSize =190.dp , padding = 0.dp )
+                LocalImage(
+                    painter = painterResource(id = R.drawable.img_7),
+                    imageSize = 190.dp,
+                    padding = 0.dp
+                )
                 Text(
                     "Labs",
                     fontSize = 20.sp,
@@ -103,21 +122,27 @@ fun PatientHome (navController: NavController){
             }
 
         }
-        Row (modifier = Modifier.fillMaxWidth(),
+        Row(
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
-        ){
+        ) {
 
             Box(contentAlignment = Alignment.BottomCenter,
                 modifier = Modifier
                     .padding(6.dp)
-                    .clickable { navController.navigate(route = "diet"){
-                        popUpTo("patient_home"){
-                            inclusive = true
+                    .clickable {
+                        navController.navigate(route = "diet") {
+                            popUpTo("patient_home") {
+                                inclusive = true
+                            }
                         }
                     }
-                    }
             ) {
-                LocalImage(painter = painterResource(id = R.drawable.img_9), imageSize =190.dp , padding = 0.dp )
+                LocalImage(
+                    painter = painterResource(id = R.drawable.img_9),
+                    imageSize = 190.dp,
+                    padding = 0.dp
+                )
                 Text(
                     "Diet",
                     fontSize = 20.sp,
@@ -129,17 +154,14 @@ fun PatientHome (navController: NavController){
         }
 
 
-
-        }
-
-
     }
 
 
+}
 
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewPatientHome(){
+fun PreviewPatientHome() {
     PatientHome(navController = rememberNavController())
 }

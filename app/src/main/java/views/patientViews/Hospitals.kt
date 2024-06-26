@@ -4,11 +4,23 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Icon
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material3.Divider
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -38,26 +50,30 @@ import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
 import views.FunctionsComposable.LocalImage
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
-fun Hospitals(navController: NavController){
-    var isexpanded by remember {
-        mutableStateOf(false)
-    }
-    var city by remember {
-        mutableStateOf("")
-    }
+fun Hospitals(navController: NavController) {
+    val list = listOf("Tanta", "Kafr Elziat", "Mahla")
+
+    var selectedText by remember { mutableStateOf(list[0]) }
+
+    var isExpanded by remember { mutableStateOf(false) }
+
 
     val fontFamily = FontFamily(
-        Font(R.font.wendyoneregular, FontWeight.Thin))
+        Font(R.font.wendyoneregular, FontWeight.Thin)
+    )
 
-    Column(modifier = Modifier.fillMaxSize()){
+    Column(modifier = Modifier.fillMaxSize()) {
 
-        Box(modifier = Modifier
-            .fillMaxWidth()
-            .size(100.dp)
-            .background(color = Color(0xFF2697FF))){
-            Text(text = "Hospitals",
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .size(80.dp)
+                .background(color = Color(0xFF2697FF))
+        ) {
+            Text(
+                text = "Hospitals",
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 70.dp, top = 25.dp),
@@ -65,7 +81,8 @@ fun Hospitals(navController: NavController){
                 color = Color(0xFFFFFFFF),
                 textAlign = TextAlign.Start,
                 fontFamily = fontFamily,
-                fontSize = 26.sp)
+                fontSize = 26.sp
+            )
 
 
             Box(modifier = Modifier
@@ -81,69 +98,331 @@ fun Hospitals(navController: NavController){
                 )
             }
         }
-        Box(
-            contentAlignment = Alignment.TopCenter,
+        Column(
             modifier = Modifier
                 .fillMaxSize()
-        ){
-            ExposedDropdownMenuBox(
-                expanded = isexpanded,
-                onExpandedChange = {isexpanded = it}) {
-                OutlinedTextField(value = city,
-                    onValueChange = {},
-                    readOnly = true,
-                    label = {
-                        Text(
-                            text = "Select your city",
-                            color = Color.LightGray
-                        )
+                .padding(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            androidx.compose.material.ExposedDropdownMenuBox(
+                expanded = isExpanded,
+                onExpandedChange = { isExpanded = !isExpanded }
+            ) {
+                OutlinedTextField(
+                    value = selectedText,
+                    label = { Text(text = "choose a city") },
+                    onValueChange = { selectedText },
+                    trailingIcon = {
+                        androidx.compose.material.ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpanded)
                     },
-                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = isexpanded)},
-                    modifier = Modifier
-                        .menuAnchor()
-                        .background(color = Color(0xFFFFFFFF)),
-                    shape = RoundedCornerShape(15.dp),
-                    colors = TextFieldDefaults.outlinedTextFieldColors(
-                        unfocusedBorderColor = colorResource(id = R.color.light_blue),
-                        focusedBorderColor = colorResource(id = R.color.light_blue)
-                    )
                 )
+
                 ExposedDropdownMenu(
-                    expanded = isexpanded,
-                    onDismissRequest = { isexpanded = false }) {
-                    DropdownMenuItem(
-                        text = {Text(text = "Tanta") },
-                        onClick = {
-                            city = "Tanta"
-                            isexpanded = false
-                        }
-                    )
-                    DropdownMenuItem(
-                        text = {Text(text = "Mahala") },
-                        onClick = {
-                            city = "Mahala"
-                            isexpanded = false
-                        }
-                    )
-                    DropdownMenuItem(
-                        text = {Text(text = "Kafr elziat") },
-                        onClick = {
-                            city = "Kafr elziat"
-                            isexpanded = false
-                        }
-                    )
+                    expanded = isExpanded,
+                    onDismissRequest = { isExpanded = false }) {
+                    list.forEachIndexed { index, text ->
+                        DropdownMenuItem(
+                            text = { Text(text = text) },
+                            onClick = {
+                                selectedText = list[index]
+                                isExpanded = false
+                            },
+                        )
+                    }
 
                 }
-
             }
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(8.dp)
+                    .background(color = Color(0xFFE9FAFF)),
+                contentPadding = PaddingValues(20.dp)
+            ) {
+                item {
+                    Column(modifier = Modifier.padding(bottom = 8.dp)) {
+
+                        Text(
+                            text = "Dar El Shefaa Hospital",
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 24.sp,
+                            color = Color(0xFF4040FF)
+                        )
+
+                        Text(
+                            "Private hospital",
+                            modifier = Modifier.padding(8.dp),
+                            fontSize = 18.sp,
+                            color = Color.Gray,
+                        )
+
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.padding(8.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.DateRange,
+                                contentDescription = "Hospital icon",
+                                modifier = Modifier.size(24.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                                "Open 24 hours",
+                                modifier = Modifier.padding(8.dp),
+                            )
+                        }
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.padding(8.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.Call,
+                                contentDescription = "Hospital icon",
+                                modifier = Modifier.size(24.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                                "0403274001",
+                                fontSize = 18.sp,
+                            )
+
+                        }
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.padding(8.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.LocationOn,
+                                contentDescription = "Hospital icon",
+                                modifier = Modifier.size(24.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+
+
+                            Text(
+                                "Dar El Shefaa Hospital, Moawya St, Tanta Qism 2",
+                                fontSize = 16.sp,
+                            )
+                        }
+                        Divider(modifier = Modifier.padding(8.dp))
+                    }
+                }
+
+                item {
+                    Column(modifier = Modifier.padding(bottom = 8.dp)) {
+
+                        Text(
+                            text = "Delta International Hospital",
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 24.sp,
+                            color = Color(0xFF4040FF)
+                        )
+
+                        Text(
+                            "Private hospital",
+                            modifier = Modifier.padding(8.dp),
+                            fontSize = 18.sp,
+                            color = Color.Gray,
+                        )
+
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.padding(8.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.DateRange,
+                                contentDescription = "Hospital icon",
+                                modifier = Modifier.size(24.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                                "Open 24 hours",
+                                modifier = Modifier.padding(8.dp),
+                            )
+                        }
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.padding(8.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.Call,
+                                contentDescription = "Hospital icon",
+                                modifier = Modifier.size(24.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                                "0403315001",
+                                fontSize = 18.sp,
+                            )
+
+                        }
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.padding(8.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.LocationOn,
+                                contentDescription = "Hospital icon",
+                                modifier = Modifier.size(24.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+
+
+                            Text(
+                                "Dawaran Kotshnr, Tanta Qism 2, Second Tanta",
+                                fontSize = 16.sp,
+                            )
+                        }
+                        Divider(modifier = Modifier.padding(8.dp))
+                    }
+                }
+
+                item {
+                    Column(modifier = Modifier.padding(bottom = 8.dp)) {
+
+                        Text(
+                            text = "American Hospital",
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 24.sp,
+                            color = Color(0xFF4040FF)
+                        )
+
+                        Text(
+                            "Private hospital",
+                            modifier = Modifier.padding(8.dp),
+                            fontSize = 18.sp,
+                            color = Color.Gray,
+                        )
+
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.padding(8.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.DateRange,
+                                contentDescription = "Hospital icon",
+                                modifier = Modifier.size(24.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                                "Open 24 hours",
+                                modifier = Modifier.padding(8.dp),
+                            )
+                        }
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.padding(8.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.Call,
+                                contentDescription = "Hospital icon",
+                                modifier = Modifier.size(24.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                                "0403312692",
+                                fontSize = 18.sp,
+                            )
+
+                        }
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.padding(8.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.LocationOn,
+                                contentDescription = "Hospital icon",
+                                modifier = Modifier.size(24.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+
+
+                            Text(
+                                "Saeed St, Tanta Qism 2",
+                                fontSize = 16.sp,
+                            )
+                        }
+                        Divider(modifier = Modifier.padding(8.dp))
+                    }
+                }
+
+                item {
+                    Column(modifier = Modifier.padding(bottom = 8.dp)) {
+
+                        Text(
+                            text = "Shorouk Hospital",
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 24.sp,
+                            color = Color(0xFF4040FF)
+                        )
+
+                        Text(
+                            "Private hospital",
+                            modifier = Modifier.padding(8.dp),
+                            fontSize = 18.sp,
+                            color = Color.Gray,
+                        )
+
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.padding(8.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.DateRange,
+                                contentDescription = "Hospital icon",
+                                modifier = Modifier.size(24.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                                "Open 24 hours",
+                                modifier = Modifier.padding(8.dp),
+                            )
+                        }
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.padding(8.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.Call,
+                                contentDescription = "Hospital icon",
+                                modifier = Modifier.size(24.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                                "0403271836",
+                                fontSize = 18.sp,
+                            )
+
+                        }
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.padding(8.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.LocationOn,
+                                contentDescription = "Hospital icon",
+                                modifier = Modifier.size(24.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+
+
+                            Text(
+                                " Ali Bek Al Kabir, Tanta Qism 2, Second Tanta",
+                                fontSize = 16.sp,
+                            )
+                        }
+                        Divider(modifier = Modifier.padding(8.dp))
+                    }
+                }
+            }
+
         }
     }
 }
 
 
-
 @Composable
 @Preview(showBackground = true)
-fun HosPreviewrrr(){
+fun HosPreview(){
     Hospitals(navController = rememberNavController())
 }

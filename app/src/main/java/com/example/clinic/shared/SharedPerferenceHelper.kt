@@ -161,6 +161,42 @@ class SharedPerferenceHelper {
                 apply()
             }
         }
+        fun getClickedPatientName():String?{
+            return sharedPreferences!!.getString(Constants.CLICKED_PATIENT_NAME, null)
+        }
+        fun saveClickedPatientName(patientName: String) {
+            with(sharedPreferences!!.edit()) {
+                putString(Constants.CLICKED_PATIENT_NAME, patientName)
+                apply()
+            }
+        }
+        fun getClickedPatientAge():String?{
+            return sharedPreferences!!.getString(Constants.CLICKED_PATIENT_AGE, null)
+        }
+        fun saveClickedPatientAge(patientAge: String) {
+            with(sharedPreferences!!.edit()) {
+                putString(Constants.CLICKED_PATIENT_AGE, patientAge)
+                apply()
+            }
+        }
+        fun getClickedPatientPhone():String?{
+            return sharedPreferences!!.getString(Constants.CLICKED_PATIENT_PHONE, null)
+        }
+        fun saveClickedPatientPhone(patientPhone: String) {
+            with(sharedPreferences!!.edit()) {
+                putString(Constants.CLICKED_PATIENT_PHONE, patientPhone)
+                apply()
+            }
+        }
+        fun getClickedPatientMedicalHis():String?{
+            return sharedPreferences!!.getString(Constants.CLICKED_PATIENT_MEDICAL_HIS, null)
+        }
+        fun saveClickedPatientMedicalHis(patientMedicalHis: String) {
+            with(sharedPreferences!!.edit()) {
+                putString(Constants.CLICKED_PATIENT_MEDICAL_HIS, patientMedicalHis)
+                apply()
+            }
+        }
     }
 }
 

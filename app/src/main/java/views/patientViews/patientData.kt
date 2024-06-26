@@ -222,7 +222,7 @@ fun PatientData(navController: NavController) {
 
                 else -> {
                     Text(
-                        text = "Choose Role",
+                        text = "Choose Your Gender",
                         color = Color.Blue
                     )
                 }

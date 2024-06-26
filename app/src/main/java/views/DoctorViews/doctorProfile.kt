@@ -127,51 +127,51 @@ fun doctorProfile(navController : NavController) {
 
 
                 }
-                Divider(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 20.dp, end = 20.dp),
-                    thickness = 0.8.dp,
-                    color = Color(0xFF486A89)
-                )
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(10.dp)
-                        .clickable {navController.navigate(route="doctor_my_profile") },
-                    verticalAlignment = Alignment.CenterVertically
-
-                ) {
-
-                    LocalImage(
-                        painter = painterResource(id = R.drawable.mhicon1),
-                        imageSize = 70.dp, padding = 0.dp
-
-                    )
-                    Text(
-                        text = "History",
-                        fontFamily = fontFamily,
-                        fontSize = 25.sp,
-                        color = Color(0xFF1683E7),
-                        modifier = Modifier.padding(start = 18.dp)
-
-
-                    )
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        contentAlignment = Alignment.CenterEnd
-                    ) {
-
-                        LocalImage(
-                            painter = painterResource(id = R.drawable.img_4),
-                            imageSize = 40.dp, padding = 0.dp
-
-                        )
-                    }
-
-
-                }
+//                Divider(
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .padding(start = 20.dp, end = 20.dp),
+//                    thickness = 0.8.dp,
+//                    color = Color(0xFF486A89)
+//                )
+//                Row(
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .padding(10.dp)
+//                        .clickable {navController.navigate(route="doctor_my_profile") },
+//                    verticalAlignment = Alignment.CenterVertically
+//
+//                ) {
+//
+//                    LocalImage(
+//                        painter = painterResource(id = R.drawable.mhicon1),
+//                        imageSize = 70.dp, padding = 0.dp
+//
+//                    )
+//                    Text(
+//                        text = "History",
+//                        fontFamily = fontFamily,
+//                        fontSize = 25.sp,
+//                        color = Color(0xFF1683E7),
+//                        modifier = Modifier.padding(start = 18.dp)
+//
+//
+//                    )
+//                    Box(
+//                        modifier = Modifier
+//                            .fillMaxWidth(),
+//                        contentAlignment = Alignment.CenterEnd
+//                    ) {
+//
+//                        LocalImage(
+//                            painter = painterResource(id = R.drawable.img_4),
+//                            imageSize = 40.dp, padding = 0.dp
+//
+//                        )
+//                    }
+//
+//
+//                }
                 Divider(
                     modifier = Modifier
                         .fillMaxWidth()

@@ -20,6 +20,9 @@ sealed class Screens(val route : String){
     object DietRoute : Screens("diet")
     object Nav : Screens("nav")
     object NavDr : Screens("navDr")
+    object patientDetails : Screens("patient_details")
+    object enterRatio : Screens("enter_ratio")
+    object AiResults : Screens("ai_results")
 
 
 
