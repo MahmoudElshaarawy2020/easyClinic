@@ -37,6 +37,7 @@ import com.example.clinic.navigation.navigationModel.Screens
 import views.patientViews.Booking
 import views.patientViews.ChooseTime
 import views.patientViews.Diet
+import views.patientViews.Hospitals
 import views.patientViews.Labs
 
 import views.patientViews.MedicalAppointments
@@ -142,9 +143,9 @@ fun NavbarPatient(navController: NavController) {
             composable(route = Screens.ChooseTime.route) {
                 ChooseTime( navController = navController)
             }
-//            composable(route = Screens.HospitalsRoute.route) {
-//                Hospitals(navController = navController)
-//            }
+            composable(route = Screens.HospitalsRoute.route) {
+                Hospitals(navController = navController)
+            }
             composable(route = Screens.LabsRoute.route) {
                 Labs(navController = navController)
             }

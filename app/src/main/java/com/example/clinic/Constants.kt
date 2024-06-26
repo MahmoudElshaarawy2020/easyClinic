@@ -16,4 +16,8 @@ object Constants {
     const val DOCTOR_EXPERIENCE = "doctorExperience"
     const val DOCTOR_PHONE = "doctorExperience"
     const val REQUEST_APPOINTMENT_ID = "request_appointmentId"
+    const val CLICKED_PATIENT_NAME = "patient_clicked_name"
+    const val CLICKED_PATIENT_AGE = "patient_clicked_age"
+    const val CLICKED_PATIENT_PHONE = "patient_clicked_phone"
+    const val CLICKED_PATIENT_MEDICAL_HIS = "patient_medical_his"
 }

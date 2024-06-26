@@ -3,6 +3,7 @@ package views.doctorViews
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -144,6 +145,15 @@ fun Homedoctor(navController : NavController) {
                     colors = CardDefaults.cardColors(containerColor = Color.White),
                     modifier = Modifier
                         .fillMaxWidth()
+                        .clickable {
+                            val name = listofConfirmedPatients[index].patientId?.name
+                            SharedPerferenceHelper.saveClickedPatientName(name!!)
+                            val age = listofConfirmedPatients[index].patientId?.age
+                            SharedPerferenceHelper.saveClickedPatientAge(age!!)
+                            val phone = listofConfirmedPatients[index].patientId?.phone
+                            SharedPerferenceHelper.saveClickedPatientPhone(phone!!)
+                            navController.navigate("patient_details")
+                        }
                         .padding(top = 13.dp, start = 10.dp, end = 10.dp)
 
 

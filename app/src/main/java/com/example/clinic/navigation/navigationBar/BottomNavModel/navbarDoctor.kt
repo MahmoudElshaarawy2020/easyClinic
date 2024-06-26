@@ -28,7 +28,10 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import com.example.clinic.R
+import com.example.clinic.models.data.CheckItem
 import com.example.clinic.navigation.navigationModel.Screens
+import com.google.gson.Gson
+import views.DoctorViews.PatientDetails
 import views.doctorViews.Homedoctor
 import views.doctorViews.MyProfileDr
 import views.doctorViews.Requests
@@ -99,6 +102,10 @@ fun DrNav(navController: NavController) {
                 composable(route = Screens.doctorRequests.route)
                 {
                     Requests(navController = navController)
+                }
+                composable(route = Screens.patientDetails.route)
+                {
+                    PatientDetails(checks = listOf(),navController = navController)
                 }
                 composable(route = Screens.doctorProfile.route)
                 {
