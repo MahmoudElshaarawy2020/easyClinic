@@ -33,7 +33,10 @@ import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.example.clinic.R
 import com.example.clinic.api.models.patient_doctor_data.DoctorsItem
+import com.example.clinic.models.data.SignInUser
 import com.example.clinic.navigation.navigationModel.Screens
+import views.Authentication.LoginScreenTextFields
+import views.Authentication.signIn
 import views.patientViews.Booking
 import views.patientViews.ChooseTime
 import views.patientViews.Diet
@@ -207,6 +210,9 @@ fun NavbarPatient(navController: NavController) {
             }
             composable(route = Screens.AiResults.route) {
                 AiResults(navController = navController)
+            }
+            composable(route=Screens.signInScreen.route){
+                LoginScreenTextFields(navController)
             }
 
 

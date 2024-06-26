@@ -6,6 +6,7 @@ import com.example.clinic.api.models.confirmedpatient.ConfirmedPatientResponse
 import com.example.clinic.api.models.createappoint.CreateAppointmentResponse
 import com.example.clinic.api.models.doctor_data.DoctorDataResponse
 import com.example.clinic.api.models.getappintment.getAppointmentResponse
+import com.example.clinic.api.models.logout.LogOutResponse
 import com.example.clinic.api.models.medical_history.MedicalHistoryResponse
 import com.example.clinic.api.models.patient_data.DataPatientResponse
 import com.example.clinic.api.models.patient_doctor_data.PatientDoctorDataResponse
@@ -123,4 +124,9 @@ interface WebService {
         @Header("authorization") token: String = "",
         @Body patientsConfirmed: PatientsConfirmed
     ):Call<ConfirmedPatientResponse>
+
+    @POST("/auth/logout")
+    fun logOut(
+        @Header("authorization") token: String = "",
+    ):Call<LogOutResponse>
 }

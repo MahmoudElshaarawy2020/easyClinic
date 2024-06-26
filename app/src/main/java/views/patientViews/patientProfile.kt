@@ -1,5 +1,6 @@
 package views.patientViews
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -32,7 +33,13 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.clinic.R
+import com.example.clinic.api.ApiManager
+import com.example.clinic.api.models.logout.LogOutResponse
+import com.example.clinic.navigation.navigationModel.Screens
 import com.example.clinic.shared.SharedPerferenceHelper
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import views.FunctionsComposable.LocalImage
 
 
@@ -92,7 +99,7 @@ fun patientProfile(navController : NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp)
-                        .clickable { navController.navigate("my_profile_patient")},
+                        .clickable { navController.navigate("my_profile_patient") },
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
@@ -137,11 +144,13 @@ fun patientProfile(navController : NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp)
-                        .clickable {navController.navigate(route = "MedHis1"){
-                            popUpTo("patient_profile"){
-                                inclusive = true
+                        .clickable {
+                            navController.navigate(route = "MedHis1") {
+                                popUpTo("patient_profile") {
+                                    inclusive = true
+                                }
                             }
-                        } },
+                        },
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
@@ -278,7 +287,7 @@ fun patientProfile(navController : NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp)
-                        .clickable {navController.navigate(route="doctor_my_profile") },
+                        .clickable { logout(navController) },
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
@@ -320,6 +329,23 @@ fun patientProfile(navController : NavController) {
     }
 
 
+}
+
+fun logout(navController: NavController) {
+    ApiManager.getService().logOut(
+        token = "Bearer ${SharedPerferenceHelper.getToken()}"
+    ).enqueue(object : Callback<LogOutResponse>{
+        override fun onResponse(call: Call<LogOutResponse>, response: Response<LogOutResponse>) {
+            if (response.isSuccessful){
+                navController.navigate(Screens.signInScreen.route)
+            }
+        }
+
+        override fun onFailure(call: Call<LogOutResponse>, t: Throwable) {
+            Log.e("", "onFailure: $t", )
+        }
+
+    })
 }
 
 @Preview (showBackground = true)
