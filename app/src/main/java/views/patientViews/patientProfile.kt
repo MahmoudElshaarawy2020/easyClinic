@@ -217,13 +217,13 @@ fun patientProfile(navController : NavController) {
                     }
 
                 }
-                Divider(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 20.dp, end = 20.dp),
-                    thickness = 0.8.dp,
-                    color = Color(0xFF486A89)
-                )
+//                Divider(
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .padding(start = 20.dp, end = 20.dp),
+//                    thickness = 0.8.dp,
+//                    color = Color(0xFF486A89)
+//                )
 //                Row(
 //                    modifier = Modifier
 //                        .fillMaxWidth()

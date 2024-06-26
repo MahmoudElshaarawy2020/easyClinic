@@ -31,16 +31,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AiResults() {
-    val skinCancer : String = ""
-    var otherCancers : String = ""
-    var depression : String = ""
-    var arthritis : String = ""
-    var diabetes : String = ""
-    var heartDisease : String = ""
+fun AiResults(navController: NavController) {
+    val skinCancer by remember{ mutableStateOf(random())}
+    val otherCancers by remember{ mutableStateOf(random())}
+    val depression by remember{ mutableStateOf(random())}
+    val arthritis by remember{ mutableStateOf(random())}
+    val diabetes by remember{ mutableStateOf(random())}
+    val heartDisease by remember{ mutableStateOf(random())}
 
     Column(
         modifier = Modifier
@@ -54,25 +56,41 @@ fun AiResults() {
             elevation = 8.dp
         )
 
-    Text(text = "Prediction Results",
-        modifier = Modifier.padding(16.dp),
-        fontSize = 30.sp,
-        fontWeight = FontWeight.Bold,
-        color = Color(0xFF0480C4))
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-                    .border(
-                        border = BorderStroke(width = 2.dp, color = Color(0xFF018786)),
-                        shape = RoundedCornerShape(20)
-                    ),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text(text = "Skin Cancer : $skinCancer",
+        Text(text = "Prediction Results",
+            modifier = Modifier.padding(16.dp),
+            fontSize = 30.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color(0xFF0480C4))
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+                .border(
+                    border = BorderStroke(width = 2.dp, color = Color(0xFF018786)),
+                    shape = RoundedCornerShape(20)
+                ),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = "Skin cancer : ",
                     fontSize = 24.sp,
-                    color = Color.DarkGray,
-                    modifier = Modifier.padding(8.dp))
+                    modifier = Modifier.padding(8.dp)
+                )
+                if(skinCancer == "No"){
+                    Text(text = skinCancer,
+                        fontSize = 24.sp,
+                        modifier = Modifier.padding(8.dp),
+                        color = Color.Green)
+                }
+                else {
+                    Text(text = skinCancer,
+                        fontSize = 24.sp,
+                        modifier = Modifier.padding(8.dp),
+                        color = Color.Red)
+                }
+            }
         }
 
         Row(
@@ -85,9 +103,26 @@ fun AiResults() {
                 ),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(text = "Other Cancers : $otherCancers",
-                fontSize = 24.sp,
-                modifier = Modifier.padding(8.dp))
+            Row(modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = "Other cancers : ",
+                    fontSize = 24.sp,
+                    modifier = Modifier.padding(8.dp)
+                )
+                if(otherCancers == "No"){
+                    Text(text = otherCancers,
+                        fontSize = 24.sp,
+                        modifier = Modifier.padding(8.dp),
+                        color = Color.Green)
+                }
+                else {
+                    Text(text = otherCancers,
+                        fontSize = 24.sp,
+                        modifier = Modifier.padding(8.dp),
+                        color = Color.Red)
+                }
+            }
         }
 
         Row(
@@ -100,9 +135,26 @@ fun AiResults() {
                 ),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(text = "Depression : $depression",
-                fontSize = 24.sp,
-                modifier = Modifier.padding(8.dp))
+            Row(modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = "Depression : ",
+                    fontSize = 24.sp,
+                    modifier = Modifier.padding(8.dp)
+                )
+                if(depression == "No"){
+                    Text(text = depression,
+                        fontSize = 24.sp,
+                        modifier = Modifier.padding(8.dp),
+                        color = Color.Green)
+                }
+                else {
+                    Text(text = depression,
+                        fontSize = 24.sp,
+                        modifier = Modifier.padding(8.dp),
+                        color = Color.Red)
+                }
+            }
         }
 
         Row(
@@ -115,9 +167,26 @@ fun AiResults() {
                 ),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(text = "Arthritis : $arthritis",
-                fontSize = 24.sp,
-                modifier = Modifier.padding(8.dp))
+            Row(modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = "Arthritis : ",
+                    fontSize = 24.sp,
+                    modifier = Modifier.padding(8.dp)
+                )
+                if(arthritis == "No"){
+                    Text(text = arthritis,
+                        fontSize = 24.sp,
+                        modifier = Modifier.padding(8.dp),
+                        color = Color.Green)
+                }
+                else {
+                    Text(text = arthritis,
+                        fontSize = 24.sp,
+                        modifier = Modifier.padding(8.dp),
+                        color = Color.Red)
+                }
+            }
         }
 
         Row(
@@ -130,9 +199,26 @@ fun AiResults() {
                 ),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(text = "Diabetes : $diabetes",
-                fontSize = 24.sp,
-                modifier = Modifier.padding(8.dp))
+            Row(modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = "Diabetes : ",
+                    fontSize = 24.sp,
+                    modifier = Modifier.padding(8.dp)
+                )
+                if(diabetes == "No"){
+                    Text(text = diabetes,
+                        fontSize = 24.sp,
+                        modifier = Modifier.padding(8.dp),
+                        color = Color.Green)
+                }
+                else {
+                    Text(text = diabetes,
+                        fontSize = 24.sp,
+                        modifier = Modifier.padding(8.dp),
+                        color = Color.Red)
+                }
+            }
         }
 
         Row(
@@ -145,16 +231,37 @@ fun AiResults() {
                 ),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(text = "Heart Disease : $heartDisease",
-                fontSize = 24.sp,
-                modifier = Modifier.padding(8.dp))
+            Row(modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = "Heart disease : ",
+                    fontSize = 24.sp,
+                    modifier = Modifier.padding(8.dp)
+                )
+                if(heartDisease == "No"){
+                    Text(text = heartDisease,
+                        fontSize = 24.sp,
+                        modifier = Modifier.padding(8.dp),
+                        color = Color.Green)
+                }
+                else {
+                    Text(text = heartDisease,
+                        fontSize = 24.sp,
+                        modifier = Modifier.padding(8.dp),
+                        color = Color.Red)
+                }
+            }
         }
     }
+}
+fun random(): String {
+    val options = listOf("Yes", "No")
+    return options.random()
 }
 
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun AiResultPreview(){
-    AiResults()
+    AiResults(rememberNavController())
 }

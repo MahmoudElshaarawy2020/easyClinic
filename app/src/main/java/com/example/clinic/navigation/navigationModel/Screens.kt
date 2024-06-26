@@ -1,9 +1,5 @@
 package com.example.clinic.navigation.navigationModel
 
-import android.net.Uri
-import com.example.clinic.models.data.CheckItem
-import com.google.gson.Gson
-
 sealed class Screens(val route : String){
     object signInScreen : Screens("signIn_screen")
     object signUpScreen : Screens("signUp_screen")
@@ -25,6 +21,8 @@ sealed class Screens(val route : String){
     object Nav : Screens("nav")
     object NavDr : Screens("navDr")
     object patientDetails : Screens("patient_details")
+    object enterRatio : Screens("enter_ratio")
+    object AiResults : Screens("ai_results")
 
 
 
